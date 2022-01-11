@@ -90,3 +90,4 @@ target/
 
 # Microsoft temp files:
 [~][$]*
+data/processed/CD33_metabs_manual_curated.csv
