@@ -91,3 +91,4 @@ target/
 # Microsoft temp files:
 [~][$]*
 data/processed/CD33_metabs_manual_curated.csv
+data/search/CD33/Nilerat_lipids_CD33_aligned.csv
