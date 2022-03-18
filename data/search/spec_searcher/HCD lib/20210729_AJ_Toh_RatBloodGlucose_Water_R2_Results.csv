@@ -1,7 +1,0 @@
-MS2 ID,Retention Time (min),Rank,Identification,Precursor Mass,Library Mass,Delta m/z,Dot Product,Reverse Dot Product,Purity,Spectral Components,Optimal Polarity,LipiDex Spectrum,Library,Potential Fragments
-320,7.245,1,Cer[AS] d14:0_14:0 [M-H]-;,470.421,470.4209,0.2126,5,1000,0,,true,true,LipiDex_HCD_Acetate.msp,183.1754 | 185.1911 | 197.1911 | 214.2176 | 225.186 | 227.2017 | 242.2126 | 
-338,7.429,1,Cer[AS] d14:0_14:0 [M-H]-;,470.42,470.4209,-1.9132,1,1000,0,,true,true,LipiDex_HCD_Acetate.msp,183.1754 | 185.1911 | 197.1911 | 214.2176 | 225.186 | 227.2017 | 242.2126 | 
-550,10.541,1,Cer[NS] d16:0_16:0 [M+H]+;,512.504,512.5043,-0.5854,1,1000,0,,false,true,LipiDex_HCD_Acetate.msp,226.2529 | 238.2529 | 256.2635 | 494.4932 | 
-572,10.882,1,DG 18:1_20:0 [M+NH4]+;,668.619,668.6193,-0.4487,2,1000,0,,true,true,LipiDex_HCD_Acetate.msp,265.2526 | 283.2632 | 295.2995 | 313.3101 | 339.2894 | 369.3363 | 
-657,11.924,1,DG 20:1_20:0 [M+NH4]+;,696.65,696.6506,-0.8613,3,1000,0,,true,true,LipiDex_HCD_Acetate.msp,293.2839 | 295.2995 | 311.2945 | 313.3101 | 367.3207 | 369.3363 | 
-670,12.104,1,DG 20:1_20:0 [M+NH4]+;,696.65,696.6506,-0.8613,2,1000,0,,true,true,LipiDex_HCD_Acetate.msp,293.2839 | 295.2995 | 311.2945 | 313.3101 | 367.3207 | 369.3363 | 

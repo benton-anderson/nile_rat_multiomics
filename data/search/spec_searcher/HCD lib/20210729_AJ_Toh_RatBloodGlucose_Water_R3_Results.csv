@@ -1,3 +1,0 @@
-MS2 ID,Retention Time (min),Rank,Identification,Precursor Mass,Library Mass,Delta m/z,Dot Product,Reverse Dot Product,Purity,Spectral Components,Optimal Polarity,LipiDex Spectrum,Library,Potential Fragments
-445,10.88,1,DG 18:0_20:1 [M+NH4]+;,668.618,668.6193,-1.9443,2,1000,0,,true,true,LipiDex_HCD_Acetate.msp,267.2682 | 285.2788 | 293.2839 | 311.2945 | 341.305 | 367.3207 | 
-545,11.94,1,DG 20:1_20:0 [M+NH4]+;,696.651,696.6506,0.5742,3,1000,0,,true,true,LipiDex_HCD_Acetate.msp,293.2839 | 295.2995 | 311.2945 | 313.3101 | 367.3207 | 369.3363 | 
