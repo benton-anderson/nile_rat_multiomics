@@ -19,9 +19,8 @@ If -o argument not used, defaults to appending "_CD33converted" to original name
 
 Try these examples with the included files in the folder! 
 
-py CD33_lipidex_converter.py -f test_file_CD33_aligned.csv -a -o my_converted_file
+py CD33_lipidex_converter.py -f test_file_CD33_aligned.csv -a -o my_converted_file.csv
 Writes file named "my_converted_file.csv". 
-Note that it adds .csv to end of filename if it wasn't included in argument.
 
 py CD33_lipidex_converter.py -f test_file_CD33_unaligned.csv -u
 Writes file named "unaligned_file_CD33converted.csv" 

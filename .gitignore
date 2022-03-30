@@ -1,3 +1,7 @@
+# Compound Discoverer Results Files
+*.cdResult
+*.cdResultView
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
