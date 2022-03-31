@@ -1,0 +1,29 @@
+Must use the CD33 output with all necessary columns present. 
+Column order from CD output does not matter ... probably... I hope... 
+Must use .csv file that was converted from excel file. 
+Cannot write converted file to a different directory. 
+.csv file must not be open in Excel or else conversion will fail. 
+
+Open command prompt and change directory to where aligned file lives.
+Your python might be one of the following commands: py, python, python3, py3
+Requires python > 3.2
+
+Arguments: 
+-f or --file = your aligned or unaligned file name (can also be path/to/file)
+-a or --aligned = flag for aligned file
+-u or --unaligned = flag for unaligned file
+If you mix-up -a or -u on your file, then converter will fail with message like:
+	"ValueError: 'Name' is not in list" or "ValueError: 'Ion' is not in list".
+-o or --outfilename = OPTIONAL. Name for converted file. 
+If -o argument not used, defaults to appending "_CD33converted" to original name.
+
+Try these examples with the included files in the folder! 
+
+py CD33_lipidex_converter.py -f test_file_CD33_aligned.csv -a -o my_converted_file.csv
+Writes file named "my_converted_file.csv". 
+
+py CD33_lipidex_converter.py -f test_file_CD33_unaligned.csv -u
+Writes file named "unaligned_file_CD33converted.csv" 
+Note the default ending was appended to original filename. 
+
+
