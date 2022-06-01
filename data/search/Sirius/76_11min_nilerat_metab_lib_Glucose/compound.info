@@ -1,0 +1,8 @@
+index	76
+name	11min_nilerat_metab_lib_Glucose
+ionMass	179.05525
+ionType	[M + ?]-
+detectedAdducts	
+rt	690.7638:NaN,NaN
+confidenceScore	0.08079505239874533
+rankingScoreType	sirius.scores.SiriusScore

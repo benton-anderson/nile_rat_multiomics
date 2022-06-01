@@ -1,0 +1,58 @@
+>compound MW_345.10849@RT_11.739
+>formula C12H19N5O5S
+>parentmass 344.10135
+>ionization [M + ?]-
+>instrumentation Unknown (LCMS)
+>source file:///D:/nile_rat_multiomics/data/processed/11min_nilerat_metab_lib.msp
+>quality UNKNOWN
+>rt 700.2612s
+
+>collision 30 eV
+##comments 
+##inchikey 
+##collision_energy 30.0
+##smiles 
+##precursor_type 
+##precursormz 344.10135
+##ionization ESI
+##compoundclass 
+##ionmode negative
+##casno 
+##name MW_345.10849@RT_11.739
+##formula C12 H19 N5 O5 S
+##retentiontime 11.67102
+50.2881 763.16
+50.4735 842.49
+56.7776 812.13
+56.9228 842.05
+57.4971 790.56
+57.9716 853.64
+58.6308 880.39
+63.6879 858.93
+63.9614 1263.8
+68.2833 1016.7
+70.7356 861.32
+71.3865 942.85
+76.9692 1379.28
+78.2656 936.63
+80.964 857.78
+86.4832 822.43
+90.2734 881.28
+100.0392 2294.33
+100.8957 921.0
+117.2447 893.65
+123.5392 818.77
+127.783 1070.13
+134.9159 912.15
+138.7462 1031.38
+154.5242 813.65
+164.0377 30223.53
+166.7516 988.43
+173.2383 1019.58
+218.5431 5923.05
+234.568 864.2
+251.7094 1046.36
+273.4838 898.29
+279.2254 899.42
+304.0013 1884.8
+

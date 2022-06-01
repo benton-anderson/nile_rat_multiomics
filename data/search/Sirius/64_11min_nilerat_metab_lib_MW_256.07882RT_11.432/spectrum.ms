@@ -1,0 +1,57 @@
+>compound MW_256.07882@RT_11.432
+>formula C8H16O9
+>parentmass 254.96053
+>ionization [M + ?]-
+>instrumentation Unknown (LCMS)
+>source file:///D:/nile_rat_multiomics/data/processed/11min_nilerat_metab_lib.msp
+>quality UNKNOWN
+>rt 692.2728s
+
+>collision 30 eV
+##comments 
+##inchikey 
+##collision_energy 30.0
+##smiles 
+##precursor_type 
+##precursormz 254.96053
+##ionization ESI
+##compoundclass 
+##ionmode negative
+##casno 
+##name MW_256.07882@RT_11.432
+##formula C8 H16 O9
+##retentiontime 11.53788
+52.2016 794.88
+53.9938 727.13
+54.1708 772.43
+56.479 841.02
+58.2744 1032.35
+61.2586 826.53
+63.3327 756.02
+64.84 755.38
+67.9618 753.72
+68.0384 862.59
+75.0076 9824.33
+75.2911 1240.62
+78.3554 909.2
+85.2402 932.05
+89.2978 711.68
+91.6446 844.43
+97.3907 751.3
+111.339 949.48
+114.4996 995.95
+117.6409 950.77
+154.9463 10672.21
+171.0042 974.43
+171.1443 838.17
+172.9569 11602.48
+194.939 2191.73
+215.823 5469.15
+215.8295 2825.72
+239.2635 940.4
+254.9061 5988.49
+255.1961 1211.16
+255.2322 117025.9
+255.7722 857.99
+266.6945 965.77
+

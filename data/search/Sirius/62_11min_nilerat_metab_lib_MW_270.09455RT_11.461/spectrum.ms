@@ -1,0 +1,58 @@
+>compound MW_270.09455@RT_11.461
+>formula C4H15N8O4P
+>parentmass 269.08743
+>ionization [M + ?]-
+>instrumentation Unknown (LCMS)
+>source file:///D:/nile_rat_multiomics/data/processed/11min_nilerat_metab_lib.msp
+>quality UNKNOWN
+>rt 703.7166s
+
+>collision 30 eV
+##comments 
+##inchikey 
+##collision_energy 30.0
+##smiles 
+##precursor_type 
+##precursormz 269.08743
+##ionization ESI
+##compoundclass 
+##ionmode negative
+##casno 
+##name MW_270.09455@RT_11.461
+##formula C4 H15 N8 O4 P
+##retentiontime 11.72861
+59.4165 769.34
+60.9628 832.29
+62.2246 746.31
+65.7045 887.39
+66.5185 728.14
+79.6133 775.77
+79.7699 753.6
+83.1466 810.85
+83.4261 1073.23
+89.0233 5042.57
+91.4521 888.34
+111.6902 895.23
+124.6851 781.2
+133.8524 1146.54
+143.9509 782.49
+153.6575 1223.5
+157.1942 821.05
+157.622 820.77
+164.8925 1031.85
+174.2921 765.42
+177.0275 923.51
+178.2067 817.07
+178.4255 935.87
+184.7931 890.9
+212.6956 1061.9
+215.5934 1210.5
+215.5996 8787.3
+217.4446 806.04
+234.5013 850.51
+235.9129 944.17
+257.7567 944.06
+269.1024 1582.31
+269.2116 11985.6
+269.2479 6480.65
+

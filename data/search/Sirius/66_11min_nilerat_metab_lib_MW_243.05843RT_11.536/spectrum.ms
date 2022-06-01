@@ -1,0 +1,58 @@
+>compound MW_243.05843@RT_11.536
+>formula C6H13NO9
+>parentmass 242.07924
+>ionization [M + ?]-
+>instrumentation Unknown (LCMS)
+>source file:///D:/nile_rat_multiomics/data/processed/11min_nilerat_metab_lib.msp
+>quality UNKNOWN
+>rt 691.7267999999999s
+
+>collision 30 eV
+##comments 
+##inchikey 
+##collision_energy 30.0
+##smiles 
+##precursor_type 
+##precursormz 242.07924
+##ionization ESI
+##compoundclass 
+##ionmode negative
+##casno 
+##name MW_243.05843@RT_11.536
+##formula C6 H13 N O9
+##retentiontime 11.52878
+50.5286 889.53
+51.9529 834.9
+56.935 827.74
+58.3772 860.48
+63.1543 853.77
+67.0365 857.73
+68.2161 816.47
+68.4576 874.04
+70.8345 763.79
+70.8356 865.61
+74.7414 692.33
+75.6807 799.26
+78.9579 27178.34
+79.2815 770.48
+80.3011 845.28
+84.8485 898.55
+93.9575 867.21
+95.5105 740.59
+98.3351 1053.95
+103.5209 829.87
+109.4564 871.08
+152.8298 891.68
+152.9948 8832.32
+153.1161 849.47
+165.9657 989.42
+168.0421 30924.2
+170.1521 891.87
+171.0053 2460.2
+219.0029 3781.39
+223.8611 791.48
+227.5102 943.51
+242.0792 44595.89
+242.1751 1392.6
+260.8667 790.41
+

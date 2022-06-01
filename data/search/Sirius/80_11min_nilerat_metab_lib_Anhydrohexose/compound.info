@@ -1,0 +1,8 @@
+index	80
+name	11min_nilerat_metab_lib_Anhydrohexose
+ionMass	161.04451
+ionType	[M + ?]-
+detectedAdducts	
+rt	671.4150000000001:NaN,NaN
+confidenceScore	0.05964644172958565
+rankingScoreType	sirius.scores.SiriusScore

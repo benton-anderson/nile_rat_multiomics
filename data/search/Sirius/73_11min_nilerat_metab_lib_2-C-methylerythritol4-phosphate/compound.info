@@ -1,0 +1,8 @@
+index	73
+name	11min_nilerat_metab_lib_2-C-methylerythritol4-phosphate
+ionMass	215.03198
+ionType	[M + ?]-
+detectedAdducts	
+rt	719.9742:NaN,NaN
+confidenceScore	0.10425819044310677
+rankingScoreType	sirius.scores.SiriusScore
