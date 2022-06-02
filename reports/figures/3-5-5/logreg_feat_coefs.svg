@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 602.4 522.5" style="enable-background:new 0 0 602.4 522.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#262626;}
+	.st1{font-family:'ArialMT';}
+	.st2{font-size:20px;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#262626;stroke:#262626;stroke-width:0.8;stroke-linejoin:round;}
+	.st5{font-size:18px;}
+	.st6{opacity:0.95;clip-path:url(#SVGID_2_);fill:#00008B;enable-background:new    ;}
+	.st7{opacity:0.95;clip-path:url(#SVGID_4_);fill:#00008B;enable-background:new    ;}
+	.st8{opacity:0.95;clip-path:url(#SVGID_6_);fill:#00008B;enable-background:new    ;}
+	.st9{opacity:0.95;clip-path:url(#SVGID_8_);fill:#00008B;enable-background:new    ;}
+	.st10{opacity:0.95;clip-path:url(#SVGID_10_);fill:#00008B;enable-background:new    ;}
+	.st11{opacity:0.95;clip-path:url(#SVGID_12_);fill:#00008B;enable-background:new    ;}
+	.st12{opacity:0.95;clip-path:url(#SVGID_14_);fill:#00008B;enable-background:new    ;}
+	.st13{opacity:0.95;clip-path:url(#SVGID_16_);fill:#00008B;enable-background:new    ;}
+	.st14{opacity:0.95;clip-path:url(#SVGID_18_);fill:#00008B;enable-background:new    ;}
+	.st15{opacity:0.95;clip-path:url(#SVGID_20_);fill:#00008B;enable-background:new    ;}
+	.st16{opacity:0.95;clip-path:url(#SVGID_22_);fill:#00008B;enable-background:new    ;}
+	.st17{opacity:0.95;clip-path:url(#SVGID_24_);fill:#00008B;enable-background:new    ;}
+	.st18{clip-path:url(#SVGID_26_);fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+	.st19{fill:none;stroke:#262626;stroke-width:1.25;stroke-linecap:square;}
+	.st20{font-size:25px;}
+</style>
+<g id="text_19">
+	<text transform="matrix(6.123234e-17 -1 1 6.123234e-17 21.5156 295.3682)" class="st0 st1 st2">Metabolite</text>
+</g>
+<g>
+	<g id="patch_2">
+		<path class="st3" d="M258.1,467.1h225.8V31.4H258.1V467.1z"/>
+	</g>
+	<g id="matplotlib.axis_1">
+		<g id="xtick_1">
+			<g id="line2d_1">
+				<g>
+					<g>
+						<path id="m3be6f958a2" class="st4" d="M259.9,467.1v6"/>
+					</g>
+				</g>
+			</g>
+			<g id="text_1">
+				<text transform="matrix(1 0 0 1 237.0879 489.4458)" class="st0 st1 st5">−0.04</text>
+			</g>
+		</g>
+		<g id="xtick_2">
+			<g id="line2d_2">
+				<g>
+					<g>
+						<path id="m3be6f958a2_1_" class="st4" d="M308.2,467.1v6"/>
+					</g>
+				</g>
+			</g>
+			<g id="text_2">
+				<text transform="matrix(1 0 0 1 285.4441 489.4458)" class="st0 st1 st5">−0.02</text>
+			</g>
+		</g>
+		<g id="xtick_3">
+			<g id="line2d_3">
+				<g>
+					<g>
+						<path id="m3be6f958a2_2_" class="st4" d="M356.6,467.1v6"/>
+					</g>
+				</g>
+			</g>
+			<g id="text_3">
+				<text transform="matrix(1 0 0 1 339.0562 489.4458)" class="st0 st1 st5">0.00</text>
+			</g>
+		</g>
+		<g id="xtick_4">
+			<g id="line2d_4">
+				<g>
+					<g>
+						<path id="m3be6f958a2_3_" class="st4" d="M404.9,467.1v6"/>
+					</g>
+				</g>
+			</g>
+			<g id="text_4">
+				<text transform="matrix(1 0 0 1 387.4124 489.4458)" class="st0 st1 st5">0.02</text>
+			</g>
+		</g>
+		<g id="xtick_5">
+			<g id="line2d_5">
+				<g>
+					<g>
+						<path id="m3be6f958a2_4_" class="st4" d="M453.3,467.1v6"/>
+					</g>
+				</g>
+			</g>
+			<g id="text_5">
+				<text transform="matrix(1 0 0 1 435.7686 489.4458)" class="st0 st1 st5">0.04</text>
+			</g>
+		</g>
+		<g id="text_6">
+			<text transform="matrix(1 0 0 1 288.9086 511.3389)" class="st0 st1 st2">Feature coefficient</text>
+		</g>
+	</g>
+	<g id="ytick_1">
+		<g id="line2d_6">
+			<g>
+				<g>
+					<path id="m526cd35946" class="st4" d="M258.1,443.1h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_7">
+			<text transform="matrix(1 0 0 1 106.5239 449.5353)" class="st0 st1 st5">Pyroglutamic acid</text>
+		</g>
+	</g>
+	<g id="ytick_2">
+		<g id="line2d_7">
+			<g>
+				<g>
+					<path id="m526cd35946_1_" class="st4" d="M258.1,407.8h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_8">
+			<text transform="matrix(1 0 0 1 187.5327 414.2875)" class="st0 st1 st5">Betaine</text>
+		</g>
+	</g>
+	<g id="ytick_3">
+		<g id="line2d_8">
+			<g>
+				<g>
+					<path id="m526cd35946_2_" class="st4" d="M258.1,372.6h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_9">
+			<text transform="matrix(1 0 0 1 157.5181 379.0397)" class="st0 st1 st5">Asparagine</text>
+		</g>
+	</g>
+	<g id="ytick_4">
+		<g id="line2d_9">
+			<g>
+				<g>
+					<path id="m526cd35946_3_" class="st4" d="M258.1,337.3h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_10">
+			<text transform="matrix(1 0 0 1 138.4985 343.9016)" class="st0 st1 st5">PC 18:1_22:6</text>
+		</g>
+	</g>
+	<g id="ytick_5">
+		<g id="line2d_10">
+			<g>
+				<g>
+					<path id="m526cd35946_4_" class="st4" d="M258.1,302.1h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_11">
+			<text transform="matrix(1 0 0 1 171.5366 308.5442)" class="st0 st1 st5">SM d34:1</text>
+		</g>
+	</g>
+	<g id="ytick_6">
+		<g id="line2d_11">
+			<g>
+				<g>
+					<path id="m526cd35946_5_" class="st4" d="M258.1,266.9h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_12">
+			<text transform="matrix(1 0 0 1 139.4917 273.3231)" class="st0 st1 st5">PE 18:0_22:6</text>
+		</g>
+	</g>
+	<g id="ytick_7">
+		<g id="line2d_12">
+			<g>
+				<g>
+					<path id="m526cd35946_6_" class="st4" d="M258.1,231.6h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_13">
+			<text transform="matrix(1 0 0 1 139.4917 238.0753)" class="st0 st1 st5">PE 18:0_20:4</text>
+		</g>
+	</g>
+	<g id="ytick_8">
+		<g id="line2d_13">
+			<g>
+				<g>
+					<path id="m526cd35946_7_" class="st4" d="M258.1,196.4h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_14">
+			<text transform="matrix(1 0 0 1 74.5229 202.9161)" class="st0 st1 st5">Plasmanyl-PC O-32:1</text>
+		</g>
+	</g>
+	<g id="ytick_9">
+		<g id="line2d_14">
+			<g>
+				<g>
+					<path id="m526cd35946_8_" class="st4" d="M258.1,161.1h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_15">
+			<text transform="matrix(1 0 0 1 29.479 167.6683)" class="st0 st1 st5">Plasmanyl-PC O-16:0_16:0</text>
+		</g>
+	</g>
+	<g id="ytick_10">
+		<g id="line2d_15">
+			<g>
+				<g>
+					<path id="m526cd35946_9_" class="st4" d="M258.1,125.9h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_16">
+			<text transform="matrix(1 0 0 1 74.5229 132.4207)" class="st0 st1 st5">Plasmanyl-PC O-36:1</text>
+		</g>
+	</g>
+	<g id="ytick_11">
+		<g id="line2d_16">
+			<g>
+				<g>
+					<path id="m526cd35946_10_" class="st4" d="M258.1,90.6h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_17">
+			<text transform="matrix(1 0 0 1 171.5366 97.0575)" class="st0 st1 st5">SM d42:1</text>
+		</g>
+	</g>
+	<g id="ytick_12">
+		<g id="line2d_17">
+			<g>
+				<g>
+					<path id="m526cd35946_11_" class="st4" d="M258.1,55.4h-6"/>
+				</g>
+			</g>
+		</g>
+		<g id="text_18">
+			<text transform="matrix(1 0 0 1 171.5366 61.8097)" class="st0 st1 st5">SM d43:1</text>
+		</g>
+	</g>
+	<g id="patch_3">
+		<g>
+			<defs>
+				<rect id="SVGID_1_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st6" d="M356.6,458.2h91v-30.3h-91V458.2z"/>
+		</g>
+	</g>
+	<g id="patch_4">
+		<g>
+			<defs>
+				<rect id="SVGID_3_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st7" d="M356.6,423h117.1v-30.3H356.6V423z"/>
+		</g>
+	</g>
+	<g id="patch_5">
+		<g>
+			<defs>
+				<rect id="SVGID_5_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_6_">
+				<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st8" d="M356.6,387.8h49.9v-30.3h-49.9V387.8z"/>
+		</g>
+	</g>
+	<g id="patch_6">
+		<g>
+			<defs>
+				<rect id="SVGID_7_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_8_">
+				<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st9" d="M356.6,352.5H416v-30.3h-59.4V352.5z"/>
+		</g>
+	</g>
+	<g id="patch_7">
+		<g>
+			<defs>
+				<rect id="SVGID_9_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_10_">
+				<use xlink:href="#SVGID_9_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st10" d="M356.6,317.3h75.2v-30.3h-75.2V317.3z"/>
+		</g>
+	</g>
+	<g id="patch_8">
+		<g>
+			<defs>
+				<rect id="SVGID_11_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_12_">
+				<use xlink:href="#SVGID_11_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st11" d="M356.6,282h-73.7v-30.3h73.7V282z"/>
+		</g>
+	</g>
+	<g id="patch_9">
+		<g>
+			<defs>
+				<rect id="SVGID_13_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_14_">
+				<use xlink:href="#SVGID_13_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st12" d="M356.6,246.8h-88.2v-30.3h88.2V246.8z"/>
+		</g>
+	</g>
+	<g id="patch_10">
+		<g>
+			<defs>
+				<rect id="SVGID_15_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_16_">
+				<use xlink:href="#SVGID_15_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st13" d="M356.6,211.5h52.6v-30.3h-52.6V211.5z"/>
+		</g>
+	</g>
+	<g id="patch_11">
+		<g>
+			<defs>
+				<rect id="SVGID_17_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_18_">
+				<use xlink:href="#SVGID_17_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st14" d="M356.6,176.3h95V146h-95V176.3z"/>
+		</g>
+	</g>
+	<g id="patch_12">
+		<g>
+			<defs>
+				<rect id="SVGID_19_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_20_">
+				<use xlink:href="#SVGID_19_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st15" d="M356.6,141h45.3v-30.3h-45.3V141z"/>
+		</g>
+	</g>
+	<g id="patch_13">
+		<g>
+			<defs>
+				<rect id="SVGID_21_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_22_">
+				<use xlink:href="#SVGID_21_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st16" d="M356.6,105.8h64V75.5h-64V105.8z"/>
+		</g>
+	</g>
+	<g id="patch_14">
+		<g>
+			<defs>
+				<rect id="SVGID_23_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_24_">
+				<use xlink:href="#SVGID_23_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st17" d="M356.6,70.5h63.8V40.2h-63.8V70.5z"/>
+		</g>
+	</g>
+	<g id="line2d_18">
+		<g>
+			<defs>
+				<rect id="SVGID_25_" x="258.1" y="31.4" width="225.8" height="435.7"/>
+			</defs>
+			<clipPath id="SVGID_26_">
+				<use xlink:href="#SVGID_25_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st18" d="M356.6,467.1V31.4"/>
+		</g>
+	</g>
+	<g id="patch_15">
+		<path class="st19" d="M258.1,467.1V31.4"/>
+	</g>
+	<g id="patch_16">
+		<path class="st19" d="M258.1,467.1h225.8"/>
+	</g>
+</g>
+<g id="text_20">
+	<text transform="matrix(1 0 0 1 146.8053 25.3992)" class="st0 st1 st20">Logistic Regression Feature Coefficients</text>
+</g>
+</svg>
