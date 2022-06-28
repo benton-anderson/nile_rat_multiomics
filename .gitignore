@@ -2,6 +2,9 @@
 *.cdResult
 *.cdResultView
 
+# folder with a lot of .png images
+reports/figures/all_metabolite_plots/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
