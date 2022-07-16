@@ -1,6 +1,10 @@
 import numpy as np
 
 def parse_lipid(lipid):
+    """
+    Input lipid string e.g. TG 60:4 or PC 18:2_20:1
+    Returns: tuple of (lipid class, SM label, # carbons, # unsat, sum composition string, FA list)
+    """
     try:
         l = lipid.split(' ')
         cls = l[0]
