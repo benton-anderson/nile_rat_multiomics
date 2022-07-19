@@ -5,6 +5,9 @@
 # folder with a lot of .png images
 reports/figures/all_metabolite_plots/*
 
+# Annotated spectra from Dain's script
+reports/figures/Annotated Spectra
+
 # Structured data format file of chemical info/
 *.sdf
 
