@@ -2,6 +2,15 @@
 *.cdResult
 *.cdResultView
 
+# folder with a lot of .png images
+reports/figures/all_metabolite_plots/*
+
+# Annotated spectra from Dain's script
+reports/figures/Annotated Spectra
+
+# Structured data format file of chemical info/
+*.sdf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -101,3 +110,4 @@ data/search/CD33/CD_output/Nilerat_lipids_CD33_unaligned_CD33converted.csv
 data/search/CD33/CD_output/Nilerat_lipids_CD33_aligned_filtered_20220331_CD33converted.csv
 data/search/CD33/CD_output/Nilerat_lipids_CD33_aligned.csv
 data/search/CD33/CD_output/Nilerat_lipids_CD33_aligned_filtered_20220331.csv
+data/external/serum_metabolites.xml
