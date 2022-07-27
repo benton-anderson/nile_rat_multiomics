@@ -8,47 +8,50 @@ from matplotlib.lines import Line2D
 plt.rcParams['svg.fonttype'] = 'none'
 import seaborn as sns
 
+from .utils import parse_p_value, parse_lipid
 
-# colors and class-superclass maps
-with open(r'..\data\metadata\color_schemes.json') as infile:
-    colors = json.load(infile)
 
-animals_used = [1091, 1093, 1060, 1062, 1074, 1092, 1102, 1076, 1082, 1101]
-diabetic =     [1076, 1082, 1101]
-impaired =     [1060, 1062, 1074, 1092, 1102]
-normal =       [1091, 1093]
-animal_tol = {
-    1076: 'diabetic', 1082: 'diabetic', 1101: 'diabetic', 1060: 'impaired', 1062: 'impaired', 
-    1074: 'impaired', 1092: 'impaired', 1102: 'impaired', 1091: 'normal', 1093: 'normal'}
-ap = pd.read_excel(r'..\data\metadata\animal_phenotypes.xlsx', index_col=0)
-fg = pd.read_csv(r'..\data\metadata\combined_metab_lipid_file_grouping.csv', index_col=0)
-
-# Use data that was sent to collaborators 
-data = pd.read_csv(r'..\data\processed\combined_metabolites_data_with_model_params.csv').set_index('i')
+# LOAD DATA
+colors = json.load(open(r'..\data\metadata\color_schemes.json'))
+colors['Non-fasted'] = colors['RBG']
+colors['Fasted'] = colors['FBG']
+compound_superclasses = json.load(open('../data/metadata/compound_superclasses.json', 'r'))
+    
+data = pd.read_csv(r'../data/processed/combined_metabolites_data_with_model_params.csv').set_index('i')
 data_cols = data.filter(regex='_FBG|_RBG').columns
 fbg_cols = data.filter(regex='_FBG').columns
 rbg_cols = data.filter(regex='_RBG').columns
 
-qval_sampling = data['qval_sampling']
-qval_gtol = data['qval_ogtt']
-qval_cross = data['qval_sampling:ogtt']
+ap = pd.read_excel(r'..\data\metadata\animal_phenotypes.xlsx', index_col=0)
+fg = pd.read_csv(r'..\data\metadata\combined_metab_lipid_file_grouping.csv', index_col=0)
 
 ogtt_values = ap.loc[ap['lcms_sampled'], 'OGTT (AUC)']
 min_ogtt, max_ogtt = min(ogtt_values), max(ogtt_values)
 
-def parse_pval(pval):
-    if pval < 0.0001:
-        return '****'
-    if pval < 0.001:
-        return '***'
-    if pval < 0.01:
-        return '**'
-    if pval < 0.05: 
-        return '*'
-    else:
-        return 'ns'
 
-def plot_quant_vs_ogtt(
+def plot_quant_vs_ogtt(df, x, y, palette, xlabel=None, ylabel=None, 
+                           animal_lines=True, legend=False,
+                           robust=False, ax=None, scatter_kws=None, line_kws=None):
+    if ax is None:
+        fig, ax = plt.subplots()
+    for bg_type in df['bg_type'].unique():
+        sns.regplot(data=df.loc[df['bg_type'] == bg_type], x=x, y=y, n_boot=200, robust=robust, 
+                    color=palette[bg_type], truncate=False, label=bg_type, scatter_kws=scatter_kws, line_kws=line_kws,
+                    ax=ax, seed=1)
+    if legend:
+        ax.legend()
+    if animal_lines:
+        for unique_x in df[x].unique():
+            ax.axvline(unique_x, color='gray', alpha=0.5, linewidth=0.5)
+    if xlabel is not None:
+        ax.set_xlabel(xlabel)
+    if ylabel is not None:
+        ax.set_ylabel(ylabel)
+    sns.despine()
+    return ax
+
+
+def plot_quant_vs_ogtt_old(
     feature, data, 
     ax=None, include_info=False, savefig=False, folder_path=None, file_type=None,
     figsize=(7, 5)):
