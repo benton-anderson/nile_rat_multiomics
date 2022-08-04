@@ -1,4 +1,3 @@
-
 import numpy as np
 
 
@@ -45,3 +44,19 @@ def parse_lipid(lipid):
     except:
         # return a tuple of 6 nan
         return (np.nan,) * 6
+        
+        
+def tight_bbox(ax):
+    """
+    Example for placing figure panel letters at very top left of the axis bounding box: 
+    for ax, letter in zip([ax1, ax2], ['A', 'B']):
+        bb = tight_bbox(ax)
+        ax.text(x=bb.x0, y=bb.y1, s=letter, transform=fig.transFigure)
+    """
+
+    fig = ax.get_figure()
+    tight_bbox_raw = ax.get_tightbbox(fig.canvas.get_renderer())
+    from matplotlib.transforms import TransformedBbox
+    tight_bbox_fig = TransformedBbox(tight_bbox_raw, fig.transFigure.inverted())
+    return tight_bbox_fig
+    
