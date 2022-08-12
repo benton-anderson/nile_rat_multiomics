@@ -1,0 +1,65 @@
+"","Total Cmpd","Hits","Statistic Q","Expected Q","Raw p","Holm p","FDR"
+"Beta-Alanine Metabolism",34,5,28.467,1.7241,3.5639e-14,2.2809e-12,1.2747e-12
+"Spermidine and Spermine Biosynthesis",18,1,63.549,1.7241,4.2176e-14,2.6571e-12,1.2747e-12
+"Threonine and 2-Oxobutanoate Degradation",20,1,62.809,1.7241,7.5221e-14,4.6637e-12,1.2747e-12
+"Histidine Metabolism",43,7,22.74,1.7241,8.1972e-14,5.0003e-12,1.2747e-12
+"Valine, Leucine and Isoleucine Degradation",60,3,40.632,1.7241,9.9589e-14,5.9754e-12,1.2747e-12
+"Amino Sugar Metabolism",33,3,29.287,1.7241,2.6814e-13,1.5821e-11,2.8602e-12
+"Fatty Acid Biosynthesis",35,1,58.511,1.7241,1.7562e-12,1.0186e-10,1.6057e-11
+"Carnitine Synthesis",22,2,43.621,1.7241,2.7225e-11,1.5518e-09,2.178e-10
+"Glucose-Alanine Cycle",13,3,26.101,1.7241,5.2938e-10,2.9645e-08,3.7645e-09
+"Oxidation of Branched Chain Fatty Acids",26,1,48.718,1.7241,8.0322e-10,4.4177e-08,4.6733e-09
+"Beta Oxidation of Very Long Chain Fatty Acids",17,1,48.718,1.7241,8.0322e-10,4.4177e-08,4.6733e-09
+"Pentose Phosphate Pathway",29,2,26.86,1.7241,8.7738e-10,4.6501e-08,4.6794e-09
+"Gluconeogenesis",35,2,37.628,1.7241,3.4986e-09,1.8193e-07,1.6981e-08
+"Sphingolipid Metabolism",40,1,45.368,1.7241,5.0413e-09,2.5711e-07,1.6981e-08
+"Glycolysis",25,1,45.368,1.7241,5.0413e-09,2.5711e-07,1.6981e-08
+"Galactose Metabolism",38,1,45.368,1.7241,5.0413e-09,2.5711e-07,1.6981e-08
+"Lactose Synthesis",20,1,45.368,1.7241,5.0413e-09,2.5711e-07,1.6981e-08
+"Lactose Degradation",9,1,45.368,1.7241,5.0413e-09,2.5711e-07,1.6981e-08
+"Transfer of Acetyl Groups into Mitochondria",22,1,45.368,1.7241,5.0413e-09,2.5711e-07,1.6981e-08
+"Warburg Effect",58,4,23.785,1.7241,1.446e-08,6.507e-07,4.6272e-08
+"Methylhistidine Metabolism",4,2,25.635,1.7241,1.6747e-06,7.3688e-05,5.1039e-06
+"Fatty acid Metabolism",43,2,22.023,1.7241,2.9937e-06,0.00012873,7.9833e-06
+"Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids",27,2,22.023,1.7241,2.9937e-06,0.00012873,7.9833e-06
+"Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids",28,2,22.023,1.7241,2.9937e-06,0.00012873,7.9833e-06
+"Glycine and Serine Metabolism",59,9,16.207,1.7241,2.4933e-05,0.00099734,6.383e-05
+"Arginine and Proline Metabolism",53,6,16.272,1.7241,5.9894e-05,0.0023359,0.00014743
+"Pyrimidine Metabolism",59,4,14.266,1.7241,0.00011098,0.0042173,0.00026307
+"Catecholamine Biosynthesis",20,1,17.962,1.7241,0.00082306,0.030453,0.0017016
+"Thyroid hormone synthesis",13,1,17.962,1.7241,0.00082306,0.030453,0.0017016
+"Taurine and Hypotaurine Metabolism",12,1,17.958,1.7241,0.00082422,0.030453,0.0017016
+"Bile Acid Biosynthesis",65,1,17.958,1.7241,0.00082422,0.030453,0.0017016
+"Pyruvate Metabolism",48,2,12.594,1.7241,0.001131,0.037323,0.002262
+"Urea Cycle",29,6,11.967,1.7241,0.0012156,0.038899,0.0023575
+"Tryptophan Metabolism",60,3,11.471,1.7241,0.0013611,0.042195,0.0025621
+"Retinol Metabolism",37,1,16.393,1.7241,0.0014686,0.044058,0.0026855
+"Ammonia Recycling",32,6,8.8085,1.7241,0.0022933,0.066504,0.0040769
+"Aspartate Metabolism",35,7,9.1277,1.7241,0.0027807,0.077861,0.0048099
+"Phospholipid Biosynthesis",29,1,11.095,1.7241,0.009941,0.26841,0.015906
+"Phosphatidylcholine Biosynthesis",14,1,11.095,1.7241,0.009941,0.26841,0.015906
+"Phosphatidylethanolamine Biosynthesis",12,1,11.095,1.7241,0.009941,0.26841,0.015906
+"Selenoamino Acid Metabolism",28,2,9.3094,1.7241,0.010955,0.26841,0.0171
+"Betaine Metabolism",21,2,7.4177,1.7241,0.015225,0.35017,0.0232
+"Glutathione Metabolism",21,2,8.2866,1.7241,0.016736,0.3682,0.02491
+"Phenylalanine and Tyrosine Metabolism",28,4,5.8257,1.7241,0.024933,0.5236,0.036266
+"Alanine Metabolism",17,3,4.9308,1.7241,0.056435,1,0.080263
+"Glutamate Metabolism",49,4,4.6796,1.7241,0.059806,1,0.083208
+"Tyrosine Metabolism",72,2,4.9758,1.7241,0.063307,1,0.086205
+"Nicotinate and Nicotinamide Metabolism",37,4,4.0274,1.7241,0.079556,1,0.10608
+"Methionine Metabolism",43,3,2.9281,1.7241,0.17185,1,0.22445
+"Glycerolipid Metabolism",25,1,2.8806,1.7241,0.19875,1,0.2544
+"Purine Metabolism",74,4,1.7327,1.7241,0.32076,1,0.40252
+"Lysine Degradation",30,1,0.26229,1.7241,0.70008,1,0.81463
+"Folate Metabolism",29,1,0.26229,1.7241,0.70008,1,0.81463
+"Arachidonic Acid Metabolism",69,1,0.26229,1.7241,0.70008,1,0.81463
+"Malate-Aspartate Shuttle",10,1,0.26229,1.7241,0.70008,1,0.81463
+"Propanoate Metabolism",42,3,0.63578,1.7241,0.73258,1,0.83724
+"Pantothenate and CoA Biosynthesis",21,1,0.056367,1.7241,0.85834,1,0.88603
+"Riboflavin Metabolism",20,1,0.056367,1.7241,0.85834,1,0.88603
+"Butyrate Metabolism",19,1,0.056367,1.7241,0.85834,1,0.88603
+"Thiamine Metabolism",9,1,0.056367,1.7241,0.85834,1,0.88603
+"Ethanol Degradation",19,1,0.056367,1.7241,0.85834,1,0.88603
+"Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",27,1,0.056367,1.7241,0.85834,1,0.88603
+"Cysteine Metabolism",26,2,0.16813,1.7241,0.89688,1,0.91111
+"Phenylacetate Metabolism",9,2,0.096376,1.7241,0.91782,1,0.91782

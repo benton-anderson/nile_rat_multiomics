@@ -1,0 +1,94 @@
+Tyrosine	pp	Tryptophan
+Tyrosine	pp	Trigonelline
+Tyrosine	pp	Indoleacrylic acid
+Tyrosine	pp	Proline
+Tyrosine	pp	Lactic Acid
+Tyrosine	pp	Hydroxycinnamic acid
+Tyrosine	pp	Glyceric acid
+Tyrosine	pp	Alanine
+Tyrosine	pp	4-Hydroxybenzaldehyde
+Tryptophan	pp	Indoleacrylic acid
+Tryptophan	pp	Proline
+Tryptophan	pp	Phenylalanine
+Tryptophan	pp	Lactic Acid
+Tryptophan	pp	Hydroxycinnamic acid
+Tryptophan	pp	Alanine
+Tryptophan	pp	Guanidinosuccinic acid
+Tryptophan	pp	4-Hydroxybenzaldehyde
+Trigonelline	pp	1-Methylhistidine
+Trigonelline	pp	Stachydrine
+Trigonelline	pp	4-Hydroxybenzaldehyde
+Urocanic acid	pp	Betaine
+Urocanic acid	pp	Serine
+Urocanic acid	pp	4-Oxoproline
+Indoleacrylic acid	pp	Proline
+Indoleacrylic acid	pp	Phenylalanine
+Indoleacrylic acid	pp	1-Methylhistidine
+Indoleacrylic acid	pp	Lactic Acid
+Indoleacrylic acid	pp	Hydroxycinnamic acid
+Indoleacrylic acid	pp	Alanine
+Indoleacrylic acid	pp	Guanidinosuccinic acid
+Indoleacrylic acid	pp	4-Hydroxybenzaldehyde
+Threonine	pp	Phenylalanine
+Threonine	pp	Leucine
+Threonine	pp	Isoleucine
+Threonine	pp	Guanidinosuccinic acid
+Proline	pp	Phenylalanine
+Proline	pp	Lactic Acid
+Proline	pp	Hydroxycinnamic acid
+Proline	pp	Alanine
+Proline	pp	4-Hydroxybenzaldehyde
+Taurine	pp	N-Acetylneuraminic acid
+Taurine	pp	Anserine
+Taurine	pp	Adenosine 5'-monophosphate
+Phenylalanine	pp	Leucine
+Phenylalanine	pp	Lactic Acid
+Phenylalanine	pp	Isoleucine
+Phenylalanine	pp	Hydroxycinnamic acid
+Phenylalanine	pp	Hippuric acid
+Phenylalanine	pp	Alanine
+Phenylalanine	pp	Guanidinosuccinic acid
+Phenylalanine	pp	3-Hydroxybutyric acid
+1-Methylhistidine	pp	Lactic Acid
+1-Methylhistidine	pp	Glyceric acid
+1-Methylhistidine	pp	Beta alanine
+Leucine	pp	Isoleucine
+Leucine	pp	Glucose
+Leucine	pp	Acrylic acid
+N-Acetylornithine	pp	Hydroxycinnamic acid
+N-Acetylornithine	pp	Alanine
+N-Acetylornithine	pp	4-Hydroxybenzaldehyde
+Lactic Acid	pp	Hydroxycinnamic acid
+Lactic Acid	pp	Glyceric acid
+Lactic Acid	pp	Alanine
+Lactic Acid	pp	Guanidinosuccinic acid
+Lactic Acid	pp	4-Hydroxybenzaldehyde
+Lactic Acid	pp	3-Hydroxybutyric acid
+Ornithine	pp	Guanidinosuccinic acid
+Isoleucine	pp	Glucose
+Isoleucine	pp	Ethyl glucuronide
+Isoleucine	pp	Guanidinosuccinic acid
+Isoleucine	pp	Acrylic acid
+Hydroxycinnamic acid	pp	Alanine
+Hydroxycinnamic acid	pp	Guanidinosuccinic acid
+Hydroxycinnamic acid	pp	4-Hydroxybenzaldehyde
+Hippuric acid	pp	Guanidinosuccinic acid
+Iditol	pp	Glucose
+Iditol	pp	Acrylic acid
+Pseudouridine	pp	Gluconic acid
+N-Acetylneuraminic acid	pp	Anserine
+N-Acetylneuraminic acid	pp	Gluconic acid
+Glyceric acid	pp	Gluconic acid
+Glucose	pp	Ethyl glucuronide
+Glucose	pp	Acrylic acid
+Stachydrine	pp	Creatinine
+Creatinine	pp	Beta-D-Glucopyranuronic acid
+Betaine	pp	Beta-D-Glucopyranuronic acid
+Threonic acid	pp	Beta alanine
+Cytidine	pp	alpha-Glycerylphosphorylcholine
+Beta-D-Glucopyranuronic acid	pp	alpha-Glycerylphosphorylcholine
+Anserine	pp	Adenosine 5'-monophosphate
+Ethyl glucuronide	pp	Acrylic acid
+Serine	pp	4-Oxoproline
+Alanine	pp	4-Hydroxybenzaldehyde
+Guanidinosuccinic acid	pp	3-Hydroxybutyric acid

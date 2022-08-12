@@ -51,6 +51,80 @@ def plot_quant_vs_ogtt(df, x, y, palette, xlabel=None, ylabel=None,
     return ax
 
 
+def volcano(x, y, df, metab_type, alpha=0.8, ax=None, legend=False):
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(4,4), dpi=100)
+    sns.scatterplot(
+        data=df.loc[(df['superclass'] != 'Unidentified') & (df['Type'] == metab_type)], 
+        x=x, y=y, hue='superclass', palette=colors, 
+#         s=30, linewidth=0.2, edgecolor='gray',
+        edgecolor='0.1', linewidth=0.6,
+        ax=ax, alpha=alpha, legend=legend)
+    sns.scatterplot(
+        data=df.loc[(df['superclass'] == 'Unidentified') & (df['Type'] == metab_type)], 
+        x=x, y=y, hue='superclass', palette=colors, ax=ax, 
+        s=20,
+        alpha=0.3, zorder=-10, legend=legend)
+    ax.ticklabel_format(style='sci', scilimits=(-2, 2))
+    ax.set_ylabel('-log10(q-value)')
+    if legend:
+        ax.legend(loc=(1.01, 0.1), markerscale=1.2)
+#     ax.set_title(y)
+    ax.axvline(0, linewidth=1, c='0.5', zorder=-99)
+    ax.axhline(-np.log10(0.05), linewidth=1, c='0.5', zorder=-99)
+    sns.despine()
+    return ax
+
+
+def fasted_fed_slope(_type, ax=None, alpha=0.8, legend=False):
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(4,4), dpi=100)
+    sns.scatterplot(
+        data=data.loc[(data['superclass'] != 'Unidentified') & (data['Type'] == _type)],
+        x='coef_fed', y='coef_fasted', hue='superclass', ax=ax, palette=colors, 
+#         s=30, linewidth=0.5, edgecolor='gray',
+        edgecolor='0.1', linewidth=0.6,
+        alpha=alpha, legend=legend)
+    sns.scatterplot(
+        data=data.loc[(data['superclass'] == 'Unidentified') & (data['Type'] == _type)],
+        x='coef_fed', y='coef_fasted', hue='superclass', ax=ax, palette=colors, s=20,
+        alpha=0.28, zorder=-10, legend=legend)
+
+    ###### 2 options for making sure the axes are equally scaled to not bias against non-fasted:
+    ########## 1. ax.set_aspect('equal') enforces square, but distorts plot
+    ########## 2. ylim average +/- 0.5 * xlim range 
+    avg_ylim = np.mean([y for y in ax.get_ylim()])
+    xlim_range = abs(ax.get_xlim()[0] - ax.get_xlim()[1])
+    ax.set_ylim(avg_ylim-0.5*xlim_range, avg_ylim+0.5*xlim_range)
+    ax.set_ylabel('Fasted linear regression slope')
+    ax.set_xlabel('Non-fasted linear regression slope')
+    ax.ticklabel_format(style='sci', scilimits=(-1, 1))
+    ax.axvline(0, c='gray', linewidth=0.8, alpha=0.8, zorder=-99)
+    ax.axhline(0, c='gray', linewidth=0.8, alpha=0.8, zorder=-99)
+    if legend:
+        ax.legend(loc=(0.8, 0.05), markerscale=1.2)
+    sns.despine()
+    return ax
+
+
+def pvals_plot(x, y, df, metab_type, alpha=0.8, ax=None, legend=False):
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(4,4), dpi=120)
+    sns.scatterplot(
+        data=df.loc[(df['is_id'] == True) & (df['Type'] == metab_type)], 
+        x=x, y=y, hue='superclass', palette=colors,
+        edgecolor='0.1', linewidth=0.6, ax=ax, legend=legend, alpha=alpha)
+    sns.scatterplot(
+        data=df.loc[(df['is_id'] == False) & (df['Type'] == metab_type)], 
+        x=x, y=y, hue='superclass', palette=colors, s=20, ax=ax, legend=legend, alpha=0.3, zorder=-10)
+    ax.axhline(-np.log10(0.05), c='gray', alpha=0.3, zorder=-99)
+    ax.axvline(-np.log10(0.05), c='gray', alpha=0.3, zorder=-99)
+    if legend:
+        ax.legend(loc=(1.01, 0.1), markerscale=1.2)
+    sns.despine()
+    return ax
+
+
 def plot_quant_vs_ogtt_old(
     feature, data, 
     ax=None, include_info=False, savefig=False, folder_path=None, file_type=None,

@@ -1,0 +1,42 @@
+Id,Label,Degree,Betweenness
+C00186,Lactic Acid,12,182.95
+C00079,Phenylalanine,12,172.11
+C03139,Guanidinosuccinic acid,10,118.86
+unmapped_7,Indoleacrylic acid,10,58.12
+C00811,Hydroxycinnamic acid,10,36.28
+C00082,Tyrosine,9,134.2
+C00633,4-Hydroxybenzaldehyde,9,91.32
+C00078,Tryptophan,9,23.45
+C00041,Alanine,9,20.29
+C00148,Proline,8,11.57
+C00407,Isoleucine,7,104.5
+C01152,1-Methylhistidine,5,141.59
+C00123,Leucine,5,36.5
+C00221,Glucose,5,19.33
+C19501,Acrylic acid,5,19.33
+C01004,Trigonelline,4,281.18
+C00258,Glyceric acid,4,204.75
+C00188,Threonine,4,0.67
+unmapped_53,Beta-D-Glucopyranuronic acid,3,212
+C00257,Gluconic acid,3,179
+C19910,N-Acetylneuraminic acid,3,111
+C00785,Urocanic acid,3,76
+C00245,Taurine,3,19
+C01262,Anserine,3,19
+C00437,N-Acetylornithine,3,0
+unmapped_44,Ethyl glucuronide,3,0
+C01089,3-Hydroxybutyric acid,3,0
+C10172,Stachydrine,2,256
+C00791,Creatinine,2,231
+C00719,Betaine,2,111
+C00099,Beta alanine,2,39
+C00670,alpha-Glycerylphosphorylcholine,2,39
+C01586,Hippuric acid,2,0
+C01507,Iditol,2,0
+C00716,Serine,2,0
+C00020,Adenosine 5'-monophosphate,2,0
+C01877,4-Oxoproline,2,0
+C00077,Ornithine,1,0
+C02067,Pseudouridine,1,0
+C01620,Threonic acid,1,0
+C00475,Cytidine,1,0

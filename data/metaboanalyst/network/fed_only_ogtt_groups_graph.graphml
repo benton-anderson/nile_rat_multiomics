@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<!-- Created by igraph -->
+  <key id="v_name" for="node" attr.name="name" attr.type="string"/>
+  <key id="e_Coefficient" for="edge" attr.name="Coefficient" attr.type="double"/>
+  <key id="e_Pval" for="edge" attr.name="Pval" attr.type="double"/>
+  <key id="e_Adj_Pval" for="edge" attr.name="Adj_Pval" attr.type="double"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="n0">
+      <data key="v_name">C00082</data>
+    </node>
+    <node id="n1">
+      <data key="v_name">C00078</data>
+    </node>
+    <node id="n2">
+      <data key="v_name">C01004</data>
+    </node>
+    <node id="n3">
+      <data key="v_name">C00785</data>
+    </node>
+    <node id="n4">
+      <data key="v_name">unmapped_7</data>
+    </node>
+    <node id="n5">
+      <data key="v_name">C00188</data>
+    </node>
+    <node id="n6">
+      <data key="v_name">C00148</data>
+    </node>
+    <node id="n7">
+      <data key="v_name">C00245</data>
+    </node>
+    <node id="n8">
+      <data key="v_name">C00079</data>
+    </node>
+    <node id="n9">
+      <data key="v_name">C01152</data>
+    </node>
+    <node id="n10">
+      <data key="v_name">C00123</data>
+    </node>
+    <node id="n11">
+      <data key="v_name">C00437</data>
+    </node>
+    <node id="n12">
+      <data key="v_name">C00186</data>
+    </node>
+    <node id="n13">
+      <data key="v_name">C00077</data>
+    </node>
+    <node id="n14">
+      <data key="v_name">C00407</data>
+    </node>
+    <node id="n15">
+      <data key="v_name">C00811</data>
+    </node>
+    <node id="n16">
+      <data key="v_name">C01586</data>
+    </node>
+    <node id="n17">
+      <data key="v_name">C01507</data>
+    </node>
+    <node id="n18">
+      <data key="v_name">C02067</data>
+    </node>
+    <node id="n19">
+      <data key="v_name">C19910</data>
+    </node>
+    <node id="n20">
+      <data key="v_name">C00258</data>
+    </node>
+    <node id="n21">
+      <data key="v_name">C00221</data>
+    </node>
+    <node id="n22">
+      <data key="v_name">C10172</data>
+    </node>
+    <node id="n23">
+      <data key="v_name">C00791</data>
+    </node>
+    <node id="n24">
+      <data key="v_name">C00719</data>
+    </node>
+    <node id="n25">
+      <data key="v_name">C01620</data>
+    </node>
+    <node id="n26">
+      <data key="v_name">C00475</data>
+    </node>
+    <node id="n27">
+      <data key="v_name">unmapped_53</data>
+    </node>
+    <node id="n28">
+      <data key="v_name">C01262</data>
+    </node>
+    <node id="n29">
+      <data key="v_name">unmapped_44</data>
+    </node>
+    <node id="n30">
+      <data key="v_name">C00716</data>
+    </node>
+    <node id="n31">
+      <data key="v_name">C00041</data>
+    </node>
+    <node id="n32">
+      <data key="v_name">C03139</data>
+    </node>
+    <node id="n33">
+      <data key="v_name">C00257</data>
+    </node>
+    <node id="n34">
+      <data key="v_name">C00099</data>
+    </node>
+    <node id="n35">
+      <data key="v_name">C00670</data>
+    </node>
+    <node id="n36">
+      <data key="v_name">C00020</data>
+    </node>
+    <node id="n37">
+      <data key="v_name">C19501</data>
+    </node>
+    <node id="n38">
+      <data key="v_name">C01877</data>
+    </node>
+    <node id="n39">
+      <data key="v_name">C00633</data>
+    </node>
+    <node id="n40">
+      <data key="v_name">C01089</data>
+    </node>
+    <edge source="n0" target="n1">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">6.09e-06</data>
+      <data key="e_Adj_Pval">0.000582</data>
+    </edge>
+    <edge source="n0" target="n2">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">0.000115</data>
+      <data key="e_Adj_Pval">0.00289</data>
+    </edge>
+    <edge source="n0" target="n4">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.37e-06</data>
+      <data key="e_Adj_Pval">0.000472</data>
+    </edge>
+    <edge source="n0" target="n6">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">5.08e-05</data>
+      <data key="e_Adj_Pval">0.00188</data>
+    </edge>
+    <edge source="n0" target="n12">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">6.28e-05</data>
+      <data key="e_Adj_Pval">0.00214</data>
+    </edge>
+    <edge source="n0" target="n15">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.9e-07</data>
+      <data key="e_Adj_Pval">8.01e-05</data>
+    </edge>
+    <edge source="n0" target="n20">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.69e-05</data>
+      <data key="e_Adj_Pval">0.00264</data>
+    </edge>
+    <edge source="n0" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.7e-06</data>
+      <data key="e_Adj_Pval">0.000655</data>
+    </edge>
+    <edge source="n0" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.97e-07</data>
+      <data key="e_Adj_Pval">7.92e-05</data>
+    </edge>
+    <edge source="n1" target="n4">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.1e-07</data>
+      <data key="e_Adj_Pval">7.92e-05</data>
+    </edge>
+    <edge source="n1" target="n6">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.49e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n1" target="n8">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">5.87e-05</data>
+      <data key="e_Adj_Pval">0.00209</data>
+    </edge>
+    <edge source="n1" target="n12">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.49e-05</data>
+      <data key="e_Adj_Pval">0.000869</data>
+    </edge>
+    <edge source="n1" target="n15">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">7.3e-06</data>
+      <data key="e_Adj_Pval">0.000605</data>
+    </edge>
+    <edge source="n1" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">5.38e-05</data>
+      <data key="e_Adj_Pval">0.00197</data>
+    </edge>
+    <edge source="n1" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">7.21e-05</data>
+      <data key="e_Adj_Pval">0.00234</data>
+    </edge>
+    <edge source="n1" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.9e-06</data>
+      <data key="e_Adj_Pval">0.000689</data>
+    </edge>
+    <edge source="n2" target="n9">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">6.02e-05</data>
+      <data key="e_Adj_Pval">0.00211</data>
+    </edge>
+    <edge source="n2" target="n22">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.15e-06</data>
+      <data key="e_Adj_Pval">0.000468</data>
+    </edge>
+    <edge source="n2" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.58e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n3" target="n24">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.58e-05</data>
+      <data key="e_Adj_Pval">0.00146</data>
+    </edge>
+    <edge source="n3" target="n30">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.55e-05</data>
+      <data key="e_Adj_Pval">0.000877</data>
+    </edge>
+    <edge source="n3" target="n38">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.23e-07</data>
+      <data key="e_Adj_Pval">7.92e-05</data>
+    </edge>
+    <edge source="n4" target="n6">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">6.66e-05</data>
+      <data key="e_Adj_Pval">0.00224</data>
+    </edge>
+    <edge source="n4" target="n8">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.05e-05</data>
+      <data key="e_Adj_Pval">0.00134</data>
+    </edge>
+    <edge source="n4" target="n9">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.13e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n4" target="n12">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.54e-06</data>
+      <data key="e_Adj_Pval">0.000655</data>
+    </edge>
+    <edge source="n4" target="n15">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">7.17e-06</data>
+      <data key="e_Adj_Pval">0.000605</data>
+    </edge>
+    <edge source="n4" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.92e-05</data>
+      <data key="e_Adj_Pval">0.00101</data>
+    </edge>
+    <edge source="n4" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">6.13e-05</data>
+      <data key="e_Adj_Pval">0.00212</data>
+    </edge>
+    <edge source="n4" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">7.03e-06</data>
+      <data key="e_Adj_Pval">0.000605</data>
+    </edge>
+    <edge source="n5" target="n8">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.98e-06</data>
+      <data key="e_Adj_Pval">0.000689</data>
+    </edge>
+    <edge source="n5" target="n10">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.58e-05</data>
+      <data key="e_Adj_Pval">0.00123</data>
+    </edge>
+    <edge source="n5" target="n14">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.69e-06</data>
+      <data key="e_Adj_Pval">0.000262</data>
+    </edge>
+    <edge source="n5" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.55e-05</data>
+      <data key="e_Adj_Pval">0.00123</data>
+    </edge>
+    <edge source="n6" target="n8">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.23e-05</data>
+      <data key="e_Adj_Pval">0.000765</data>
+    </edge>
+    <edge source="n6" target="n12">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.06e-05</data>
+      <data key="e_Adj_Pval">0.00105</data>
+    </edge>
+    <edge source="n6" target="n15">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.13e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n6" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.54e-06</data>
+      <data key="e_Adj_Pval">0.000255</data>
+    </edge>
+    <edge source="n6" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">0.000102</data>
+      <data key="e_Adj_Pval">0.00273</data>
+    </edge>
+    <edge source="n7" target="n19">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.25e-05</data>
+      <data key="e_Adj_Pval">0.00168</data>
+    </edge>
+    <edge source="n7" target="n28">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.84e-06</data>
+      <data key="e_Adj_Pval">0.000454</data>
+    </edge>
+    <edge source="n7" target="n36">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.96e-05</data>
+      <data key="e_Adj_Pval">0.00101</data>
+    </edge>
+    <edge source="n8" target="n10">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.23e-05</data>
+      <data key="e_Adj_Pval">0.00134</data>
+    </edge>
+    <edge source="n8" target="n12">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.23e-06</data>
+      <data key="e_Adj_Pval">0.000233</data>
+    </edge>
+    <edge source="n8" target="n14">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.77e-06</data>
+      <data key="e_Adj_Pval">0.000689</data>
+    </edge>
+    <edge source="n8" target="n15">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.2e-05</data>
+      <data key="e_Adj_Pval">0.0026</data>
+    </edge>
+    <edge source="n8" target="n16">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.67e-05</data>
+      <data key="e_Adj_Pval">0.00179</data>
+    </edge>
+    <edge source="n8" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.5e-05</data>
+      <data key="e_Adj_Pval">0.000869</data>
+    </edge>
+    <edge source="n8" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">5.64e-07</data>
+      <data key="e_Adj_Pval">0.000128</data>
+    </edge>
+    <edge source="n8" target="n40">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.21e-05</data>
+      <data key="e_Adj_Pval">0.0011</data>
+    </edge>
+    <edge source="n9" target="n12">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.71e-05</data>
+      <data key="e_Adj_Pval">0.000943</data>
+    </edge>
+    <edge source="n9" target="n20">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.55e-05</data>
+      <data key="e_Adj_Pval">0.00177</data>
+    </edge>
+    <edge source="n9" target="n34">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.61e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n10" target="n14">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.67e-07</data>
+      <data key="e_Adj_Pval">0.000116</data>
+    </edge>
+    <edge source="n10" target="n21">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.94e-06</data>
+      <data key="e_Adj_Pval">0.000406</data>
+    </edge>
+    <edge source="n10" target="n37">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.44e-06</data>
+      <data key="e_Adj_Pval">0.000447</data>
+    </edge>
+    <edge source="n11" target="n15">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">0.000116</data>
+      <data key="e_Adj_Pval">0.00289</data>
+    </edge>
+    <edge source="n11" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.08e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n11" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.96e-05</data>
+      <data key="e_Adj_Pval">0.00259</data>
+    </edge>
+    <edge source="n12" target="n15">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">6.59e-06</data>
+      <data key="e_Adj_Pval">0.000605</data>
+    </edge>
+    <edge source="n12" target="n20">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">0.000112</data>
+      <data key="e_Adj_Pval">0.00283</data>
+    </edge>
+    <edge source="n12" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.02e-05</data>
+      <data key="e_Adj_Pval">0.00134</data>
+    </edge>
+    <edge source="n12" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.31e-06</data>
+      <data key="e_Adj_Pval">0.000233</data>
+    </edge>
+    <edge source="n12" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.13e-05</data>
+      <data key="e_Adj_Pval">0.00134</data>
+    </edge>
+    <edge source="n12" target="n40">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.17e-05</data>
+      <data key="e_Adj_Pval">0.00134</data>
+    </edge>
+    <edge source="n13" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.45e-05</data>
+      <data key="e_Adj_Pval">0.00264</data>
+    </edge>
+    <edge source="n14" target="n21">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.27e-05</data>
+      <data key="e_Adj_Pval">0.000767</data>
+    </edge>
+    <edge source="n14" target="n29">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.2e-05</data>
+      <data key="e_Adj_Pval">0.0026</data>
+    </edge>
+    <edge source="n14" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.74e-05</data>
+      <data key="e_Adj_Pval">0.000943</data>
+    </edge>
+    <edge source="n14" target="n37">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.16e-05</data>
+      <data key="e_Adj_Pval">0.000741</data>
+    </edge>
+    <edge source="n15" target="n31">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.22e-05</data>
+      <data key="e_Adj_Pval">0.00168</data>
+    </edge>
+    <edge source="n15" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">7.25e-05</data>
+      <data key="e_Adj_Pval">0.00234</data>
+    </edge>
+    <edge source="n15" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.89e-07</data>
+      <data key="e_Adj_Pval">8.01e-05</data>
+    </edge>
+    <edge source="n16" target="n32">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">0.00011</data>
+      <data key="e_Adj_Pval">0.00283</data>
+    </edge>
+    <edge source="n17" target="n21">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">7.25e-05</data>
+      <data key="e_Adj_Pval">0.00234</data>
+    </edge>
+    <edge source="n17" target="n37">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.37e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n18" target="n33">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.98e-05</data>
+      <data key="e_Adj_Pval">0.00188</data>
+    </edge>
+    <edge source="n19" target="n28">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">0.000103</data>
+      <data key="e_Adj_Pval">0.00273</data>
+    </edge>
+    <edge source="n19" target="n33">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">0.000111</data>
+      <data key="e_Adj_Pval">0.00283</data>
+    </edge>
+    <edge source="n20" target="n33">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">5.89e-05</data>
+      <data key="e_Adj_Pval">0.00209</data>
+    </edge>
+    <edge source="n21" target="n29">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">5.92e-06</data>
+      <data key="e_Adj_Pval">0.000582</data>
+    </edge>
+    <edge source="n21" target="n37">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.74e-08</data>
+      <data key="e_Adj_Pval">5.88e-05</data>
+    </edge>
+    <edge source="n22" target="n23">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.78e-05</data>
+      <data key="e_Adj_Pval">0.00264</data>
+    </edge>
+    <edge source="n23" target="n27">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.1e-05</data>
+      <data key="e_Adj_Pval">0.000722</data>
+    </edge>
+    <edge source="n24" target="n27">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">4.32e-08</data>
+      <data key="e_Adj_Pval">5.88e-05</data>
+    </edge>
+    <edge source="n25" target="n34">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.41e-05</data>
+      <data key="e_Adj_Pval">0.00252</data>
+    </edge>
+    <edge source="n26" target="n35">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">1.82e-07</data>
+      <data key="e_Adj_Pval">7.92e-05</data>
+    </edge>
+    <edge source="n27" target="n35">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">2.01e-06</data>
+      <data key="e_Adj_Pval">0.000294</data>
+    </edge>
+    <edge source="n28" target="n36">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">9.55e-05</data>
+      <data key="e_Adj_Pval">0.00264</data>
+    </edge>
+    <edge source="n29" target="n37">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">5.12e-06</data>
+      <data key="e_Adj_Pval">0.00053</data>
+    </edge>
+    <edge source="n30" target="n38">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.6e-06</data>
+      <data key="e_Adj_Pval">0.000447</data>
+    </edge>
+    <edge source="n31" target="n39">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">3.16e-05</data>
+      <data key="e_Adj_Pval">0.00134</data>
+    </edge>
+    <edge source="n32" target="n40">
+      <data key="e_Coefficient">1</data>
+      <data key="e_Pval">8.69e-06</data>
+      <data key="e_Adj_Pval">0.000655</data>
+    </edge>
+  </graph>
+</graphml>
