@@ -23,6 +23,19 @@ num_fas = {
 }
 
 
+def ppm_tol(a, b=None, tol=10):
+    """
+    Return tuple of (low m/z, high m/z) for one m/z value if b=None
+    
+    or Return boolean whether a and b are within tolerance of each other.
+    """
+    if b is None:
+        mz_diff = a * tol * 1e-6
+        return (a - mz_diff, a + mz_diff)
+    elif b is not None:
+        return abs(a - b) / a * 1e6 < tol
+
+
 def parse_p_value(pval):
     if   pval < 0.0001:
         return '****'
