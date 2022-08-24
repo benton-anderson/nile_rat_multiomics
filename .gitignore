@@ -3,7 +3,7 @@
 *.cdResultView
 
 # folder with a lot of .png images
-reports/figures/all_metabolite_plots/*
+reports/figures/All Quant vs OGTT plots/
 
 # Annotated spectra from Dain's script
 reports/figures/Annotated Spectra
