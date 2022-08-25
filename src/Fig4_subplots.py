@@ -1,9 +1,9 @@
 import json
 import os
 import sys
-sys.path.insert(1, os.path.join(sys.path[0], '..'))  # Add the src directory to path 
-# from src.plots import plot_quant_vs_ogtt, volcano
-from src.utils import tight_bbox
+# sys.path.insert(1, os.path.join(sys.path[0], '..'))  # Add the src directory to path 
+from src.utils import tight_bbox, parse_lipid, parse_p_value, add_jitter
+from src.plots import plot_quant_vs_ogtt
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -16,14 +16,11 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import numpy as np
 import seaborn as sns 
 import plotly.express as px
-
 plt.rcParams['svg.fonttype'] = 'none'
 plt.rcParams['pdf.use14corefonts'] = True
 plt.rcParams['axes.unicode_minus'] = False  # https://stackoverflow.com/questions/43102564/matplotlib-negative-numbers-on-tick-labels-displayed-as-boxes
 plt.style.use('seaborn-ticks')  # 'seaborn-ticks'
 sns.set_style('ticks')
-
-
 
 colors = json.load(open(r'..\data\metadata\color_schemes.json'))
 colors['Non-fasted'] = colors['RBG']
@@ -58,6 +55,12 @@ data['log_qval_sampling'] = -np.log10(data['qval_sampling'])
 data['log_qval_ogtt'] = -np.log10(data['qval_ogtt'])
 data['log_qval_sampling:ogtt'] = -np.log10(data['qval_sampling:ogtt'])
 data['is_id'] = data['superclass'] != 'Unidentified'
+
+l_ids = data.loc[(data['Type'] == 'lipid') & (data['ID'] != 'unknown')].index
+data.loc[l_ids, 'fa_carbons']      = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[2])
+data.loc[l_ids, 'fa_unsat']        = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[3])
+data.loc[l_ids, 'fa_carbon:unsat'] = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[4])
+data['pval_asterisks']  = data['qval_sampling:ogtt'].apply(lambda x: parse_p_value(x))
 
 BIG_SCATTER_OUTLINE_SIZE = 48
 BIG_SCATTER_SIZE = 23
@@ -151,8 +154,7 @@ def metab_volcano_plot(ax=None):
     ax.text(ax.get_xlim()[0], -6, 'Higher in fasted', ha='left', fontsize=5)
     ax.text(ax.get_xlim()[1], -6, 'Higher in non-fasted', ha='right', fontsize=5)
     sns.despine(left=True, ax=ax)
-    
-    
+
 def metab_coef_coef_plot(ax=None):
     df = data.loc[(data['Type'] == 'metabolite') & (data['ID'] != 'Unidentified')].copy()
     df = df.loc[~(df['ID'].isin(['Anhydrohexose', 'Pentose sugar', 'Hexose sugar']))]
@@ -214,8 +216,8 @@ def metab_coef_coef_plot(ax=None):
     # ax.set_xlim(-max_lim, max_lim)
     # ax.set_ylim(-max_lim, max_lim)
 
-    ax.axhline(0, color='0.8', zorder=-99)
-    ax.axvline(0, color='0.8', zorder=-99)
+    ax.axhline(0, color='0.5', linewidth=0.8, zorder=-99)
+    ax.axvline(0, color='0.5', linewidth=0.8, zorder=-99)
     
     ax.yaxis.get_offset_text().set_fontsize(5)
     ax.xaxis.get_offset_text().set_fontsize(5)
@@ -239,8 +241,113 @@ def metab_coef_coef_plot(ax=None):
                        frameon=False, handletextpad=0.2, labelspacing=0.2, borderpad=0.1)
     sns.despine(left=True, bottom=True, ax=ax)
     return legend
+
+lipid_outliers = {
+    'l_8'  : dict(x=-1, y=1),      # 'AC 16:0'
+    'l_5'  : dict(x=-1, y=1),      # 'AC 18:1'
+    'l_569': dict(x=-0.5, y=1),      # 'TG 20:5_22:6_22:6'
+    'l_582': dict(x=-0.5, y=1),      # 'TG 22:6_22:6_22:6'
+    'l_372': dict(x=-2, y=2),      # 'PE 18:0_22:6'
+    'l_391': dict(x=-3, y=3),      # 'PC 18:0_20:4'
+    'l_860': dict(x=-2, y=2),      # 
+    'l_638': dict(x=-2, y=-1), 
+    
+    'l_888': dict(x=1, y=2),      # 'TG 18:2_18:1_24:1'
+    # 'l_893': dict(x=1.5, y=2),      # 'TG 18:2_18:1_22:0'
+    'l_323': dict(x=1.5, y=0.5),      # 'PI 18:1_18:0'
+    'l_235': dict(x=1.5, y=-2),      # 'PC 18:2_18:2'
+    'l_163': dict(x=2.5, y=2),      # 'SM d32:1'
+    'l_241': dict(x=0.5, y=0),      # Plasmanyl-PC O-34:4
+    'l_331': dict(x=1.5, y=-2),      # 
+    'l_828': dict(x=1.5, y=2),      # TG 56:4
+    'l_0'  : dict(x=-1.2, y=5),  # AC 5:0
+#     'l_1'  : dict(x=-1, y=10),  # AC 4:0
+    'l_2'  : dict(x=-1.5, y=4),  # AC 3:0
+    'l_3'  : dict(x=0, y=10),  # AC 2:0
+}
+
+
+def lipid_volcano_plot(ax=None):
+    if ax is None:
+        fig, ax = plt.subplots()
+    df = data.copy()
+    df['outlier'] = df.index.isin(lipid_outliers)
+    df = df.sort_values('outlier')
+    volcano(x='Log2 Fold Change', y='log_qval_sampling', df=df, metab_type='lipid', 
+            size='outlier', sizes={True: BIG_SCATTER_SIZE, False: SMALL_SCATTER_SIZE}, ax=ax)
+    
+    for i, row in df.loc[lipid_outliers].iterrows():
+        x, y = row['Log2 Fold Change'], row['log_qval_sampling']
+        if x < 0:
+            ha = 'right'
+            xtext = x + lipid_outliers[i]['x']
+        else: 
+            ha = 'left'
+            xtext = x + lipid_outliers[i]['x'] 
+        ax.annotate(
+            row['ID'], xy=(x, y), xytext=(xtext, y+lipid_outliers[i]['y']), 
+            ha=ha, annotation_clip=False, zorder=-5, va='bottom', color='0.5', fontsize=5,
+            arrowprops=dict(width=0.6, headwidth=0.6, facecolor='gray', edgecolor='0.7'))
+        ax.scatter(x, y, edgecolor='0.7', facecolor='white', linewidth=1, 
+                   s=BIG_SCATTER_OUTLINE_SIZE, zorder=-4)
+    
+    ax.tick_params(axis='y', length=0, )
+    ax.tick_params(axis='x', length=2, pad=1)
+    ax.set_ylabel(None)
+    ax.set_yticks([])
+    ax.set_xlabel(None)
+    # fig.text(0.5, 0.03, 'Log2 fold change', ha='center')
+    ax.text(s='-log10(q-value)', x=-0.05, y=17, ha='right', va='bottom', rotation=90,)
+    for tick in range(0, round(ax.get_ylim()[1]), 5):
+        ax.text(x=0.05, y=tick, s=tick, ha='left', va='center', zorder=-20, )
+
+    ax.text(ax.get_xlim()[0]-1, -4, 'Higher in fasted', ha='left', va='top', fontsize=5)
+    ax.text(ax.get_xlim()[1]+1, -4, 'Higher in non-fasted', ha='right', va='top', fontsize=5)
+    sns.despine(left=True, ax=ax)
     
     
+def lipid_coef_coef_plot(ax=None):
+    if ax is None:
+        fig, ax = plt.subplots()
+
+def make_carbon_unsat_plot(
+        lipid_class, jitter_offset, 
+        base_size=50,
+        ax=None, cax=None):
+    if ax is None:
+        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5, 4.5), dpi=150)
+    df = add_jitter(lipid_class, ldata=data, os=jitter_offset)
+    max_C, min_C = df['fa_carbons'].max(), df['fa_carbons'].min()
+    max_unsat, min_unsat = df['fa_unsat'].max(), df['fa_unsat'].min()
+    norm = plt.matplotlib.colors.CenteredNorm(vcenter=0.0,)  #  vmin=df['log2 FC'].min(), vmax=df['log2 FC'].max()
+    cmap='coolwarm'
+    sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
+    # display(df)
+    sns.scatterplot(
+        data=df, x='fa_carbons', y='fa_unsat', ax=ax, hue='Log2 Fold Change', hue_norm=norm, palette=cmap,  
+        size='overlaps', sizes={1: base_size, 2: 0.75*base_size, 3: 0.6*base_size, 4: 0.4*base_size},
+        # s=size, 
+        legend=False, edgecolor='gray')
+    ax.set_xticks(np.arange(min_C, max_C+1, 2))
+    ax.set_xticklabels([int(x) for x in np.arange(min_C, max_C+1, 2)])
+    ax.set_yticks(np.arange(min_unsat, max_unsat+1, 2))
+    ax.set_yticklabels([int(x) for x in np.arange(min_unsat, max_unsat+1, 2)])
+    ax.grid(color='#CCCCCC')
+#     plt.legend(title='log2 fold change', loc=(1.01, 0.5), markerscale=1.5, fontsize=15, title_fontsize=18)
+#     plt.title('Lipids by class significant under glucose tolerance', fontsize=18)
+    ax.set_ylabel('Total fatty acyl unsaturations')
+    ax.set_xlabel('Total fatty acyl carbons')
+    
+    cb = ax.figure.colorbar(sm, cax=cax, shrink=1, fraction=0.5, aspect=15, pad=0, 
+                            label='\nlog2 fold change\n[Non-fasted – Fasted]')
+    # cb.ax.tick_params(labelsize=8, length=0)
+    cb.ax.set_yticks([-3, -2, -1, 0, 1, 2, 3], fontsize=5)
+    # cb.ax.set_label('Log2 Fold Change')
+    # cb.ax.set_title('Non-fasted\nHigher', fontsize=10, ha='center')
+#     cb.ax.set_xticks(ticks=[0], labels=['Fasted\nHigher'], fontsize=20)
+#     cb.ax.set_xticklabels(ticks=[0], labels=['Fasted\nHigher'], fontsize=20)
+    sns.despine(ax=ax)
+    return ax, cb
 
     
     

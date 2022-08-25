@@ -50,27 +50,54 @@ data['is_id'] = data['superclass'] != 'Unidentified'
 data['log_qval_fed'] = -np.log10(data['qval_fed'])
 data['log_qval_fasted'] = -np.log10(data['qval_fasted'])
 
+short_names = {
+        '4-Hydroxybutyric acid (GHB)': 'GHB',
+        'alpha-Glycerylphosphorylcholine': 'GPC',
+        '3-Hydroxybutyric acid': 'BHB',
+        'Ethyl-beta-D-glucuronide': 'Ethyl gluc.',
+        'Guanidinosuccinic acid': 'GSA',
+        '4-Guanidinobutyric acid': '4-GBA',
+        'N-Isovalerylglycine': 'IsovalGly',
+        'Phenylacetylglycine': 'PhAcGly', 
+        'Acrylic acid': 'Acrylate',
+        '1,5-Anhydro-D-glucitol': 'Anhydrogluc.',
+        'N-Methyl-2-pyrrolidone': 'Me-Pyrrolidone',    
+        'N-Acetylneuraminic acid': 'NeuAc',
+        '4-Hydroxybenzaldehyde': '4-OH-benzald.',
+        
+        'Phenylalanine': 'Phe', 'Asparagine': 'Asp', 'Alanine': 'Ala', 'Threonine': 'Thr', 
+        'Glutamine': 'Gln', 'Leucine': 'Leu', 'Isoleucine': 'Ile', 'Glutamic acid': 'Glu', 
+        'Histidine': 'His', 'Arginine': 'Arg', 'Tryptophan': 'Trp', 'Tyrosine': 'Tyr', 
+        'Serine': 'Ser', 'Proline': 'Pro',}
 
-def plot_quant_vs_ogtt(feature, x='ogtt', xlabel=None, ylabel=None, 
+
+def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
+                       xlabel=None, ylabel=None, 
                        animal_lines=False, legend=False,
                        robust=False, ax=None, scatter_kws=None, line_kws=None):
     """
-    feature: e.g. 'm_123', 'l_578'
+    feature: 'm_123', or iterable of indexes ['m_123', 'l_123']
     x: 'ogtt' or 'insulin'
     """
     if ax is None:
         fig, ax = plt.subplots()
-    df = (data
-          .loc[feature, data_cols]
+    df = data.loc[feature, data_cols]
+    if not isinstance(feature, str):
+        df = df.mean()
+    df = (df
           .to_frame(name='quant')
           .join(fg[['bg_type', x]])
          )
+        
     df['bg_type'] = df['bg_type'].replace('FBG', 'Fasted').replace('RBG', 'Non-fasted')
     df['quant'] = df['quant'].astype('float')
     for bg_type in df['bg_type'].unique():
         sns.regplot(data=df.loc[df['bg_type'] == bg_type], x=x, y='quant', n_boot=200, robust=robust, 
                     color=colors[bg_type], truncate=False, label=bg_type, scatter_kws=scatter_kws, line_kws=line_kws,
                     ax=ax, seed=1)
+    # Can't use seaborn lmplot because it's a Figure-level plot, not Axes-level
+    # sns.lmplot(data=df, x=x, y='quant', hue='bg_type', palette=colors, ax=ax,
+    #            n_boot=200, truncate=False, scatter_kws=scatter_kws, line_kws=line_kws, seed=1)    
     if legend:
         ax.legend()
     if animal_lines:
@@ -85,24 +112,12 @@ def plot_quant_vs_ogtt(feature, x='ogtt', xlabel=None, ylabel=None,
     sns.despine(ax=ax)
     return ax
     
-    
 
 def plot_graph(metab_set, corr=0.5, corr_type='spearman', 
                continuous_var='coef_fed', centered_norm=True, cmap='coolwarm',
                layout=nx.kamada_kawai_layout, use_connec_comp=True, 
                fontsize=5, pos_scale=1, max_linewidth=3.5,
-               ax=None, cax=None):
-    short_names = {
-        '4-Hydroxybutyric acid (GHB)': 'GHB',
-        'alpha-Glycerylphosphorylcholine': 'GPC',
-        '3-Hydroxybutyric acid': 'BHB',
-        'Ethyl-beta-D-glucuronide': 'Ethyl glucuronide',
-        'Guanidinosuccinic acid': 'GSA',
-        'Phenylalanine': 'Phe', 'Asparagine': 'Asp', 'Alanine': 'Ala', 'Threonine': 'Thr', 
-        'Glutamine': 'Gln', 'Leucine': 'Leu', 'Isoleucine': 'Ile', 'Glutamic acid': 'Glu', 
-        'Histidine': 'His', 'Arginine': 'Arg', 'Tryptophan': 'Trp', 'Tyrosine': 'Tyr', 
-        'Serine': 'Ser', 'Proline': 'Pro',}
-               
+               ax=None, cax=None):               
     if ax is None:
         fig, ax = plt.subplots(ncols=1, figsize=(5, 3), 
         # gridspec_kw=dict(width_ratios=(5, 1))
@@ -145,6 +160,7 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
     continuous_values = data.loc[metab_set, continuous_var].to_list()
     if centered_norm:
         norm = plt.matplotlib.colors.CenteredNorm()
+        norm(continuous_values)
     else: 
         norm = plt.matplotlib.colors.Normalize(vmin=min(continuous_values), vmax=max(continuous_values))
     sm = plt.matplotlib.cm.ScalarMappable(norm=norm, cmap=cmap)
@@ -158,8 +174,8 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
         name = data.loc[i, 'ID']
         if name in short_names:
             name = short_names[name]
-        coef = data.loc[i, continuous_var]
-        c = sm.to_rgba(coef)[:-1]
+        cont_value = data.loc[i, continuous_var]
+        c = sm.to_rgba(cont_value)[:-1]
         alpha = 0.2
         lighter_c = [x + (1 - x) * (1 - alpha) for x in c]
         bbox_style = dict(boxstyle='round4', pad=.3, mutation_scale=0, linewidth=0.7, 

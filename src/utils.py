@@ -1,4 +1,13 @@
 import numpy as np
+import pandas as pd
+
+data = pd.read_csv(r'../data/processed/combined_metabolites_data_with_model_params.csv').set_index('i')
+data_cols = data.filter(regex='_FBG|_RBG').columns
+fbg_cols = data.filter(regex='_FBG').columns
+rbg_cols = data.filter(regex='_RBG').columns
+
+ap = pd.read_excel(r'..\data\metadata\animal_phenotypes.xlsx', index_col=0)
+fg = pd.read_csv(r'..\data\metadata\combined_metab_lipid_file_grouping.csv', index_col=0)
 
 
 num_fas = {
@@ -108,6 +117,47 @@ def tight_bbox(ax):
     from matplotlib.transforms import TransformedBbox
     tight_bbox_fig = TransformedBbox(tight_bbox_raw, fig.transFigure.inverted())
     return tight_bbox_fig
+    
+    
+def add_jitter(lipid_class, ldata, os=0.15):
+    """
+    For adjusting scatterplot points to avoid overlap in FA length vs. unsaturation plots. 
+    """
+    # os = offset for jitter
+    tgdf = ldata.loc[data['molec_class'] == lipid_class].copy()
+    tgdf['overlaps'] = 1
+    overlaps = ldata['fa_carbon:unsat'].value_counts() > 1
+    overlaps = overlaps.loc[overlaps == True].index
+    # display(overlaps)
+    for overlap in overlaps: 
+        df = tgdf.loc[tgdf['fa_carbon:unsat'] == overlap]
+        if len(df) == 4:
+            for carbon_offset, unsat_offset, (i, row) in zip([-os,os,os,os], [os,-os,os,-os], df.iterrows()):
+                tgdf.loc[i, 'fa_carbons'] = tgdf.loc[i, 'fa_carbons'] + carbon_offset
+                tgdf.loc[i, 'fa_unsat'] = tgdf.loc[i, 'fa_unsat'] + unsat_offset
+                tgdf.loc[i, 'overlaps'] = len(df)
+        if len(df) == 3:
+            for carbon_offset, unsat_offset, (i, row) in zip([0, -os, os], [os, -os, -os], df.iterrows()):
+                tgdf.loc[i, 'fa_carbons'] = tgdf.loc[i, 'fa_carbons'] + carbon_offset
+                tgdf.loc[i, 'fa_unsat'] = tgdf.loc[i, 'fa_unsat'] + unsat_offset
+                tgdf.loc[i, 'overlaps'] = len(df)
+        if len(df) == 2:
+            for carbon_offset, unsat_offset, (i, row) in zip([-os, os], [0, 0], df.iterrows()):
+                tgdf.loc[i, 'fa_carbons'] = tgdf.loc[i, 'fa_carbons'] + carbon_offset
+                tgdf.loc[i, 'fa_unsat'] = tgdf.loc[i, 'fa_unsat'] + unsat_offset
+                tgdf.loc[i, 'overlaps'] = len(df)
+    return tgdf
+    
+    
+def lipid_means(unsat_low, unsat_high, data):
+    idx = data.loc[(data['fa_unsat'] >= unsat_low) & (data['fa_unsat'] <= unsat_high)].index
+    df = (data
+        .loc[idx, data_cols]
+        .mean()
+        .to_frame('quant')
+        .join(fg[['ogtt', 'insulin', 'bg_type', 'week']])
+        )
+    return df
     
     
 def format_number(num):
