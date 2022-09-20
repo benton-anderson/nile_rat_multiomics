@@ -1,9 +1,11 @@
 import json
 import os
 import sys
+import importlib
 # sys.path.insert(1, os.path.join(sys.path[0], '..'))  # Add the src directory to path 
-from src.utils import tight_bbox, parse_lipid, parse_p_value, add_jitter
+from src.utils import tight_bbox, parse_lipid, parse_p_value, add_jitter, shrink_cbar
 from src.plots import plot_quant_vs_ogtt
+
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -36,31 +38,33 @@ ap = pd.read_excel(r'..\data\metadata\animal_phenotypes.xlsx', index_col=0)
 fg = pd.read_csv(r'..\data\metadata\combined_metab_lipid_file_grouping.csv', index_col=0)
 
 
-data['signif_interaction'] = data['qval_sampling:ogtt'] < 0.05
-data['signif_sampling'] = data['qval_sampling'] < 0.05
-gb_means = (data
-            .loc[:, data_cols]
-            .groupby(fg['bg_type'], axis=1)
-            .mean()
-           )
+# data['signif_interaction'] = data['qval_sampling:ogtt'] < 0.05
+# data['signif_sampling'] = data['qval_sampling'] < 0.05
+# gb_means = (data
+            # .loc[:, data_cols]
+            # .groupby(fg['bg_type'], axis=1)
+            # .mean()
+           # )
 
-data['fasted_mean'] = gb_means['FBG']
-data['fed_mean'] = gb_means['RBG']
-data['Log2 Fold Change'] = data['fed_mean'] - data['fasted_mean']
+# data['fasted_mean'] = gb_means['FBG']
+# data['fed_mean'] = gb_means['RBG']
+# data['Log2 Fold Change'] = data['fed_mean'] - data['fasted_mean']
 
-data['Fed - Fasted slope'] = data['coef_fed'] - data['coef_fasted']
-data['signif_sampling'] = data['qval_sampling'] < 0.05
-data['signif_interact'] = data['qval_sampling:ogtt'] < 0.05
-data['log_qval_sampling'] = -np.log10(data['qval_sampling'])
-data['log_qval_ogtt'] = -np.log10(data['qval_ogtt'])
-data['log_qval_sampling:ogtt'] = -np.log10(data['qval_sampling:ogtt'])
-data['is_id'] = data['superclass'] != 'Unidentified'
+# data['Fed - Fasted slope'] = data['coef_fed'] - data['coef_fasted']
+# data['signif_sampling'] = data['qval_sampling'] < 0.05
+# data['signif_interact'] = data['qval_sampling:ogtt'] < 0.05
+# data['log_qval_sampling'] = -np.log10(data['qval_sampling'])
+# data['log_qval_ogtt'] = -np.log10(data['qval_ogtt'])
+# data['log_qval_sampling:ogtt'] = -np.log10(data['qval_sampling:ogtt'])
+# data['is_id'] = data['superclass'] != 'Unidentified'
 
-l_ids = data.loc[(data['Type'] == 'lipid') & (data['ID'] != 'unknown')].index
-data.loc[l_ids, 'fa_carbons']      = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[2])
-data.loc[l_ids, 'fa_unsat']        = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[3])
-data.loc[l_ids, 'fa_carbon:unsat'] = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[4])
-data['pval_asterisks']  = data['qval_sampling:ogtt'].apply(lambda x: parse_p_value(x))
+# l_ids = data.loc[(data['Type'] == 'lipid') & (data['ID'] != 'unknown')].index
+# data.loc[l_ids, 'lipid_class']     = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[0])
+# data.loc[l_ids, 'extra_label']     = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[1])
+# data.loc[l_ids, 'fa_carbons']      = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[2])
+# data.loc[l_ids, 'fa_unsat']        = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[3])
+# data.loc[l_ids, 'fa_carbon:unsat'] = data.loc[l_ids, 'ID'].apply(lambda x: parse_lipid(x)[4])
+# data['pval_asterisks']  = data['qval_sampling:ogtt'].apply(lambda x: parse_p_value(x))
 
 BIG_SCATTER_OUTLINE_SIZE = 48
 BIG_SCATTER_SIZE = 23
@@ -202,19 +206,8 @@ def metab_coef_coef_plot(ax=None):
         ax.scatter(x, y, edgecolor='0.7', facecolor='white', linewidth=1, s=BIG_SCATTER_OUTLINE_SIZE, 
         zorder=-4)
 
-    # fig.text(0.5, 0.03, 'Log2 fold change', ha='center')
-    # ax.text(s='-log10(q-value)', x=-0.05, y=17, ha='right', va='bottom', rotation=90,)
-    # for tick in range(0, round(ax.get_ylim()[1]), 5):
-    #     ax.text(x=0.05, y=tick, s=tick, ha='left', va='center', zorder=-20, )
-
     ax.set_ylabel('OGTT gluc. AUC regression slope\n(Fasted samples)', fontsize=6)
     ax.set_xlabel('OGTT gluc. AUC regression slope\n(Non-fasted samples)', fontsize=6)
-
-    # Set x and y limits to make a square
-    # max_xlim, max_ylim = abs(max(ax.get_xlim())), abs(max(ax.get_ylim()))
-    # max_lim = max(max_xlim, max_ylim)
-    # ax.set_xlim(-max_lim, max_lim)
-    # ax.set_ylim(-max_lim, max_lim)
 
     ax.axhline(0, color='0.5', linewidth=0.8, zorder=-99)
     ax.axvline(0, color='0.5', linewidth=0.8, zorder=-99)
@@ -242,54 +235,63 @@ def metab_coef_coef_plot(ax=None):
     sns.despine(left=True, bottom=True, ax=ax)
     return legend
 
-lipid_outliers = {
-    'l_8'  : dict(x=-1, y=1),      # 'AC 16:0'
-    'l_5'  : dict(x=-1, y=1),      # 'AC 18:1'
-    'l_569': dict(x=-0.5, y=1),      # 'TG 20:5_22:6_22:6'
-    'l_582': dict(x=-0.5, y=1),      # 'TG 22:6_22:6_22:6'
-    'l_372': dict(x=-2, y=2),      # 'PE 18:0_22:6'
-    'l_391': dict(x=-3, y=3),      # 'PC 18:0_20:4'
-    'l_860': dict(x=-2, y=2),      # 
-    'l_638': dict(x=-2, y=-1), 
-    
-    'l_888': dict(x=1, y=2),      # 'TG 18:2_18:1_24:1'
-    # 'l_893': dict(x=1.5, y=2),      # 'TG 18:2_18:1_22:0'
-    'l_323': dict(x=1.5, y=0.5),      # 'PI 18:1_18:0'
-    'l_235': dict(x=1.5, y=-2),      # 'PC 18:2_18:2'
-    'l_163': dict(x=2.5, y=2),      # 'SM d32:1'
-    'l_241': dict(x=0.5, y=0),      # Plasmanyl-PC O-34:4
-    'l_331': dict(x=1.5, y=-2),      # 
-    'l_828': dict(x=1.5, y=2),      # TG 56:4
-    'l_0'  : dict(x=-1.2, y=5),  # AC 5:0
-#     'l_1'  : dict(x=-1, y=10),  # AC 4:0
-    'l_2'  : dict(x=-1.5, y=4),  # AC 3:0
-    'l_3'  : dict(x=0, y=10),  # AC 2:0
-}
-
 
 def lipid_volcano_plot(ax=None):
+    outliers = {
+        'l_8'  : dict(x=-0.1, y=0.06, name='AC 16:0'),
+        'l_5'  : dict(x=-0.1, y=0.1, name='AC 18:1'),
+        'l_10' : dict(x=-0.08, y=0.14, name='AC 14:0'),
+        'l_4'  : dict(x=-0.01, y=0.15, name='AC 18:2'),
+        'l_569': dict(x=-0.02, y=0.06, name='TG 20:5_22:6_22:6'), # TG 64:17
+        'l_582': dict(x=-0.1, y=0.0, name='TG 22:6_22:6_22:6'), # TG 66:18
+        'l_372': dict(x=-0.1, y=0.01, name='PE 18:0_22:6'),  # PE 40:6
+        'l_652': dict(x=-0.1, y=0.01, name='TG 60:12'),
+        'l_665': dict(x=-0.1, y=-0.03, name='TG 58:10'),
+        'l_603': dict(x=-0.1, y=-0.03, name='TG 60:13'),
+        'l_716': dict(x=-0.1, y=-0.03, name='TG 60:13'),
+
+        'l_222': dict(x=0.1, y=0.08, name='PI 16:0_18:1'),  # PI 34:1
+        'l_331': dict(x=0.1, y=-0.01, name='PI 38:2'), 
+        'l_235': dict(x=0.2, y=-0.04, name='PC 18:2_18:2'), # PC 36:4
+        'l_269': dict(x=0.03, y=-0.04, name='Plasmanyl-PC O-34:3'),
+        'l_187': dict(x=0.1, y=0.01, name='PC O-34:4'),
+        'l_888': dict(x=0.1, y=0.02, name='TG 18:2_18:1_24:1'), # TG 60:4
+        'l_862': dict(x=0.1, y=0.0, name='TG 58:4'), # TG 58:4
+        'l_893': dict(x=0.15, y=0.01, name='TG 18:2_18:1_22:0'), # TG 58:3
+        'l_866': dict(x=0.1, y=0.02, name='TG 56:3'), 
+        'l_828': dict(x=0.1, y=0.02, name='TG 56:4'),
+        'l_771': dict(x=0.1, y=0.02, name='TG 50:2'),
+        'l_323': dict(x=0.15, y=0.05, name='PI 18:1_18:0'),
+        'l_241': dict(x=0.05, y=0, name='Plasmanyl-PC O-34:4'),
+        'l_0'  : dict(x=-0.12, y=0.28, name='AC 5:0'),
+        # 'l_1'  : dict(x=-0.1, y=0.4, name='AC 4:0'),
+        'l_2'  : dict(x=-0.15, y=0.15, name='AC 3:0'),
+        'l_3'  : dict(x=0, y=0.35, name='AC 2:0'),
+    }
     if ax is None:
         fig, ax = plt.subplots()
     df = data.copy()
-    df['outlier'] = df.index.isin(lipid_outliers)
+    df['outlier'] = df.index.isin(outliers)
     df = df.sort_values('outlier')
     volcano(x='Log2 Fold Change', y='log_qval_sampling', df=df, metab_type='lipid', 
             size='outlier', sizes={True: BIG_SCATTER_SIZE, False: SMALL_SCATTER_SIZE}, ax=ax)
-    
-    for i, row in df.loc[lipid_outliers].iterrows():
-        x, y = row['Log2 Fold Change'], row['log_qval_sampling']
-        if x < 0:
-            ha = 'right'
-            xtext = x + lipid_outliers[i]['x']
-        else: 
-            ha = 'left'
-            xtext = x + lipid_outliers[i]['x'] 
+                   
+    for i, row in data.loc[outliers].iterrows():
+        x, y = row['Log2 Fold Change'], row['log_qval_sampling']        
+        # https://stackoverflow.com/questions/29107800/python-matplotlib-convert-axis-data-coordinates-systems
+        output_coords = ax.transLimits.transform((x, y))
+        xtext = output_coords[0] + outliers[i]['x']
+        ytext = output_coords[1] + outliers[i]['y']
+        annot_text = row['lipid_class'] + ' ' + row['fa_carbon:unsat']
         ax.annotate(
-            row['ID'], xy=(x, y), xytext=(xtext, y+lipid_outliers[i]['y']), 
-            ha=ha, annotation_clip=False, zorder=-5, va='bottom', color='0.5', fontsize=5,
+            annot_text, xy=(x, y), xytext=(xtext, ytext), 
+            textcoords='axes fraction',
+            va=('center' if abs(outliers[i]['y']) < 0.04 else 'bottom'), 
+            ha=('right' if x < 0 else 'left'), 
+            annotation_clip=False, zorder=-5, color='0.5', fontsize=6,
             arrowprops=dict(width=0.6, headwidth=0.6, facecolor='gray', edgecolor='0.7'))
-        ax.scatter(x, y, edgecolor='0.7', facecolor='white', linewidth=1, 
-                   s=BIG_SCATTER_OUTLINE_SIZE, zorder=-4)
+        ax.scatter(x, y, edgecolor='0.7', facecolor='white', linewidth=1, s=BIG_SCATTER_OUTLINE_SIZE, 
+            zorder=-4)
     
     ax.tick_params(axis='y', length=0, )
     ax.tick_params(axis='x', length=2, pad=1)
@@ -309,6 +311,85 @@ def lipid_volcano_plot(ax=None):
 def lipid_coef_coef_plot(ax=None):
     if ax is None:
         fig, ax = plt.subplots()
+    df = data.loc[(data['Type'] == 'lipid') & (data['ID'] != 'Unidentified')].copy()
+    unid = data.loc[(data['Type'] == 'metabolite') & (data['ID'] == 'Unidentified')].copy()
+
+    outliers = {  
+        'l_582': dict(x=0.05, y=0.0, name='TG 22:6_22:6_22:6'),  # 66:18
+        'l_623': dict(x=0.03, y=-0.01, name='TG 62:13'),       # 62:13
+        'l_716': dict(x=-0.0, y=-0.04, name='TG 60:10'),       # 60:10
+        'l_569': dict(x=0.08, y=-0.3, name='TG 20:5_22:6_22:6'),  # 64:17
+        'l_680': dict(x=0.15, y=-0.1, name='TG 18:0_20:5_22:6'),
+        'l_644': dict(x=-0.05, y=0.11, name='TG 18:2_18:2_22:6'), # 58:10
+        'l_910': dict(x=0.15, y=-0.26, name='TG 58:2'),        # 58:2
+        'l_617': dict(x=0.3, y=-0.02, name='TG 18:1_20:5_20:5'),  # 58:11
+        'l_888': dict(x=0.2, y=-0.2, name='TG 18:2_18:1_24:1'), # 50:4
+        
+        'l_372': dict(x=0.11, y=-0.03, name='PE 18:0_22:6'),  # PE 40:6
+        'l_241': dict(x=-0.15, y=0.05, name='Plasmanyl-PC O-34:4'),
+        'l_404': dict(x=-0.06, y=0.08, name='PE 18:0_20:4'),    # PE 38:4
+        
+        'l_10': dict(x=0.11, y=-0.20, name='AC 14:0'),
+        'l_4': dict(x=0.15, y=-0.15, name='AC 18:2'),
+        # 'l_1': dict(x=0.0, y=-0.25, name='AC 4:0'),
+        
+        # 'l_32': dict(x=-0.11, y=0.10, name='LysoPC 17:1'),
+        'l_844': dict(x=-0.11, y=-0.24, name='CE 18:1'),
+        # 'l_47': dict(x=-0.10, y=0.02, name='LysoPC 18:1'),
+        'l_197': dict(x=-0.05, y=0.0, name='PC 38:7'),
+        'l_507': dict(x=-0.2, y=0.1, name='SM d41:2'),
+        'l_232': dict(x=-0.2, y=0.1, name='PC O-40:7'),
+    }
+    
+    df['outlier'] = df.index.isin(outliers)
+    df = df.sort_values('outlier')
+
+
+    sns.scatterplot(
+        data=df, x='coef_fed', y='coef_fasted', hue='superclass', ax=ax, palette=colors,
+        size='outlier', sizes={True: BIG_SCATTER_SIZE, False: SMALL_SCATTER_SIZE}, 
+        alpha=0.8, edgecolor='0.33', linewidth=0.33)
+    ax.ticklabel_format(scilimits=(-1, 1))
+    for i, row in data.loc[outliers].iterrows():
+        x, y = row['coef_fed'], row['coef_fasted']        
+        # https://stackoverflow.com/questions/29107800/python-matplotlib-convert-axis-data-coordinates-systems
+        output_coords = ax.transLimits.transform((x, y))
+        xtext = output_coords[0] + outliers[i]['x']
+        ytext = output_coords[1] + outliers[i]['y']
+        annot_text = row['lipid_class'] + ' ' + row['fa_carbon:unsat']
+        ax.annotate(
+            annot_text, xy=(x, y), xytext=(xtext, ytext), 
+            textcoords='axes fraction',
+            ha='center', annotation_clip=False, zorder=-5, va='bottom', color='0.5', fontsize=6,
+            arrowprops=dict(width=0.6, headwidth=0.6, facecolor='gray', edgecolor='0.7'))
+        ax.scatter(x, y, edgecolor='0.7', facecolor='white', linewidth=1, s=BIG_SCATTER_OUTLINE_SIZE, 
+            zorder=-4)
+
+    ax.set_ylabel('OGTT gluc. AUC regression slope\n(Fasted samples)', fontsize=6)
+    ax.set_xlabel('OGTT gluc. AUC regression slope\n(Non-fasted samples)', fontsize=6)
+
+    ax.axhline(0, color='0.05', linewidth=0.5, zorder=-99)
+    ax.axvline(0, color='0.05', linewidth=0.5, zorder=-99)
+    
+    ax.yaxis.get_offset_text().set_fontsize(5)
+    ax.xaxis.get_offset_text().set_fontsize(5)
+    
+    ax.yaxis.tick_right()
+    ax.yaxis.set_label_position('right')
+    
+    ax.grid(linewidth=0.2, zorder=-200)
+    ax.tick_params(length=0, pad=1, labelsize=6, labelcolor='0.05')
+    handles, labels = ax.get_legend_handles_labels()
+    handles = handles[1:-3]
+    labels = labels[1:-3]
+    
+    legend = ax.legend(handles=handles, labels=labels, loc=(-0.41, 0.2), 
+                       title='Molecule class', fontsize=6, title_fontsize=6,
+                       markerscale=0.6, edgecolor='0.5', 
+                       frameon=False, handletextpad=0.2, labelspacing=0.2, borderpad=0.1)
+    sns.despine(left=True, bottom=True, ax=ax)
+    return legend
+        
 
 def make_carbon_unsat_plot(
         lipid_class, jitter_offset, 
@@ -338,10 +419,11 @@ def make_carbon_unsat_plot(
     ax.set_ylabel('Total fatty acyl unsaturations')
     ax.set_xlabel('Total fatty acyl carbons')
     
-    cb = ax.figure.colorbar(sm, cax=cax, shrink=1, fraction=0.5, aspect=15, pad=0, 
+    cb = ax.figure.colorbar(sm, cax=cax, shrink=0.8, fraction=0.5, aspect=15, pad=0, 
                             label='\nlog2 fold change\n[Non-fasted – Fasted]')
     # cb.ax.tick_params(labelsize=8, length=0)
     cb.ax.set_yticks([-3, -2, -1, 0, 1, 2, 3], fontsize=5)
+    shrink_cbar(cb.ax, shrink=0.7)
     # cb.ax.set_label('Log2 Fold Change')
     # cb.ax.set_title('Non-fasted\nHigher', fontsize=10, ha='center')
 #     cb.ax.set_xticks(ticks=[0], labels=['Fasted\nHigher'], fontsize=20)
@@ -349,8 +431,7 @@ def make_carbon_unsat_plot(
     sns.despine(ax=ax)
     return ax, cb
 
-    
-    
+ 
     
     
     

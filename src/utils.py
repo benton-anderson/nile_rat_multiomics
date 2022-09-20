@@ -119,6 +119,21 @@ def tight_bbox(ax):
     return tight_bbox_fig
     
     
+def shrink_cbar(ax, shrink=0.9):
+    """
+    Shrink the height of a colorbar that is set within its own pre-made colorbar axes (cax) 
+    From https://stackoverflow.com/questions/53429258/matplotlib-change-colorbar-height-within-own-axes    
+    """
+    b = ax.get_position()
+    new_h = b.height*shrink
+    pad = (b.height-new_h)/2.
+    new_y0 = b.y0 + pad
+    new_y1 = b.y1 - pad
+    b.y0 = new_y0
+    b.y1 = new_y1
+    ax.set_position(b)
+    
+    
 def add_jitter(lipid_class, ldata, os=0.15):
     """
     For adjusting scatterplot points to avoid overlap in FA length vs. unsaturation plots. 

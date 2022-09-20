@@ -9,7 +9,7 @@ plt.rcParams['svg.fonttype'] = 'none'
 import seaborn as sns
 import networkx as nx
 
-from .utils import parse_p_value, parse_lipid
+from .utils import parse_p_value, parse_lipid, shrink_cbar
 
 
 # LOAD DATA
@@ -188,6 +188,7 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
     cbar = ax.get_figure().colorbar(mappable=sm, cax=cax)
     cbar.outline.set_linewidth(0.3)
     cax = cbar.ax
+    shrink_cbar(ax=cax, shrink=0.7)
     cax.yaxis.set_label_position('right')
     cax.yaxis.tick_right()
     cax.tick_params(length=2, pad=1, labelsize=fontsize)
