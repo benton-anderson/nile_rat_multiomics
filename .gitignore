@@ -2,6 +2,9 @@
 *.cdResult
 *.cdResultView
 
+# the validation LipiDex Files 
+data/search/CD31/validation
+
 # folder with a lot of .png images
 reports/figures/All Quant vs OGTT plots/
 
