@@ -344,3 +344,31 @@ def plot_quant_vs_ogtt_old(
         plt.savefig(f'{folder_path}/{file_name}.{file_type}', dpi=100, bbox_inches='tight', facecolor='white')
         plt.close()
     return ax
+    
+    
+def set_square_ratio(ax):
+    """
+    Adjust plot to have square ratio when axes have different limits.
+    This minimizes bias against the axis with larger range. 
+    Used in the linear regression slope vs. slope scatter plots. 
+    
+    ax.set_aspect('equal') is not ideal because it distorts the plot
+    """
+    # Get larger of two axis limits ranges
+    xlim_range = abs(ax.get_xlim()[1] - ax.get_xlim()[0])
+    ylim_range = abs(ax.get_ylim()[1] - ax.get_ylim()[0])
+    max_range = max(xlim_range, ylim_range)
+    if xlim_range > ylim_range:
+        small_range_get = ax.get_ylim
+        small_range_set = ax.set_ylim
+    else:
+        small_range_get = ax.get_xlim
+        small_range_set = ax.set_xlim
+    # Get proportion of smaller axis limit that is greater than zero.
+    #    this preserves the centering of the plot and ensures all points
+    #    remain inside visible plotting area. 
+    proportion = small_range_get()[1] / abs(small_range_get()[0] - small_range_get()[1])
+    # set new limits on smaller axis
+    small_range_set(-1*((1-proportion) * max_range), (proportion * max_range))
+    
+    
