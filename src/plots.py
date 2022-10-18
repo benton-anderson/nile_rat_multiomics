@@ -1,16 +1,17 @@
 import json
+from math import floor, ceil
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
-plt.rcParams['svg.fonttype'] = 'none'
 import seaborn as sns
 import networkx as nx
 
 from .utils import parse_p_value, parse_lipid, shrink_cbar
 
+plt.style.use('../data/metadata/Nilerat_matplotlib_stylesheet.mplstyle')
 
 # LOAD DATA
 colors = json.load(open(r'..\data\metadata\color_schemes.json'))
@@ -79,6 +80,7 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
     feature: 'm_123', or iterable of indexes ['m_123', 'l_123']
     x: 'ogtt' or 'insulin'
     """
+    # 
     if ax is None:
         fig, ax = plt.subplots()
     df = data.loc[feature, data_cols]
@@ -117,7 +119,10 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
                continuous_var='coef_fed', centered_norm=True, cmap='coolwarm',
                layout=nx.kamada_kawai_layout, use_connec_comp=True, 
                fontsize=5, pos_scale=1, max_linewidth=3.5,
-               ax=None, cax=None):               
+               ax=None, cax=None):   
+    """
+    Make a connected graph with nodes and edges
+    """
     if ax is None:
         fig, ax = plt.subplots(ncols=1, figsize=(5, 3), 
         # gridspec_kw=dict(width_ratios=(5, 1))
@@ -208,33 +213,190 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
     sns.despine(left=True, bottom=True, ax=ax)
     return ax, cbar
 
+# DEFINE CONSTANTS FOR THE VOLCANO AND SLOPE_VS_SLOPE PLOTS
+ANNOT_CIRCLE_SIZE = 90
+ANNOT_COLOR = '0.5'
+ANNOT_FONTSIZE = 6
+ANNOT_LW = 1
+POINT_SIZES = {True: 46, False: 22}
+POINT_LW = 0.4    # LW = linewidth
+POINT_EC = '0.1'  # EC = edgecolor
+POINT_ALPHA = 1.0
+SPINE_LW = 1
+SPINE_GRID_COLOR = '0.1'
+TICK_FONTSIZE = 6
+TICK_PAD = 1
+LABEL_FONTSIZE = 7
 
-def volcano(x, y, df, metab_type, alpha=0.8, ax=None, legend=False):
+def _scatter(x, y, df, metab_type, 
+             size, sizes, alpha, 
+             ax, show_legend, plot_unid):
+    """
+    Base scatter plotting for volcano and slope_vs_slope plots. 
+    """
     if ax is None:
         fig, ax = plt.subplots(figsize=(4,4), dpi=100)
+    df = df.sort_values(size)  # sort by the size factor to ensure annotated points appear on top 
     sns.scatterplot(
         data=df.loc[(df['superclass'] != 'Unidentified') & (df['Type'] == metab_type)], 
         x=x, y=y, hue='superclass', palette=colors, 
 #         s=30, linewidth=0.2, edgecolor='gray',
-        edgecolor='0.1', linewidth=0.6,
-        ax=ax, alpha=alpha, legend=legend)
-    sns.scatterplot(
-        data=df.loc[(df['superclass'] == 'Unidentified') & (df['Type'] == metab_type)], 
-        x=x, y=y, hue='superclass', palette=colors, ax=ax, 
-        s=20,
-        alpha=0.3, zorder=-10, legend=legend)
-    ax.ticklabel_format(style='sci', scilimits=(-2, 2))
-    ax.set_ylabel('-log10(q-value)')
-    if legend:
+        size=size, sizes=sizes,
+        edgecolor=POINT_EC, linewidth=POINT_LW,
+        ax=ax, alpha=alpha, legend=show_legend,
+        zorder=3)
+    if plot_unid:
+        sns.scatterplot(
+            data=df.loc[(df['superclass'] == 'Unidentified') & (df['Type'] == metab_type)], 
+            x=x, y=y, hue='superclass', palette=colors, ax=ax, 
+            size=size, sizes=sizes,
+            alpha=0.3, legend=show_legend,
+            zorder=2)
+    return ax
+
+def volcano(x, y, df, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, show_legend=False, plot_unid=False):
+    """
+    
+    """
+    _scatter(x=x, y=y, df=df, metab_type=metab_type, 
+             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid)
+    # Draw the y-axis in the middle of the plot
+    ax.axvline(0, linewidth=SPINE_LW, c=SPINE_GRID_COLOR, zorder=-99)
+    ax.set_yticks([])
+    ax.set_ylabel(None)
+    ax.text(s='-Log10(q-value)', x=-0.05, y=ax.get_ylim()[1], ha='right', va='top', 
+            rotation=90, color=SPINE_GRID_COLOR, fontsize=LABEL_FONTSIZE)
+    for tick in range(0, round(ax.get_ylim()[1]), 5):
+        ax.text(x=0.05, y=tick, s=tick, ha='left', va='center', 
+                zorder=-20, color=SPINE_GRID_COLOR, fontsize=TICK_FONTSIZE)
+    
+    
+    
+    # x-axis ticks and label 
+    ax.tick_params(axis='x', length=2, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
+    xlim = ax.get_xlim()
+    ax.set_xlim(floor(xlim[0]), ceil(xlim[1]))
+    xticks = range(floor(xlim[0]), ceil(xlim[1]) + 1, 1)
+    ax.set_xticks(xticks)
+    ax.set_xlabel('Log2(fold change) [Nonfasted - fasted]', fontsize=LABEL_FONTSIZE)
+    
+    # Write helper text 
+    ax.text(ax.get_xlim()[0]-0.3, -1, 'Fasted more abundant', ha='left', fontsize=5)
+    ax.text(ax.get_xlim()[1], -1, 'Non-fasted more abundant', ha='right', fontsize=5)
+    
+    if show_legend:
         ax.legend(loc=(1.01, 0.1), markerscale=1.2)
-#     ax.set_title(y)
-    ax.axvline(0, linewidth=1, c='0.5', zorder=-99)
-    ax.axhline(-np.log10(0.05), linewidth=1, c='0.5', zorder=-99)
-    sns.despine()
+    
+    ax.axhline(-np.log10(0.05), linewidth=SPINE_LW, c=SPINE_GRID_COLOR, zorder=-99)
+    sns.despine(ax=ax, left=True)
+    
+    # Equal aspect ratio is important to not bias the viewer
+    ax.set_aspect('equal')
+    
     return ax
 
 
-def fasted_fed_slope(_type, ax=None, alpha=0.8, legend=False):
+def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, show_legend=False, plot_unid=False):
+    _scatter(x=x, y=y, df=df, metab_type=metab_type, 
+             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid)
+    ax.set_xlabel('OGTT slope Non-fasted', fontsize=LABEL_FONTSIZE)    
+    ax.set_ylabel('OGTT slope Fasted', fontsize=LABEL_FONTSIZE)
+    ax.tick_params(length=0, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
+    
+    # Set ticks every 2e-5
+    ax.ticklabel_format(style='plain')  # style='plain' allows for re-labeling of ticks
+    ticks = np.arange(-20, 20, 2)
+    ax.set_xticks(ticks*1e-5, ticks)
+    ax.set_yticks(ticks*1e-5, ticks)
+    
+    # Custom grid and spines on x=0 and y=0
+    ax.grid(linewidth=0.2, color=SPINE_GRID_COLOR)
+    ax.set_axisbelow(True)
+    ax.axhline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=-99)
+    ax.axvline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=-99)
+    
+    # Equal aspect ratio is important to not bias the viewer
+    ax.set_aspect('equal')
+    
+    sns.despine(ax=ax, left=True, bottom=True)         
+    return ax
+
+
+def annotate_point(xy,  
+                   text, 
+                   xytext, 
+                   ax,
+                   relpos=(0.5, 0.5),
+                   lw=ANNOT_LW,
+                   color=ANNOT_COLOR,
+                   fontsize=ANNOT_FONTSIZE,
+                   ha='center',
+                   zorder=-20,
+                   circle_size=ANNOT_CIRCLE_SIZE
+                  ):
+    """
+    Convenience function for streamlining annotation 
+    on slope vs. slope and volcano plots. 
+    
+    Position of text is given in the difference in 'axes fraction' 
+    away from the point for easier eyeballing. 
+    
+    xytext values should be a percentage (e.g. 8) rather than a decimal (0.08) 
+    
+    """
+    frac_to_data = ax.transLimits.inverted().transform  # converts axes fraction to data coords
+    # To calculate the xytext as a delta, find the difference in data coords from (0, 0)
+    xtextdelta, ytextdelta = (frac_to_data(xytext) - frac_to_data([0, 0])) / 100
+    xytext = (xy[0] + xtextdelta, xy[1] + ytextdelta)
+    ax.annotate(
+        text=text, 
+        xy=xy, 
+        xytext=xytext, #(counter+5, row['coef']+0.05),
+        textcoords='data',
+        arrowprops=dict(arrowstyle='-', 
+                        relpos=relpos, 
+                        lw=lw, 
+                        color=color),
+        bbox=dict(pad=0, 
+                  facecolor='white', 
+                  edgecolor='none'),
+        fontsize=fontsize, 
+        annotation_clip=True, 
+        ha=ha, va='center',
+        zorder=zorder,
+    )
+    # Draw circle around point
+    ax.scatter(xy[0], xy[1], edgecolor=color, facecolor='white', linewidth=lw, 
+               s=circle_size, zorder=zorder)
+   
+    
+def set_square_ratio(ax):
+    """
+    Adjust plot to have square ratio when axes have different limits.
+    This minimizes bias against the axis with larger range. 
+    Used in the linear regression slope vs. slope scatter plots. 
+    
+    ax.set_aspect('equal') is not ideal because it distorts the plot
+    """
+    # Get larger of two axis limits ranges
+    xlim_range = abs(ax.get_xlim()[1] - ax.get_xlim()[0])
+    ylim_range = abs(ax.get_ylim()[1] - ax.get_ylim()[0])
+    max_range = max(xlim_range, ylim_range)
+    if xlim_range > ylim_range:
+        small_range_get = ax.get_ylim
+        small_range_set = ax.set_ylim
+    else:
+        small_range_get = ax.get_xlim
+        small_range_set = ax.set_xlim
+    # Get proportion of smaller axis limit that is greater than zero.
+    #    this preserves the centering of the plot and ensures all points
+    #    remain inside visible plotting area. 
+    proportion = small_range_get()[1] / abs(small_range_get()[0] - small_range_get()[1])
+    # set new limits on smaller axis
+    small_range_set(-1*((1-proportion) * max_range), (proportion * max_range))
+
+
+def fasted_fed_slope_old(_type, ax=None, alpha=0.8, legend=False):
     if ax is None:
         fig, ax = plt.subplots(figsize=(4,4), dpi=100)
     sns.scatterplot(
@@ -263,26 +425,8 @@ def fasted_fed_slope(_type, ax=None, alpha=0.8, legend=False):
         ax.legend(loc=(0.8, 0.05), markerscale=1.2)
     sns.despine()
     return ax
-
-
-def pvals_plot(x, y, df, metab_type, alpha=0.8, ax=None, legend=False):
-    if ax is None:
-        fig, ax = plt.subplots(figsize=(4,4), dpi=120)
-    sns.scatterplot(
-        data=df.loc[(df['is_id'] == True) & (df['Type'] == metab_type)], 
-        x=x, y=y, hue='superclass', palette=colors,
-        edgecolor='0.1', linewidth=0.6, ax=ax, legend=legend, alpha=alpha)
-    sns.scatterplot(
-        data=df.loc[(df['is_id'] == False) & (df['Type'] == metab_type)], 
-        x=x, y=y, hue='superclass', palette=colors, s=20, ax=ax, legend=legend, alpha=0.3, zorder=-10)
-    ax.axhline(-np.log10(0.05), c='gray', alpha=0.3, zorder=-99)
-    ax.axvline(-np.log10(0.05), c='gray', alpha=0.3, zorder=-99)
-    if legend:
-        ax.legend(loc=(1.01, 0.1), markerscale=1.2)
-    sns.despine()
-    return ax
-
-
+   
+    
 def plot_quant_vs_ogtt_old(
     feature, data, 
     ax=None, include_info=False, savefig=False, folder_path=None, file_type=None,
@@ -343,32 +487,22 @@ def plot_quant_vs_ogtt_old(
         file_name = data.loc[feature, 'Type'] + '_' + str(rt) + '_' + str(mz)
         plt.savefig(f'{folder_path}/{file_name}.{file_type}', dpi=100, bbox_inches='tight', facecolor='white')
         plt.close()
+    return ax  
+    
+    
+def pvals_plot(x, y, df, metab_type, alpha=0.8, ax=None, legend=False):
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(4,4), dpi=120)
+    sns.scatterplot(
+        data=df.loc[(df['is_id'] == True) & (df['Type'] == metab_type)], 
+        x=x, y=y, hue='superclass', palette=colors,
+        edgecolor='0.1', linewidth=0.6, ax=ax, legend=legend, alpha=alpha)
+    sns.scatterplot(
+        data=df.loc[(df['is_id'] == False) & (df['Type'] == metab_type)], 
+        x=x, y=y, hue='superclass', palette=colors, s=20, ax=ax, legend=legend, alpha=0.3, zorder=-10)
+    ax.axhline(-np.log10(0.05), c='gray', alpha=0.3, zorder=-99)
+    ax.axvline(-np.log10(0.05), c='gray', alpha=0.3, zorder=-99)
+    if legend:
+        ax.legend(loc=(1.01, 0.1), markerscale=1.2)
+    sns.despine()
     return ax
-    
-    
-def set_square_ratio(ax):
-    """
-    Adjust plot to have square ratio when axes have different limits.
-    This minimizes bias against the axis with larger range. 
-    Used in the linear regression slope vs. slope scatter plots. 
-    
-    ax.set_aspect('equal') is not ideal because it distorts the plot
-    """
-    # Get larger of two axis limits ranges
-    xlim_range = abs(ax.get_xlim()[1] - ax.get_xlim()[0])
-    ylim_range = abs(ax.get_ylim()[1] - ax.get_ylim()[0])
-    max_range = max(xlim_range, ylim_range)
-    if xlim_range > ylim_range:
-        small_range_get = ax.get_ylim
-        small_range_set = ax.set_ylim
-    else:
-        small_range_get = ax.get_xlim
-        small_range_set = ax.set_xlim
-    # Get proportion of smaller axis limit that is greater than zero.
-    #    this preserves the centering of the plot and ensures all points
-    #    remain inside visible plotting area. 
-    proportion = small_range_get()[1] / abs(small_range_get()[0] - small_range_get()[1])
-    # set new limits on smaller axis
-    small_range_set(-1*((1-proportion) * max_range), (proportion * max_range))
-    
-    
