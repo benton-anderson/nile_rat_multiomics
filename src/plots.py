@@ -9,7 +9,7 @@ from matplotlib.lines import Line2D
 import seaborn as sns
 import networkx as nx
 
-from .utils import parse_p_value, parse_lipid, shrink_cbar
+from .utils import parse_p_value, parse_lipid, shrink_cbar, add_jitter
 
 plt.style.use('../data/metadata/Nilerat_matplotlib_stylesheet.mplstyle')
 
@@ -72,17 +72,220 @@ short_names = {
         'Serine': 'Ser', 'Proline': 'Pro',}
 
 
+# DEFINE CONSTANTS FOR THE VOLCANO AND SLOPE_VS_SLOPE PLOTS
+ANNOT_CIRCLE_SIZE = 90
+ANNOT_COLOR = '0.5'
+ANNOT_FONTSIZE = 6
+ANNOT_LW = 1
+POINT_SIZES = {True: 46, False: 22}
+POINT_LW = 0.4    # LW = linewidth
+POINT_EC = '0.1'  # EC = edgecolor
+POINT_ALPHA = 1.0
+SPINE_LW = 1
+SPINE_GRID_COLOR = '0.1'
+TICK_FONTSIZE = 6
+TICK_PAD = 1
+LABEL_FONTSIZE = 7
+FIG_LETTER_FONTSIZE = 9
+FIG_LETTER_FONTWEIGHT = 'bold'
+LEGEND_TEXT_FONTSIZE = 6
+LEGEND_TITLE_FONTSIZE = 7
+GRID_LW = 0.6
+GRID_LIGHT_COLOR = '0.8'
+HIGHLIGHT_BBOX_PAD = 1.5
+HIGHLIGHT_FONTSIZE = 6
+HIGHLIGHT_FONTWEIGHT = 'bold'
+HIGHLIGHT_FACECOLOR = '0.9'
+HIGHLIGHT_ANNOT_LW = 1.5
+
+def _scatter(x, y, df, metab_type, 
+             size, sizes, alpha, 
+             ax, show_legend, plot_unid):
+    """
+    Base scatter plotting for volcano and slope_vs_slope plots. 
+    """
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(4,4), dpi=100)
+    df = df.sort_values(size)  # sort by the size factor to ensure annotated points appear on top 
+    # First plot the annotated 'outlier' points with highest zorder
+    sns.scatterplot(
+        data=df.loc[(df['superclass'] != 'Unidentified') & (df['Type'] == metab_type) & (df[size])], 
+        x=x, y=y, hue='superclass', palette=colors, 
+#         s=30, linewidth=0.2, edgecolor='gray',
+        size=size, sizes=sizes,
+        edgecolor=POINT_EC, linewidth=POINT_LW,
+        ax=ax, alpha=alpha, legend=False,
+        zorder=10)
+    # Next plot the non-annotated points with a lower zorder
+    sns.scatterplot(
+        data=df.loc[(df['superclass'] != 'Unidentified') & (df['Type'] == metab_type) &(~df[size])], 
+        x=x, y=y, hue='superclass', palette=colors, 
+#         s=30, linewidth=0.2, edgecolor='gray',
+        size=size, sizes=sizes,
+        edgecolor=POINT_EC, linewidth=POINT_LW,
+        ax=ax, alpha=alpha, legend=show_legend,
+        zorder=5)
+    if plot_unid:
+        sns.scatterplot(
+            data=df.loc[(df['superclass'] == 'Unidentified') & (df['Type'] == metab_type)], 
+            x=x, y=y, hue='superclass', palette=colors, ax=ax, 
+            size=size, sizes=sizes,
+            alpha=0.3, legend=show_legend,
+            zorder=1)
+    return ax
+
+def volcano(x, y, df, metab_type, size, sizes=POINT_SIZES, 
+            alpha=POINT_ALPHA, xlim_override=None, ax=None, 
+            show_legend=False, plot_unid=False):
+    """
+    
+    """
+    _scatter(x=x, y=y, df=df, metab_type=metab_type, 
+             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid)
+    # Draw the y-axis in the middle of the plot
+    ax.axvline(0, linewidth=SPINE_LW, c=SPINE_GRID_COLOR, zorder=-99)
+    ax.set_yticks([])
+    ax.set_ylabel(None)
+    ax.text(s='-Log10(q-value)', x=-0.05, y=ax.get_ylim()[1], ha='right', va='top', 
+            rotation=90, color=SPINE_GRID_COLOR, fontsize=LABEL_FONTSIZE)
+    for tick in range(0, round(ax.get_ylim()[1]), 5):
+        ax.text(x=0.05, y=tick, s=tick, ha='left', va='center', 
+                zorder=-20, color=SPINE_GRID_COLOR, fontsize=TICK_FONTSIZE)
+    
+    
+    
+    # x-axis ticks and label 
+    ax.tick_params(axis='x', length=2, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
+    xlim = ax.get_xlim()
+    ax.set_xlim(floor(xlim[0])-0.3, ceil(xlim[1])+0.2)
+    xticks = range(floor(xlim[0]), ceil(xlim[1]) + 1, 1)
+    ax.set_xticks(xticks)
+    ax.set_xlabel('Log2(fold change) [Nonfasted - fasted]', fontsize=LABEL_FONTSIZE)
+    
+    if xlim_override is not None:
+        ax.set_xlim(xlim_override)
+    
+    # Write helper text 
+    ax.text(ax.get_xlim()[0], -1, 'Fasted more abundant', ha='left', fontsize=5)
+    ax.text(ax.get_xlim()[1], -1, 'Non-fasted more abundant', ha='right', fontsize=5)
+    
+    if show_legend:
+        ax.legend(loc=(1.01, 0.1), markerscale=1.2)
+    
+    ax.axhline(-np.log10(0.05), linewidth=SPINE_LW, c=SPINE_GRID_COLOR, zorder=-99)
+    sns.despine(ax=ax, left=True)
+    
+    return ax
+
+
+def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, 
+show_legend=False, plot_unid=False, aspect_equal=True):
+    _scatter(x=x, y=y, df=df, metab_type=metab_type, 
+             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid)
+    ax.set_xlabel('OGTT slope Non-fasted', fontsize=LABEL_FONTSIZE)    
+    ax.set_ylabel('OGTT slope Fasted', fontsize=LABEL_FONTSIZE)
+    ax.tick_params(length=0, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
+    
+    # Set ticks every 2e-5
+    ax.ticklabel_format(style='plain')  # style='plain' allows for re-labeling of ticks
+    ticks = np.arange(-30, 30, 2)
+    ax.set_xticks(ticks*1e-5, ticks)
+    ax.set_yticks(ticks*1e-5, ticks)
+    
+    # Custom grid and spines on x=0 and y=0
+    ax.grid(linewidth=GRID_LW, color=GRID_LIGHT_COLOR)
+    ax.set_axisbelow(True)
+    ax.axhline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=1)
+    ax.axvline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=1)
+    
+    # Equal aspect ratio is important to not bias the viewer
+    if aspect_equal:
+        ax.set_aspect('equal')
+    
+    sns.despine(ax=ax, left=True, bottom=True)         
+    return ax
+
+
+def annotate_point(xy,  
+                   text, 
+                   xytext, 
+                   ax,
+                   relpos=(0.5, 0.5),
+                   lw=ANNOT_LW,
+                   color=ANNOT_COLOR,
+                   fontsize=ANNOT_FONTSIZE,
+                   fontweight='regular',
+                   ha='center',
+                   zorder=6,
+                   circle_size=ANNOT_CIRCLE_SIZE, 
+                   bbox_pad=0,
+                   bbox_facecolor='white',
+                   highlight=False,
+                  ):
+    """
+    Convenience function for streamlining annotation 
+    on slope vs. slope and volcano plots. 
+    
+    Position of text is given in the difference in 'axes fraction' 
+    away from the point for easier eyeballing. 
+    
+    xytext values should be a percentage (e.g. 8) rather than a decimal (0.08) 
+    
+    """
+    frac_to_data = ax.transLimits.inverted().transform  # converts axes fraction to data coords
+    # To calculate the xytext as a delta, find the difference in data coords from (0, 0)
+    xtextdelta, ytextdelta = (frac_to_data(xytext) - frac_to_data([0, 0])) / 100
+    xytext = (xy[0] + xtextdelta, xy[1] + ytextdelta)
+    if highlight:
+        bbox_pad = HIGHLIGHT_BBOX_PAD
+        fontsize = HIGHLIGHT_FONTSIZE
+        fontweight = HIGHLIGHT_FONTWEIGHT
+        bbox_facecolor = HIGHLIGHT_FACECOLOR
+        lw = HIGHLIGHT_ANNOT_LW
+        zorder = zorder + 1
+    ax.annotate(
+        text=text, 
+        xy=xy, 
+        xytext=xytext, #(counter+5, row['coef']+0.05),
+        textcoords='data',
+        arrowprops=dict(arrowstyle='-', 
+                        relpos=relpos, 
+                        lw=lw, 
+                        color=color),
+        bbox=dict(pad=bbox_pad, 
+                  facecolor=bbox_facecolor, 
+                  edgecolor='none'),
+        fontsize=fontsize, 
+        fontweight=fontweight,
+        annotation_clip=True, 
+        ha=ha, va='center',
+        zorder=zorder,
+    )
+    # Draw circle around point
+    alpha_corrected_color = (str(float(color) - 0.15))
+    ax.scatter(xy[0], xy[1], 
+               edgecolor=alpha_corrected_color, facecolor='white', linewidth=lw, alpha=0.7,
+               s=circle_size, zorder=zorder)
+
+
 def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
                        xlabel=None, ylabel=None, 
-                       animal_lines=False, legend=False,
-                       robust=False, ax=None, scatter_kws=None, line_kws=None):
+                       animal_lines=False, 
+                       legend=False, legend_loc=(0.85, 0.02),
+                       robust=False, ax=None, 
+                       palette=colors,
+                       alpha=1, 
+                       scatter_kws=None, 
+                       line_kws=dict(lw=1.5)):
     """
     feature: 'm_123', or iterable of indexes ['m_123', 'l_123']
     x: 'ogtt' or 'insulin'
+    Font sizes and design have been optimized for figsize=(2.5, 2)
+    
     """
     # 
     if ax is None:
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(dpi=250, figsize=(2.5, 2))
     df = data.loc[feature, data_cols]
     if not isinstance(feature, str):
         df = df.mean()
@@ -90,18 +293,40 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
           .to_frame(name='quant')
           .join(fg[['bg_type', x]])
          )
-        
+    # Automatically include lw=0 to avoid the wrong-alpha edge color on scatter points
+    if scatter_kws is None:
+        scatter_kws = dict(lw=0)
+    elif 'lw' not in scatter_kws:
+        scatter_kws['lw'] = 0
+    scatter_kws['alpha'] = alpha
+    
     df['bg_type'] = df['bg_type'].replace('FBG', 'Fasted').replace('RBG', 'Non-fasted')
     df['quant'] = df['quant'].astype('float')
     for bg_type in df['bg_type'].unique():
         sns.regplot(data=df.loc[df['bg_type'] == bg_type], x=x, y='quant', n_boot=200, robust=robust, 
-                    color=colors[bg_type], truncate=False, label=bg_type, scatter_kws=scatter_kws, line_kws=line_kws,
+                    color=palette[bg_type], 
+                    truncate=False, label=bg_type, 
+                    scatter_kws=scatter_kws, line_kws=line_kws,
                     ax=ax, seed=1)
     # Can't use seaborn lmplot because it's a Figure-level plot, not Axes-level
     # sns.lmplot(data=df, x=x, y='quant', hue='bg_type', palette=colors, ax=ax,
     #            n_boot=200, truncate=False, scatter_kws=scatter_kws, line_kws=line_kws, seed=1)    
+    ax.tick_params(pad=TICK_PAD, length=2, labelsize=TICK_FONTSIZE)
+    if x == 'ogtt':
+        ax.set_xticks(ticks=[20000, 40000, 60000], labels=['20k', '40k', '60k'])
+    ax.set_xlabel('OGTT glucose AUC', fontsize=LABEL_FONTSIZE)
+    ax.set_ylabel('Log2 abundance', fontsize=LABEL_FONTSIZE)
+    
     if legend:
-        ax.legend()
+        legend = ax.legend(
+            loc=legend_loc,     
+            title='Sampling', fontsize=LEGEND_TEXT_FONTSIZE, 
+            title_fontproperties=dict(size=LEGEND_TITLE_FONTSIZE, weight='bold'),
+            handletextpad=-0.1, labelspacing=0.15, borderaxespad=0, handlelength=1.7,
+            borderpad=0.1, markerscale=1.,
+#           frameon=True, framealpha=1, facecolor='0.95', fancybox=False, edgecolor='none'
+        )
+        legend._legend_box.align = 'left'  # shift legend title to left alignment
     if animal_lines:
         for unique_x in df[x].unique():
             ax.axvline(unique_x, color='gray', alpha=0.5, linewidth=0.5)
@@ -109,19 +334,68 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
         ax.set_xlabel(xlabel)
     if ylabel is not None:
         ax.set_ylabel(ylabel)
-    if x == 'ogtt':
-        ax.set_xticks(ticks=[20000, 40000, 60000], labels=['20k', '40k', '60k'])
+    
     sns.despine(ax=ax)
     return ax
-    
+ 
 
-def plot_graph(metab_set, corr=0.5, corr_type='spearman', 
-               continuous_var='coef_fed', centered_norm=True, cmap='coolwarm',
-               layout=nx.kamada_kawai_layout, use_connec_comp=True, 
-               fontsize=5, pos_scale=1, max_linewidth=3.5,
-               ax=None, cax=None):   
+def carbon_unsat(
+        lipid_class, jitter_offset, 
+        base_size=28,
+        ax=None, cax=None):
+    if ax is None:
+        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5, 4.5), dpi=150)
+    df = add_jitter(lipid_class, ldata=data, os=jitter_offset)
+    max_C, min_C = df['fa_carbons'].max(), df['fa_carbons'].min()
+    max_unsat, min_unsat = df['fa_unsat'].max(), df['fa_unsat'].min()
+    norm = plt.matplotlib.colors.CenteredNorm(vcenter=0.0,)  #  vmin=df['log2 FC'].min(), vmax=df['log2 FC'].max()
+    cmap = 'coolwarm'
+    sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
+    # display(df)
+    sns.scatterplot(
+        data=df, x='fa_carbons', y='fa_unsat', ax=ax, hue='Log2 Fold Change', hue_norm=norm, palette=cmap,  
+        size='overlaps', sizes={1: base_size, 2: 0.75*base_size, 3: 0.6*base_size, 4: 0.4*base_size},
+        # s=size, 
+        legend=False, edgecolor=POINT_EC, linewidth=0.3)
+    ax.tick_params(pad=TICK_PAD, labelsize=TICK_FONTSIZE)
+    ax.set_xticks(np.arange(min_C, max_C+1, 2), [int(x) for x in np.arange(min_C, max_C+1, 2)])
+    ax.set_yticks(np.arange(min_unsat, max_unsat+1, 2), [int(x) for x in np.arange(min_unsat, max_unsat+1, 2)])
+    ax.grid(color=SPINE_GRID_COLOR, lw=GRID_LW)
+#     plt.legend(title='log2 fold change', loc=(1.01, 0.5), markerscale=1.5, fontsize=15, title_fontsize=18)
+#     plt.title('Lipids by class significant under glucose tolerance', fontsize=18)
+    ax.set_ylabel(f'{lipid_class} fatty acyl unsaturations', fontsize=LABEL_FONTSIZE)
+    ax.set_xlabel(f'{lipid_class} fatty acyl carbons', fontsize=LABEL_FONTSIZE)
+    
+    cb = ax.figure.colorbar(sm, cax=cax, shrink=0.8, fraction=0.5, aspect=15, pad=0)
+    # cb.ax.tick_params(labelsize=8, length=0)
+    cb.ax.set_yticks([-3, -2, -1, 0, 1, 2, 3], fontsize=5)
+    cb.ax.set_ylabel('Log2 fold change\n[Nonfasted – Fasted]', fontsize=LABEL_FONTSIZE)
+    cb.ax.yaxis.set_label_position('left')
+    cb.ax.tick_params(pad=TICK_PAD, labelsize=TICK_FONTSIZE)
+    shrink_cbar(cb.ax, shrink=0.7)
+    # cb.ax.set_label('Log2 Fold Change')
+    # cb.ax.set_title('Non-fasted\nHigher', fontsize=10, ha='center')
+#     cb.ax.set_xticks(ticks=[0], labels=['Fasted\nHigher'], fontsize=20)
+#     cb.ax.set_xticklabels(ticks=[0], labels=['Fasted\nHigher'], fontsize=20)
+    sns.despine(ax=ax)
+    return ax, cb
+
+
+def plot_network(metab_set, corr=0.5, corr_type='spearman', 
+                 continuous_var='coef_fed', centered_norm=True, cmap='coolwarm',
+                 layout=nx.kamada_kawai_layout, use_connec_comp=True, 
+                 fontsize=6, pos_scale=1, 
+                 max_linewidth=3.5, min_linewidth=0.2,
+                 shrink_cbar_factor=0.6,
+                 node_lw=0.7,
+                 lightness_alpha=0.2,
+                 ax=None, cax=None):   
     """
-    Make a connected graph with nodes and edges
+    Make a connected graph with nodes and edges.
+    
+    use_connec_comp means it will only pick the biggest subgraph that is connected.
+        Not all nodes will be shown with this param.
+    
     """
     if ax is None:
         fig, ax = plt.subplots(ncols=1, figsize=(5, 3), 
@@ -156,7 +430,7 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
     edge_widths = []
     for edge in g.edges:
         corr = df.loc[(df['to'] == edge[0]) & (df['from'] == edge[1]), 'corr'].iloc[0]
-        width = 0.05 + 0.4*1/-np.log(abs(corr) + 0.00001)  # fancy code to convert higher correlation value into thicker line
+        width = min_linewidth + 0.4*1/-np.log(abs(corr) + 0.00001)  # convert higher correlation value into thicker line
         if width > max_linewidth:  # Set a cap on linewidth 
             width = max_linewidth
         edge_widths.append(width)
@@ -181,9 +455,9 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
             name = short_names[name]
         cont_value = data.loc[i, continuous_var]
         c = sm.to_rgba(cont_value)[:-1]
-        alpha = 0.2
-        lighter_c = [x + (1 - x) * (1 - alpha) for x in c]
-        bbox_style = dict(boxstyle='round4', pad=.3, mutation_scale=0, linewidth=0.7, 
+        alpha = lightness_alpha
+        lighter_c = [x + (1 - x) * (1 - alpha) for x in c]  # make a lighter color without using alpha
+        bbox_style = dict(boxstyle='round4', pad=.3, mutation_scale=0, linewidth=node_lw, 
                           edgecolor=c, facecolor=lighter_c, alpha=1)
         text = ax.text(x, y, name.replace(' ', '\n'), 
                        ha='center', va='center', bbox=bbox_style, fontsize=fontsize, fontweight='semibold')
@@ -193,7 +467,7 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
     cbar = ax.get_figure().colorbar(mappable=sm, cax=cax)
     cbar.outline.set_linewidth(0.3)
     cax = cbar.ax
-    shrink_cbar(ax=cax, shrink=0.7)
+    shrink_cbar(ax=cax, shrink=shrink_cbar_factor)
     cax.yaxis.set_label_position('right')
     cax.yaxis.tick_right()
     cax.tick_params(length=2, pad=1, labelsize=fontsize)
@@ -211,165 +485,88 @@ def plot_graph(metab_set, corr=0.5, corr_type='spearman',
     #     patch.set_width(15)
     #     patch.set_height(height)
     sns.despine(left=True, bottom=True, ax=ax)
-    return ax, cbar
+    return ax, cbar, g
 
-# DEFINE CONSTANTS FOR THE VOLCANO AND SLOPE_VS_SLOPE PLOTS
-ANNOT_CIRCLE_SIZE = 90
-ANNOT_COLOR = '0.5'
-ANNOT_FONTSIZE = 6
-ANNOT_LW = 1
-POINT_SIZES = {True: 46, False: 22}
-POINT_LW = 0.4    # LW = linewidth
-POINT_EC = '0.1'  # EC = edgecolor
-POINT_ALPHA = 1.0
-SPINE_LW = 1
-SPINE_GRID_COLOR = '0.1'
-TICK_FONTSIZE = 6
-TICK_PAD = 1
-LABEL_FONTSIZE = 7
 
-def _scatter(x, y, df, metab_type, 
-             size, sizes, alpha, 
-             ax, show_legend, plot_unid):
+def custom_legend(entries, ax, loc=(1.02, 0), show_frame=False, sort=True, 
+                  mew=POINT_LW, mec=POINT_EC, ms=8, marker='o', **kwargs):
     """
-    Base scatter plotting for volcano and slope_vs_slope plots. 
+    Wrapper for making a legend based on list of entries, using colors defined in the main color scheme.
     """
-    if ax is None:
-        fig, ax = plt.subplots(figsize=(4,4), dpi=100)
-    df = df.sort_values(size)  # sort by the size factor to ensure annotated points appear on top 
-    sns.scatterplot(
-        data=df.loc[(df['superclass'] != 'Unidentified') & (df['Type'] == metab_type)], 
-        x=x, y=y, hue='superclass', palette=colors, 
-#         s=30, linewidth=0.2, edgecolor='gray',
-        size=size, sizes=sizes,
-        edgecolor=POINT_EC, linewidth=POINT_LW,
-        ax=ax, alpha=alpha, legend=show_legend,
-        zorder=3)
-    if plot_unid:
-        sns.scatterplot(
-            data=df.loc[(df['superclass'] == 'Unidentified') & (df['Type'] == metab_type)], 
-            x=x, y=y, hue='superclass', palette=colors, ax=ax, 
-            size=size, sizes=sizes,
-            alpha=0.3, legend=show_legend,
-            zorder=2)
-    return ax
+    entries = sorted(entries)
+    handles = []
+    for entry in entries:
+        color = colors[entry]
+        handles.append(
+            plt.matplotlib.lines.Line2D(
+                [0], [0], label=entry,
+                linewidth=0, mfc=color, mew=mew, mec=mec, ms=ms, marker=marker,
+            )
+        )
+    if show_frame:
+        frame_params = dict(frameon=True, framealpha=1, facecolor='0.95', fancybox=False, edgecolor='none')
+    else:
+        frame_params = dict()
+    legend = ax.legend(
+        handles=handles, loc=loc, 
+        title_fontproperties=dict(size=LEGEND_TITLE_FONTSIZE, weight='bold'), 
+        **frame_params,
+        **kwargs
+        )
+    legend._legend_box.align = 'left'  # shift legend title to left alignment
+    return legend
 
-def volcano(x, y, df, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, show_legend=False, plot_unid=False):
+
+def shrink_cbar(ax, shrink=0.9):
     """
-    
+    Shrink the height of a colorbar that is set within its own pre-made colorbar axes (cax) 
+    From https://stackoverflow.com/questions/53429258/matplotlib-change-colorbar-height-within-own-axes    
     """
-    _scatter(x=x, y=y, df=df, metab_type=metab_type, 
-             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid)
-    # Draw the y-axis in the middle of the plot
-    ax.axvline(0, linewidth=SPINE_LW, c=SPINE_GRID_COLOR, zorder=-99)
-    ax.set_yticks([])
-    ax.set_ylabel(None)
-    ax.text(s='-Log10(q-value)', x=-0.05, y=ax.get_ylim()[1], ha='right', va='top', 
-            rotation=90, color=SPINE_GRID_COLOR, fontsize=LABEL_FONTSIZE)
-    for tick in range(0, round(ax.get_ylim()[1]), 5):
-        ax.text(x=0.05, y=tick, s=tick, ha='left', va='center', 
-                zorder=-20, color=SPINE_GRID_COLOR, fontsize=TICK_FONTSIZE)
-    
-    
-    
-    # x-axis ticks and label 
-    ax.tick_params(axis='x', length=2, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
-    xlim = ax.get_xlim()
-    ax.set_xlim(floor(xlim[0]), ceil(xlim[1]))
-    xticks = range(floor(xlim[0]), ceil(xlim[1]) + 1, 1)
-    ax.set_xticks(xticks)
-    ax.set_xlabel('Log2(fold change) [Nonfasted - fasted]', fontsize=LABEL_FONTSIZE)
-    
-    # Write helper text 
-    ax.text(ax.get_xlim()[0]-0.3, -1, 'Fasted more abundant', ha='left', fontsize=5)
-    ax.text(ax.get_xlim()[1], -1, 'Non-fasted more abundant', ha='right', fontsize=5)
-    
-    if show_legend:
-        ax.legend(loc=(1.01, 0.1), markerscale=1.2)
-    
-    ax.axhline(-np.log10(0.05), linewidth=SPINE_LW, c=SPINE_GRID_COLOR, zorder=-99)
-    sns.despine(ax=ax, left=True)
-    
-    # Equal aspect ratio is important to not bias the viewer
-    ax.set_aspect('equal')
-    
-    return ax
+    b = ax.get_position()
+    new_h = b.height*shrink
+    pad = (b.height-new_h)/2.
+    new_y0 = b.y0 + pad
+    new_y1 = b.y1 - pad
+    b.y0 = new_y0
+    b.y1 = new_y1
+    ax.set_position(b)
 
-
-def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, show_legend=False, plot_unid=False):
-    _scatter(x=x, y=y, df=df, metab_type=metab_type, 
-             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid)
-    ax.set_xlabel('OGTT slope Non-fasted', fontsize=LABEL_FONTSIZE)    
-    ax.set_ylabel('OGTT slope Fasted', fontsize=LABEL_FONTSIZE)
-    ax.tick_params(length=0, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
     
-    # Set ticks every 2e-5
-    ax.ticklabel_format(style='plain')  # style='plain' allows for re-labeling of ticks
-    ticks = np.arange(-20, 20, 2)
-    ax.set_xticks(ticks*1e-5, ticks)
-    ax.set_yticks(ticks*1e-5, ticks)
-    
-    # Custom grid and spines on x=0 and y=0
-    ax.grid(linewidth=0.2, color=SPINE_GRID_COLOR)
-    ax.set_axisbelow(True)
-    ax.axhline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=-99)
-    ax.axvline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=-99)
-    
-    # Equal aspect ratio is important to not bias the viewer
-    ax.set_aspect('equal')
-    
-    sns.despine(ax=ax, left=True, bottom=True)         
-    return ax
-
-
-def annotate_point(xy,  
-                   text, 
-                   xytext, 
-                   ax,
-                   relpos=(0.5, 0.5),
-                   lw=ANNOT_LW,
-                   color=ANNOT_COLOR,
-                   fontsize=ANNOT_FONTSIZE,
-                   ha='center',
-                   zorder=-20,
-                   circle_size=ANNOT_CIRCLE_SIZE
-                  ):
+def tight_bbox(ax):
     """
-    Convenience function for streamlining annotation 
-    on slope vs. slope and volcano plots. 
+    Example for placing figure panel letters at very top left of the axis bounding box: 
+    for ax, letter in zip([ax1, ax2], ['A', 'B']):
+        bb = tight_bbox(ax)
+        ax.text(x=bb.x0, y=bb.y1, s=letter, 
+        fontsize=src.plots.LABEL_FONTSIZE, fontweight='bold', transform=fig.transFigure, )
+    """
+    fig = ax.get_figure()
+    tight_bbox_raw = ax.get_tightbbox(fig.canvas.get_renderer())
+    from matplotlib.transforms import TransformedBbox
+    tight_bbox_fig = TransformedBbox(tight_bbox_raw, fig.transFigure.inverted())
+    return tight_bbox_fig
     
-    Position of text is given in the difference in 'axes fraction' 
-    away from the point for easier eyeballing. 
-    
-    xytext values should be a percentage (e.g. 8) rather than a decimal (0.08) 
+
+
+def change_width(ax, new_value):
+    """
+    Offsetting boxplot and swarmplot side-by-side is super annoying.
+    code from: 
+    # https://stackoverflow.com/questions/61647192/boxplot-and-data-points-side-by-side-in-one-plot  
     
     """
-    frac_to_data = ax.transLimits.inverted().transform  # converts axes fraction to data coords
-    # To calculate the xytext as a delta, find the difference in data coords from (0, 0)
-    xtextdelta, ytextdelta = (frac_to_data(xytext) - frac_to_data([0, 0])) / 100
-    xytext = (xy[0] + xtextdelta, xy[1] + ytextdelta)
-    ax.annotate(
-        text=text, 
-        xy=xy, 
-        xytext=xytext, #(counter+5, row['coef']+0.05),
-        textcoords='data',
-        arrowprops=dict(arrowstyle='-', 
-                        relpos=relpos, 
-                        lw=lw, 
-                        color=color),
-        bbox=dict(pad=0, 
-                  facecolor='white', 
-                  edgecolor='none'),
-        fontsize=fontsize, 
-        annotation_clip=True, 
-        ha=ha, va='center',
-        zorder=zorder,
-    )
-    # Draw circle around point
-    ax.scatter(xy[0], xy[1], edgecolor=color, facecolor='white', linewidth=lw, 
-               s=circle_size, zorder=zorder)
+    for patch in ax.patches:
+        current_width = patch.get_width()
+        diff = current_width - new_value
+
+        # change patch width
+        patch.set_width(new_value)
+
+        # re-center patch
+        patch.set_x(patch.get_x() + diff * .5)
+
+
    
-    
 def set_square_ratio(ax):
     """
     Adjust plot to have square ratio when axes have different limits.

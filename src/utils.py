@@ -27,7 +27,14 @@ num_fas = {
     'SM': 2,
     'DG': 2,
     'Alkenyl-DG': 2,
+    'Cer[AP]': 2,
     'Cer[NS]': 2,
+    'Cer[NP]': 2,
+    'Cer[NDS]': 2,
+    'HexCer[NS]': 2,
+    'GlcCer[NDS]': 2,
+    
+    
     'TG': 3,
 }
 
@@ -62,13 +69,13 @@ def parse_lipid(lipid):
     """
     Input lipid string e.g. "TG 60:4", "PC 18:2_20:1", "SM d37:1"
     Returns: tuple of (
-        lipid class, 
-        class label, 
-        # FA carbons, 
-        # FA unsat, 
-        sum composition string, 
-        FA list, 
-        is_sum_comp boolean
+        0: lipid class, 
+        1: class label (d in SM, or t in some other sphingomyelins)
+        2: # FA carbons, 
+        3: # FA unsat, 
+        4: sum composition string, 
+        5: FA list, 
+        6: is_sum_comp boolean
     )
     """
     try:
@@ -83,6 +90,9 @@ def parse_lipid(lipid):
         if 'd' in fa:
             fa = fa.split('d')[1]
             label = fa.split('d')[0] + 'd'
+        elif 't' in fa:
+            fa = fa.split('t')[1]
+            label = fa.split('t')[0] + 't'
         else:
             label = ''
 
@@ -100,30 +110,18 @@ def parse_lipid(lipid):
             is_sum_comp = True
         
         return cls, label, carbons, unsat, sum_comp, fa, is_sum_comp
-    except:
+    except Exception as e:
         # return a tuple of nan
+        # print(e)
         return (np.nan,) * 7
         
-        
-def tight_bbox(ax):
-    """
-    Example for placing figure panel letters at very top left of the axis bounding box: 
-    for ax, letter in zip([ax1, ax2], ['A', 'B']):
-        bb = tight_bbox(ax)
-        ax.text(x=bb.x0, y=bb.y1, s=letter, transform=fig.transFigure, fontweight='bold')
-    """
-    fig = ax.get_figure()
-    tight_bbox_raw = ax.get_tightbbox(fig.canvas.get_renderer())
-    from matplotlib.transforms import TransformedBbox
-    tight_bbox_fig = TransformedBbox(tight_bbox_raw, fig.transFigure.inverted())
-    return tight_bbox_fig
-    
     
 def shrink_cbar(ax, shrink=0.9):
     """
     Shrink the height of a colorbar that is set within its own pre-made colorbar axes (cax) 
     From https://stackoverflow.com/questions/53429258/matplotlib-change-colorbar-height-within-own-axes    
     """
+    raise DeprecationWarning('Plot now in src/plots.py')
     b = ax.get_position()
     new_h = b.height*shrink
     pad = (b.height-new_h)/2.

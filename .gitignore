@@ -2,6 +2,8 @@
 *.cdResult
 *.cdResultView
 
+*.pickle
+
 # the validation LipiDex Files 
 data/search/CD31/validation
 

@@ -395,6 +395,7 @@ def make_carbon_unsat_plot(
         lipid_class, jitter_offset, 
         base_size=50,
         ax=None, cax=None):
+    raise DeprecationWarning('Plot now in src/plots.py')
     if ax is None:
         fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5, 4.5), dpi=150)
     df = add_jitter(lipid_class, ldata=data, os=jitter_offset)
