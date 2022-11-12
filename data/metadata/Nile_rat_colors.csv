@@ -1,4 +1,4 @@
-,color hex code
+,0
 lipid,#66c2a5
 metabolite,#fc8d62
 Glycerolipid,#af7aa1
@@ -11,10 +11,10 @@ Organic acid,#e5c494
 Carbohydrate,#8da0cb
 Amino acid derivative,#e78ac3
 Alcohol,#a6d854
-Male,#4a7c59
-Female,#80364d
-Fasted,#c17a53
-Nonfasted,#6b6d8b
+M,#4a7c59
+F,#80364d
+FBG,#c17a53
+RBG,#6b6d8b
 normal,#029e73
 impaired,#cc78bc
 diabetic,#d55e00
@@ -23,6 +23,7 @@ diabetic,#d55e00
 1092,#38588c
 1074,#2d708e
 1062,#25858e
+1102,#1e9b8a
 1060,#2ab07f
 1101,#52c569
 1082,#86d549

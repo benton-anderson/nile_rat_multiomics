@@ -137,7 +137,12 @@ def add_jitter(lipid_class, ldata, os=0.15):
     For adjusting scatterplot points to avoid overlap in FA length vs. unsaturation plots. 
     """
     # os = offset for jitter
-    tgdf = ldata.loc[data['molec_class'] == lipid_class].copy()
+    if isinstance(lipid_class, str):
+        tgdf = ldata.loc[ldata['molec_class'] == lipid_class].copy()
+    elif isinstance(lipid_class, list):
+        tgdf = ldata.loc[ldata['molec_class'].isin(lipid_class)].copy()
+    else:
+        raise TypeError('lipid class must be string or list')
     tgdf['overlaps'] = 1
     overlaps = ldata['fa_carbon:unsat'].value_counts() > 1
     overlaps = overlaps.loc[overlaps == True].index

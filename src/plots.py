@@ -100,7 +100,7 @@ HIGHLIGHT_ANNOT_LW = 1.5
 
 def _scatter(x, y, df, metab_type, 
              size, sizes, alpha, 
-             ax, show_legend, plot_unid):
+             ax, show_legend, plot_unid, linewidth=POINT_LW, **kwargs):
     """
     Base scatter plotting for volcano and slope_vs_slope plots. 
     """
@@ -113,16 +113,17 @@ def _scatter(x, y, df, metab_type,
         x=x, y=y, hue='superclass', palette=colors, 
 #         s=30, linewidth=0.2, edgecolor='gray',
         size=size, sizes=sizes,
-        edgecolor=POINT_EC, linewidth=POINT_LW,
+        edgecolor=POINT_EC, linewidth=linewidth,
         ax=ax, alpha=alpha, legend=False,
-        zorder=10)
+        zorder=10, 
+        **kwargs)
     # Next plot the non-annotated points with a lower zorder
     sns.scatterplot(
         data=df.loc[(df['superclass'] != 'Unidentified') & (df['Type'] == metab_type) &(~df[size])], 
         x=x, y=y, hue='superclass', palette=colors, 
 #         s=30, linewidth=0.2, edgecolor='gray',
         size=size, sizes=sizes,
-        edgecolor=POINT_EC, linewidth=POINT_LW,
+        edgecolor=POINT_EC, linewidth=linewidth,
         ax=ax, alpha=alpha, legend=show_legend,
         zorder=5)
     if plot_unid:
@@ -179,9 +180,9 @@ def volcano(x, y, df, metab_type, size, sizes=POINT_SIZES,
 
 
 def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, 
-show_legend=False, plot_unid=False, aspect_equal=True):
+                   show_legend=False, plot_unid=False, aspect_equal=True, **kwargs):
     _scatter(x=x, y=y, df=df, metab_type=metab_type, 
-             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid)
+             size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid, **kwargs)
     ax.set_xlabel('OGTT slope Non-fasted', fontsize=LABEL_FONTSIZE)    
     ax.set_ylabel('OGTT slope Fasted', fontsize=LABEL_FONTSIZE)
     ax.tick_params(length=0, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
@@ -340,20 +341,22 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
  
 
 def carbon_unsat(
-        lipid_class, jitter_offset, 
+        df, lipid_class, jitter_offset, 
         base_size=28,
+        hue='Log2 Fold Change',
+        halfrange=None,
         ax=None, cax=None):
     if ax is None:
         fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5, 4.5), dpi=150)
-    df = add_jitter(lipid_class, ldata=data, os=jitter_offset)
+    df = add_jitter(lipid_class, ldata=df, os=jitter_offset)
     max_C, min_C = df['fa_carbons'].max(), df['fa_carbons'].min()
     max_unsat, min_unsat = df['fa_unsat'].max(), df['fa_unsat'].min()
-    norm = plt.matplotlib.colors.CenteredNorm(vcenter=0.0,)  #  vmin=df['log2 FC'].min(), vmax=df['log2 FC'].max()
+    norm = plt.matplotlib.colors.CenteredNorm(vcenter=0.0, halfrange=halfrange)  #  vmin=df['log2 FC'].min(), vmax=df['log2 FC'].max()
     cmap = 'coolwarm'
     sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
     # display(df)
     sns.scatterplot(
-        data=df, x='fa_carbons', y='fa_unsat', ax=ax, hue='Log2 Fold Change', hue_norm=norm, palette=cmap,  
+        data=df, x='fa_carbons', y='fa_unsat', ax=ax, hue=hue, hue_norm=norm, palette=cmap,  
         size='overlaps', sizes={1: base_size, 2: 0.75*base_size, 3: 0.6*base_size, 4: 0.4*base_size},
         # s=size, 
         legend=False, edgecolor=POINT_EC, linewidth=0.3)
@@ -368,7 +371,7 @@ def carbon_unsat(
     
     cb = ax.figure.colorbar(sm, cax=cax, shrink=0.8, fraction=0.5, aspect=15, pad=0)
     # cb.ax.tick_params(labelsize=8, length=0)
-    cb.ax.set_yticks([-3, -2, -1, 0, 1, 2, 3], fontsize=5)
+    # cb.ax.set_yticks([-3, -2, -1, 0, 1, 2, 3], fontsize=5)
     cb.ax.set_ylabel('Log2 fold change\n[Nonfasted – Fasted]', fontsize=LABEL_FONTSIZE)
     cb.ax.yaxis.set_label_position('left')
     cb.ax.tick_params(pad=TICK_PAD, labelsize=TICK_FONTSIZE)

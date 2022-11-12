@@ -28,6 +28,8 @@
 "Plasmanyl-PC": "Phospholipid",
 "Plasmenyl-PE": "Phospholipid",
 "Plasmanyl-PE": "Phospholipid", 
+"PC[OH]": "Phospholipid",
+"PE-NMe2": "Phospholipid",
 
 "unknown": "Unidentified",
 "Unidentified": "Unidentified", 
