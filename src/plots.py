@@ -180,6 +180,7 @@ def volcano(x, y, df, metab_type, size, sizes=POINT_SIZES,
 
 
 def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, 
+                   spine_lw=SPINE_LW, spine_color=SPINE_GRID_COLOR,
                    show_legend=False, plot_unid=False, aspect_equal=True, **kwargs):
     _scatter(x=x, y=y, df=df, metab_type=metab_type, 
              size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid, **kwargs)
@@ -196,8 +197,8 @@ def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_AL
     # Custom grid and spines on x=0 and y=0
     ax.grid(linewidth=GRID_LW, color=GRID_LIGHT_COLOR)
     ax.set_axisbelow(True)
-    ax.axhline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=1)
-    ax.axvline(0, color=SPINE_GRID_COLOR, lw=SPINE_LW, zorder=1)
+    ax.axhline(0, color=spine_color, lw=spine_lw, zorder=1)
+    ax.axvline(0, color=spine_color, lw=spine_lw, zorder=1)
     
     # Equal aspect ratio is important to not bias the viewer
     if aspect_equal:
@@ -216,12 +217,14 @@ def annotate_point(xy,
                    color=ANNOT_COLOR,
                    fontsize=ANNOT_FONTSIZE,
                    fontweight='regular',
+                   fontcolor='0.1',
                    ha='center',
                    zorder=6,
                    circle_size=ANNOT_CIRCLE_SIZE, 
                    bbox_pad=0,
                    bbox_facecolor='white',
                    highlight=False,
+                   **kwargs
                   ):
     """
     Convenience function for streamlining annotation 
@@ -258,9 +261,11 @@ def annotate_point(xy,
                   edgecolor='none'),
         fontsize=fontsize, 
         fontweight=fontweight,
+        color=fontcolor,
         annotation_clip=True, 
         ha=ha, va='center',
         zorder=zorder,
+        **kwargs
     )
     # Draw circle around point
     alpha_corrected_color = (str(float(color) - 0.15))
@@ -344,15 +349,18 @@ def carbon_unsat(
         df, lipid_class, jitter_offset, 
         base_size=28,
         hue='Log2 Fold Change',
-        halfrange=None,
+        norm=plt.matplotlib.colors.CenteredNorm(vcenter=0.0, halfrange=None),
+        cmap='coolwarm',
+        # halfrange=None,
+        shrink=0.7,
         ax=None, cax=None):
     if ax is None:
         fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5, 4.5), dpi=150)
     df = add_jitter(lipid_class, ldata=df, os=jitter_offset)
     max_C, min_C = df['fa_carbons'].max(), df['fa_carbons'].min()
     max_unsat, min_unsat = df['fa_unsat'].max(), df['fa_unsat'].min()
-    norm = plt.matplotlib.colors.CenteredNorm(vcenter=0.0, halfrange=halfrange)  #  vmin=df['log2 FC'].min(), vmax=df['log2 FC'].max()
-    cmap = 'coolwarm'
+    norm = norm  #  vmin=df['log2 FC'].min(), vmax=df['log2 FC'].max()
+    cmap = cmap
     sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
     # display(df)
     sns.scatterplot(
@@ -375,12 +383,13 @@ def carbon_unsat(
     cb.ax.set_ylabel('Log2 fold change\n[Nonfasted – Fasted]', fontsize=LABEL_FONTSIZE)
     cb.ax.yaxis.set_label_position('left')
     cb.ax.tick_params(pad=TICK_PAD, labelsize=TICK_FONTSIZE)
-    shrink_cbar(cb.ax, shrink=0.7)
+    shrink_cbar(cb.ax, shrink=shrink)
+    cb.outline.set_linewidth(0.3)
     # cb.ax.set_label('Log2 Fold Change')
     # cb.ax.set_title('Non-fasted\nHigher', fontsize=10, ha='center')
 #     cb.ax.set_xticks(ticks=[0], labels=['Fasted\nHigher'], fontsize=20)
 #     cb.ax.set_xticklabels(ticks=[0], labels=['Fasted\nHigher'], fontsize=20)
-    sns.despine(ax=ax)
+    sns.despine(left=True, right=False, ax=ax)
     return ax, cb
 
 
