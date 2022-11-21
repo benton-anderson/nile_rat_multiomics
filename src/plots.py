@@ -353,6 +353,7 @@ def carbon_unsat(
         cmap='coolwarm',
         # halfrange=None,
         shrink=0.7,
+        
         ax=None, cax=None):
     if ax is None:
         fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5, 4.5), dpi=150)
@@ -500,7 +501,10 @@ def plot_network(metab_set, corr=0.5, corr_type='spearman',
     return ax, cbar, g
 
 
-def custom_legend(entries, ax, loc=(1.02, 0), show_frame=False, sort=True, 
+def custom_legend(entries, ax, palette=colors,
+                  loc=(1.02, 0), show_frame=False, sort=True, 
+                  title_fontsize=LEGEND_TITLE_FONTSIZE, title_fontweight='bold',
+                  frame_color='0.95',
                   mew=POINT_LW, mec=POINT_EC, ms=8, marker='o', **kwargs):
     """
     Wrapper for making a legend based on list of entries, using colors defined in the main color scheme.
@@ -516,12 +520,12 @@ def custom_legend(entries, ax, loc=(1.02, 0), show_frame=False, sort=True,
             )
         )
     if show_frame:
-        frame_params = dict(frameon=True, framealpha=1, facecolor='0.95', fancybox=False, edgecolor='none')
+        frame_params = dict(frameon=True, framealpha=1, facecolor=frame_color, fancybox=False, edgecolor='none')
     else:
         frame_params = dict()
     legend = ax.legend(
         handles=handles, loc=loc, 
-        title_fontproperties=dict(size=LEGEND_TITLE_FONTSIZE, weight='bold'), 
+        title_fontproperties=dict(size=title_fontsize, weight=title_fontweight), 
         **frame_params,
         **kwargs
         )
