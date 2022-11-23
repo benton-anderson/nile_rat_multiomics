@@ -279,6 +279,7 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
                        animal_lines=False, 
                        legend=False, legend_loc=(0.85, 0.02),
                        robust=False, ax=None, 
+                       figsize=(2.5, 2),
                        palette=colors,
                        alpha=1, 
                        scatter_kws=None, 
@@ -291,7 +292,7 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
     """
     # 
     if ax is None:
-        fig, ax = plt.subplots(dpi=250, figsize=(2.5, 2))
+        fig, ax = plt.subplots(dpi=250, figsize=figsize)
     df = data.loc[feature, data_cols]
     if not isinstance(feature, str):
         df = df.mean()
