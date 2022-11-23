@@ -503,11 +503,13 @@ def plot_network(metab_set, corr=0.5, corr_type='spearman',
 
 def custom_legend(entries, ax, palette=colors,
                   loc=(1.02, 0), show_frame=False, sort=True, 
+                  handlelength=1.1, handletextpad=0.3,
                   title_fontsize=LEGEND_TITLE_FONTSIZE, title_fontweight='bold',
-                  frame_color='0.95',
+                  frame_color='0.95', frame_edgecolor='none', frame_edgewidth=0.5,
                   mew=POINT_LW, mec=POINT_EC, ms=8, marker='o', **kwargs):
     """
     Wrapper for making a legend based on list of entries, using colors defined in the main color scheme.
+    TO ADJUST THE LEFT-JUSTIFY OF TITLE AND HANDLE MARKERS, FIDDLE WITH `handlelength` and `handletextpad`.
     """
     entries = sorted(entries)
     handles = []
@@ -520,16 +522,22 @@ def custom_legend(entries, ax, palette=colors,
             )
         )
     if show_frame:
-        frame_params = dict(frameon=True, framealpha=1, facecolor=frame_color, fancybox=False, edgecolor='none')
+        frame_params = dict(
+            frameon=True, framealpha=1, facecolor=frame_color, 
+            fancybox=False, edgecolor=frame_edgecolor)
     else:
         frame_params = dict()
     legend = ax.legend(
         handles=handles, loc=loc, 
+        handlelength=handlelength, handletextpad=handletextpad,
         title_fontproperties=dict(size=title_fontsize, weight=title_fontweight), 
         **frame_params,
         **kwargs
         )
     legend._legend_box.align = 'left'  # shift legend title to left alignment
+    if show_frame: 
+        frame = legend.get_frame()
+        frame.set_linewidth(frame_edgewidth)
     return legend
 
 
