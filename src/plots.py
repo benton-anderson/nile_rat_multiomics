@@ -502,7 +502,11 @@ def plot_network(metab_set, corr=0.5, corr_type='spearman',
     return ax, cbar, g
 
 
-def custom_legend(entries, ax, palette=colors,
+def custom_legend(entries, 
+                  ax,
+                  handles=None,
+                  labels=None,
+                  palette=colors,
                   loc=(1.02, 0), show_frame=False, sort=True, 
                   handlelength=1.1, handletextpad=0.3,
                   title_fontsize=LEGEND_TITLE_FONTSIZE, title_fontweight='bold',
@@ -512,24 +516,39 @@ def custom_legend(entries, ax, palette=colors,
     Wrapper for making a legend based on list of entries, using colors defined in the main color scheme.
     TO ADJUST THE LEFT-JUSTIFY OF TITLE AND HANDLE MARKERS, FIDDLE WITH `handlelength` and `handletextpad`.
     """
-    entries = sorted(entries)
-    handles = []
-    for entry in entries:
-        color = colors[entry]
-        handles.append(
-            plt.matplotlib.lines.Line2D(
-                [0], [0], label=entry,
-                linewidth=0, mfc=color, mew=mew, mec=mec, ms=ms, marker=marker,
+    if labels is not None:
+        entries = {entry: label for entry, label in zip(entries, labels)}
+        
+    if sort and labels is not None: 
+        entries = dict(sorted(entries.items()))
+    elif sort and labels is None:
+        entries = sorted(entries)
+    
+    if isinstance(entries, dict):
+        labels = entries.values()
+     
+    if handles is None:
+        handles = []
+        for entry in entries:
+            color = palette[entry]
+            handles.append(
+                plt.matplotlib.lines.Line2D(
+                    [0], [0], label=entry,
+                    linewidth=0, mfc=color, mew=mew, mec=mec, ms=ms, marker=marker,
+                )
             )
-        )
+        
     if show_frame:
         frame_params = dict(
             frameon=True, framealpha=1, facecolor=frame_color, 
             fancybox=False, edgecolor=frame_edgecolor)
     else:
         frame_params = dict()
+        
     legend = ax.legend(
-        handles=handles, loc=loc, 
+        handles=handles, 
+        labels=labels,
+        loc=loc, 
         handlelength=handlelength, handletextpad=handletextpad,
         title_fontproperties=dict(size=title_fontsize, weight=title_fontweight), 
         **frame_params,
