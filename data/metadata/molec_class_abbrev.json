@@ -18,10 +18,11 @@
 "LysoPE": "LPE", 
 "LysoPC": "LPC", 
 "Cer[NS]": "Cer",
-"Plasmanyl-PE": "PE-O", 
-"Plasmenyl-PE": "PE-P", 
-"Plasmanyl-PC": "PC-O", 
-"Plasmenyl-PC": "PC-P",
+
+"Plasmanyl-PE": "PE O-", 
+"Plasmenyl-PE": "PE P-", 
+"Plasmanyl-PC": "PC O-", 
+"Plasmenyl-PC": "PC P-",
 
 "Unidentified": "UnID"
 }

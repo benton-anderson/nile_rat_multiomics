@@ -274,6 +274,71 @@ def annotate_point(xy,
                s=circle_size, zorder=zorder)
 
 
+def plot_ogtt_vs_quant(feature, 
+                       data=data,
+                       ax=None,
+                       legend=True,
+                       legend_loc=(1.01, 0),
+                       group_within_animal=False,
+                       alpha=0.9, 
+                       palette=colors,
+                       figsize=(2, 1.4),
+                       robust=False,
+                       tick_locator_interval=0.5,
+                       scatter_kws=None,
+                       line_kws=dict(lw=1.5),
+                      ):
+    """
+    Swapped axes from `plot_quant_vs_ogtt`
+    """
+    from scipy.stats import linregress
+    
+    if ax is None:
+        fig, ax = plt.subplots(dpi=250, figsize=figsize)
+        
+    # Automatically include lw=0 to avoid the wrong-alpha edge color on scatter points
+    if scatter_kws is None:
+        scatter_kws = dict(lw=0, s=18)
+    elif 'lw' not in scatter_kws:
+        scatter_kws['lw'] = 0
+    elif 's' not in scatter_kws:
+        scatter_kws['s'] = 18
+    scatter_kws['alpha'] = alpha
+        
+    df = data.loc[feature, data_cols].to_frame(name=feature)
+    df[feature] = df[feature].astype('float')
+    df = df.join(fg[['ogtt', 'animal']])
+    for bg_type, bg_cols, loc in (['Fasted', fbg_cols, 0.9], ['Non-fasted', rbg_cols, 0.7]):
+        regdf = df.loc[bg_cols]
+        if group_within_animal:
+            regdf = regdf.groupby('animal').mean()
+            
+        sns.regplot(
+            data=regdf, x=feature, y='ogtt', color=colors[bg_type], ax=ax,
+            y_jitter=1000,
+            scatter_kws=scatter_kws, line_kws=line_kws,
+        )
+            
+        lr = linregress(regdf[feature], regdf['ogtt'])
+        r2 = round(lr.rvalue ** 2, 2)
+        
+        ax.text(1, loc, f'$R^2 = {r2}$', fontsize=6, transform=ax.transAxes,
+                bbox=dict(fc=colors[bg_type], alpha=0.28, pad=1.2, lw=0))
+    
+    ax.set_title(data.loc[feature, 'ID'], fontweight='bold', loc='left', pad=0.5, fontsize=8)
+    ax.set_xlabel('Metabolite Log2 Abundance', fontsize=6)
+    ax.set_ylabel('OGTT glucAUC (mg/dL/min)', fontsize=6)
+    ax.set_yticks([20000, 40000, 60000], ['20k', '40k', '60k'])
+    ax.set_ylim(regdf['ogtt'].min() - 5000, regdf['ogtt'].max() + 5000)
+    ax.xaxis.set_major_locator(plt.MultipleLocator(tick_locator_interval))
+    ax.tick_params(length=0, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
+    if legend:
+        custom_legend(entries=['Fasted', 'Non-fasted'], ax=ax,
+            loc=legend_loc,
+            title='Blood\nsampling', fontsize=6, title_fontsize=6, ms=7)
+    sns.despine(ax=ax)
+
+
 def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
                        xlabel=None, ylabel=None, 
                        animal_lines=False, 
@@ -290,7 +355,7 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
     Font sizes and design have been optimized for figsize=(2.5, 2)
     
     """
-    # 
+    
     if ax is None:
         fig, ax = plt.subplots(dpi=250, figsize=figsize)
     df = data.loc[feature, data_cols]
@@ -314,10 +379,7 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
                     color=palette[bg_type], 
                     truncate=False, label=bg_type, 
                     scatter_kws=scatter_kws, line_kws=line_kws,
-                    ax=ax, seed=1)
-    # Can't use seaborn lmplot because it's a Figure-level plot, not Axes-level
-    # sns.lmplot(data=df, x=x, y='quant', hue='bg_type', palette=colors, ax=ax,
-    #            n_boot=200, truncate=False, scatter_kws=scatter_kws, line_kws=line_kws, seed=1)    
+                    ax=ax, seed=1) 
     ax.tick_params(pad=TICK_PAD, length=2, labelsize=TICK_FONTSIZE)
     if x == 'ogtt':
         ax.set_xticks(ticks=[20000, 40000, 60000], labels=['20k', '40k', '60k'])
@@ -502,6 +564,115 @@ def plot_network(metab_set, corr=0.5, corr_type='spearman',
     return ax, cbar, g
 
 
+def custom_colorbar(ax, 
+                    continuous_or_discrete='continuous',
+                    vmin=None, vmax=None, vcenter=None,
+                    bbox=[0.1, 0.6, 0.1, 0.3], 
+                    orientation='vertical',
+                    boundaries=[0, 69, 420],
+                    cmap=None,
+                    palette='viridis', n_colors=None, desat=None,
+                    transform=None, 
+                    edgewidth=0.5, 
+                    label=None,
+                    cbar_zorder=10,
+                    extend='neither',
+                    debug_rect=False,
+                    **cbar_kwargs,
+                   ):
+    """
+    Reference: https://matplotlib.org/stable/tutorials/colors/colorbar_only.html
+    Some other tricks:
+    cbar.outline has set_linewidth() and other such things
+    cbar takes .tick_params(), .set_xticks(), etc. 
+    
+    
+    ax: parent axes
+    continuous_or_discrete: 'continuous' or 'discrete' defines whether Normalize 
+        or BoundaryNorm is used 
+    
+    vmin, vmax, vcenter: min, max and center values of colorbar, 
+        USES TwoSlopeNorm() WHICH MAKES ASYMMETRIC COLOR SCALE OF COLORBAR.
+    vcenter: optional 
+    bbox: 4-tuple of [left, bottom, width, height]
+    orientation: 'vertical' or 'horizontal'
+    
+    boundaries: the dividing points used for discrete colorbar
+    
+    cmap: Directly provide a cmap without going through sns.color_palette() 
+    palette, n_colors, desat: sns.color_palette() arguments
+    
+    extend: Whether to draw arrows on colorbar indicating a cut-off for the values
+        One of {'neither', 'both', 'min', 'max'}
+    
+    debug_rect: plot a gray background on the colorbar to show cax tight_bbox
+    
+    Returns (cbar, cax)
+    
+    """    
+    if transform is None:
+        transform = ax.transAxes
+    
+    cax = ax.inset_axes(bbox, transform=transform, zorder=cbar_zorder)
+    cax.set(xticks=[], yticks=[])
+
+    # First step is a ScalarMappable
+    sm = plt.matplotlib.cm.ScalarMappable()
+
+    # seaborn.color_palette() is used because it's convenient and easy
+    if cmap is None: 
+        cmap = sns.color_palette(palette=palette, n_colors=n_colors, desat=desat, 
+                             as_cmap=True)
+    else:
+        if not isinstance(cmap, plt.matplotlib.colors.Colormap):
+            try:
+                cmap = plt.matplotlib.colors.ListedColormap(cmap)
+            except:
+                raise ValueError('cmap is weird, provide MPL cmap or a list of colors')
+    
+    # The  main Normalizations are Normalize, CenteredNorm, TwoSlopeNorm, BoundaryNorm
+    #     It seems that TwoSlopeNorm can do what the other two can do with clever logic
+    if continuous_or_discrete == 'discrete':
+        norm = plt.matplotlib.colors.BoundaryNorm(boundaries=boundaries, ncolors=cmap.N)
+    
+    elif continuous_or_discrete == 'continuous':
+        if vmin is None or vmax is None:
+            raise ValueError('Specify vmin and vmax, or choose "discrete"')
+        if vcenter is None:
+            norm = plt.matplotlib.colors.Normalize(vmin=vmin, vmax=vmax)  # vmin, vmax, clip
+
+        elif vcenter is not None:
+#             print('Using TwoSlopeNorm. Check for symmetry between vmin, vcenter and vmax.')
+            norm = plt.matplotlib.colors.TwoSlopeNorm(vcenter=vcenter, vmin=vmin, vmax=vmax)
+        else:
+            raise ValueError('Could not discern colorbar normalization scheme')
+    
+    else:
+        raise ValueError('Choose "continuous" or "discrete"')
+    
+    sm.set_array([])  # You need to set_array to an empty list for some reason
+    sm.set_norm(norm)
+    sm.set_cmap(cmap)
+    
+    cbar = ax.figure.colorbar(mappable=sm, cax=cax, ax=ax, orientation=orientation, 
+                              label=label, extend=extend,
+                              **cbar_kwargs)
+    cbar.outline.set_linewidth(edgewidth)
+    # Set tick width same as edgewidth for visual consistency
+    cax.tick_params(width=edgewidth)  
+    
+    if debug_rect:
+        bbox = tight_bbox(cax)  # Gets loc in Figure Pixel coords
+        rect = plt.matplotlib.patches.Rectangle(
+            xy=bbox.p0, width=bbox.width, height=bbox.height,
+            facecolor='0.7',                                        
+            transform=ax.get_figure().transFigure)
+        ax.add_artist(rect)
+    
+    
+    return cbar, cax
+
+
 def custom_legend(entries, 
                   ax,
                   handles=None,
@@ -592,6 +763,28 @@ def tight_bbox(ax):
     
 
 
+def make_ci(x, y, std=2, **kwargs):
+    """
+    Draw confidence intervals around data
+    From https://stackoverflow.com/a/25022642
+    """
+    cov = np.cov(x, y)
+    vals, vecs = np.linalg.eigh(cov)
+    order = vals.argsort()[::-1]
+    vals = vals[order]
+    vecs = vecs[:, order]
+    theta = np.degrees(np.arctan2(*vecs[:, 0][::-1]))
+    w, h = 2 * std * np.sqrt(vals)
+    ellipse = plt.matplotlib.patches.Ellipse(
+        xy=(np.mean(x), np.mean(y)), 
+        width=w, 
+        height=h, 
+        angle=theta, 
+        **kwargs
+    )
+    return ellipse
+
+
 def change_width(ax, new_value):
     """
     Offsetting boxplot and swarmplot side-by-side is super annoying.
@@ -610,7 +803,6 @@ def change_width(ax, new_value):
         patch.set_x(patch.get_x() + diff * .5)
 
 
-   
 def set_square_ratio(ax):
     """
     Adjust plot to have square ratio when axes have different limits.
@@ -635,100 +827,6 @@ def set_square_ratio(ax):
     proportion = small_range_get()[1] / abs(small_range_get()[0] - small_range_get()[1])
     # set new limits on smaller axis
     small_range_set(-1*((1-proportion) * max_range), (proportion * max_range))
-
-
-def fasted_fed_slope_old(_type, ax=None, alpha=0.8, legend=False):
-    if ax is None:
-        fig, ax = plt.subplots(figsize=(4,4), dpi=100)
-    sns.scatterplot(
-        data=data.loc[(data['superclass'] != 'Unidentified') & (data['Type'] == _type)],
-        x='coef_fed', y='coef_fasted', hue='superclass', ax=ax, palette=colors, 
-#         s=30, linewidth=0.5, edgecolor='gray',
-        edgecolor='0.1', linewidth=0.6,
-        alpha=alpha, legend=legend)
-    sns.scatterplot(
-        data=data.loc[(data['superclass'] == 'Unidentified') & (data['Type'] == _type)],
-        x='coef_fed', y='coef_fasted', hue='superclass', ax=ax, palette=colors, s=20,
-        alpha=0.28, zorder=-10, legend=legend)
-
-    ###### 2 options for making sure the axes are equally scaled to not bias against non-fasted:
-    ########## 1. ax.set_aspect('equal') enforces square, but distorts plot
-    ########## 2. ylim average +/- 0.5 * xlim range 
-    avg_ylim = np.mean([y for y in ax.get_ylim()])
-    xlim_range = abs(ax.get_xlim()[0] - ax.get_xlim()[1])
-    ax.set_ylim(avg_ylim-0.5*xlim_range, avg_ylim+0.5*xlim_range)
-    ax.set_ylabel('Fasted linear regression slope')
-    ax.set_xlabel('Non-fasted linear regression slope')
-    ax.ticklabel_format(style='sci', scilimits=(-1, 1))
-    ax.axvline(0, c='gray', linewidth=0.8, alpha=0.8, zorder=-99)
-    ax.axhline(0, c='gray', linewidth=0.8, alpha=0.8, zorder=-99)
-    if legend:
-        ax.legend(loc=(0.8, 0.05), markerscale=1.2)
-    sns.despine()
-    return ax
-   
-    
-def plot_quant_vs_ogtt_old(
-    feature, data, 
-    ax=None, include_info=False, savefig=False, folder_path=None, file_type=None,
-    figsize=(7, 5)):
-    """
-    Make pretty plot of metabolite quant vs. OGTT AUC.
-    
-    Option to include q-values or not with include_info param
-    
-    feature = 'l_762'
-    data = the whole dataframe read in from the excel sheet
-    """
-    if ax is None:
-        fig, ax = plt.subplots(figsize=figsize)  
-    df = data.loc[feature, data_cols].to_frame().join(fg[['ogtt', 'bg_type', 'animal']])
-    df.rename({feature: 'quant'}, axis=1, inplace=True)
-    df['quant'] = df['quant'].astype('float')
-        
-    for bg_type in ['FBG', 'RBG']:
-        sns.regplot(
-            data=df.loc[df['bg_type'] == bg_type], x='ogtt', y='quant', 
-            color=colors[bg_type], n_boot=200,
-            scatter_kws={'s': 60}, ax=ax, seed=1,)
-    min_ogtt, max_ogtt = ap.loc[ap['lcms_sampled'], 'OGTT (AUC)'].min(), ap.loc[ap['lcms_sampled'], 'OGTT (AUC)'].max()
-    ax.set_xlim(min_ogtt - 1500, max_ogtt + 1500)
-    ax.set_xticks(np.arange(20000, 60001, 10000), labels=['20k', '30k', '40k', '50k', '60k'], fontsize=14)
-    ax.set_xlabel('OGTT (AUC)', fontsize=14)
-    ax.set_ylabel('log2 quant.', fontsize=14)
-    ax.set_yticks(ax.get_yticks(), labels=[str(int(x)) for x in ax.get_yticks()], fontsize=14)
-    animal_ogtts = ap.loc[ap['lcms_sampled'], 'OGTT (AUC)']
-    for animal_ogtt in animal_ogtts:
-        ax.axvline(animal_ogtt, c='gray', linewidth=0.8, alpha=0.3, zorder=-10)
-    if include_info:    
-        legend_title = '< 0.0001 ****\n< 0.001   ***\n< 0.01     **\n< 0.05     *\n> 0.05     ns'
-        ax.legend(
-            handles=[
-                Line2D([0], [0], marker='o', color='w', label='Fed', markerfacecolor=colors['RBG'], markersize=14),
-                Line2D([0], [0], marker='o', color='w', label='Fasted', markerfacecolor=colors['FBG'], markersize=14)],
-            loc=(0.6, 1.02), title=legend_title, fontsize=12, ncol=1, frameon=False, markerscale=1.2)
-        qvals = data.loc[feature, ['qval_sampling', 'qval_ogtt', 
-                                   'qval_sampling:ogtt', 'qval_fasted', 'qval_fed']].to_list()
-        _type = data.loc[feature, 'Type']
-        unique_id = data.loc[feature, 'unique_id']
-        _id = data.loc[feature, 'ID']
-        rt = data.loc[feature, 'RT']
-        mz = data.loc[feature, 'm/z']
-        ax.text(x=0.02, y=0.98,
-            s=f'Type: {_type.capitalize()}\n'
-            f'ID: {_id}\nRT: {round(rt, 2)}\nm/z: {round(mz, 4)}\n'
-            f'q-value sampling:     {parse_pval(qvals[0])}\n'  # round(qvals[0], 4)
-            f'q-value gluc. tol.:      {parse_pval(qvals[1])}\n'  # round(qvals[1], 4)
-            f'q-value interaction:   {parse_pval(qvals[2])}\n'   # round(qvals[2], 4)
-            f'q-value fasted coef.:  {parse_pval(qvals[3])}\n'
-            f'q-value fed coef.:       {parse_pval(qvals[4])}\n',
-            fontsize=12, ha='left', va='bottom', transform=ax.transAxes)  
-    sns.despine()
-    if savefig:
-        file_name = data.loc[feature, 'Type'] + '_' + str(rt) + '_' + str(mz)
-        plt.savefig(f'{folder_path}/{file_name}.{file_type}', dpi=100, bbox_inches='tight', facecolor='white')
-        plt.close()
-    return ax  
     
     
 def pvals_plot(x, y, df, metab_type, alpha=0.8, ax=None, legend=False):
