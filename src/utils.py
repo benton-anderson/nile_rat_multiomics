@@ -12,11 +12,14 @@ fg = pd.read_csv(r'..\data\metadata\combined_metab_lipid_file_grouping.csv', ind
 
 num_fas = {
     'FA': 1,
-    'AC': 1,
+    'AC': 1, 'Acylcarnitine': 1,
     'LysoPC': 1,
     'LysoPE': 1,
     'LysoPI': 1,
+    'LPC': 1, 'LPE': 1, 'LPI': 1,
     'CE': 1,
+    'MG': 1, 
+    
     'Plasmenyl-PE': 2, 
     'Plasmenyl-PC': 2,
     'Plasmanyl-PC': 2,
@@ -27,14 +30,15 @@ num_fas = {
     'SM': 2,
     'DG': 2,
     'Alkenyl-DG': 2,
+    
+    'Cer': 2,
     'Cer[AP]': 2,
     'Cer[NS]': 2,
     'Cer[NP]': 2,
     'Cer[NDS]': 2,
-    'HexCer[NS]': 2,
+    'HexCer[NS]': 2, 'HexCer': 2, 'Hex2Cer': 2,
     'GlcCer[NDS]': 2,
-    
-    
+
     'TG': 3,
 }
 
