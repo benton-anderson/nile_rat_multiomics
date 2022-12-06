@@ -98,6 +98,11 @@ HIGHLIGHT_FONTWEIGHT = 'bold'
 HIGHLIGHT_FACECOLOR = '0.9'
 HIGHLIGHT_ANNOT_LW = 1.5
 
+ogtt_gluc_label = 'OGTT glucAUC (hr·mg/dL)'
+ogtt_insulin_label = 'OGTT insulin AUC (hr·ng/dL)'
+
+lipid_categories = ['Glycerolipid', 'Phospholipid', 'Fatty Acyl', 'Sphingolipid', 'Sterol Lipid']
+
 def _scatter(x, y, df, metab_type, 
              size, sizes, alpha, 
              ax, show_legend, plot_unid, linewidth=POINT_LW, **kwargs):
@@ -283,7 +288,8 @@ def plot_ogtt_vs_quant(feature,
                        alpha=0.9, 
                        palette=colors,
                        figsize=(2, 1.4),
-                       tick_locator_interval=0.5,
+                       #tick_locator_interval=0.5,
+                       tick_locator=None, 
                        scatter_kws=None,
                        line_kws=dict(lw=1.5),
                       ):
@@ -303,6 +309,9 @@ def plot_ogtt_vs_quant(feature,
     elif 's' not in scatter_kws:
         scatter_kws['s'] = 18
     scatter_kws['alpha'] = alpha
+    
+    if tick_locator is None:
+        tick_locator = plt.MaxNLocator(nbins=3, steps=[1, 2.5, 5.0, 10], min_n_ticks=3, prune='both')
         
     df = data.loc[feature, data_cols].to_frame(name=feature)
     df[feature] = df[feature].astype('float')
@@ -314,7 +323,7 @@ def plot_ogtt_vs_quant(feature,
             
         sns.regplot(
             data=regdf, x=feature, y='ogtt', color=colors[bg_type], ax=ax,
-            y_jitter=1000,
+            y_jitter=(0 if group_within_animal else 10),
             scatter_kws=scatter_kws, line_kws=line_kws,
         )
             
@@ -326,15 +335,15 @@ def plot_ogtt_vs_quant(feature,
     
     ax.set_title(data.loc[feature, 'ID'], fontweight='bold', loc='left', pad=0.5, fontsize=8)
     ax.set_xlabel('Metabolite Log2 Abundance', fontsize=6)
-    ax.set_ylabel('OGTT glucAUC (mg/dL/min)', fontsize=6)
-    ax.set_yticks([20000, 40000, 60000], ['20k', '40k', '60k'])
-    ax.set_ylim(regdf['ogtt'].min() - 5000, regdf['ogtt'].max() + 5000)
-    ax.xaxis.set_major_locator(plt.MultipleLocator(tick_locator_interval))
+    ax.set_ylabel(ogtt_gluc_label, fontsize=6)
+    ax.set_yticks([250, 500, 750, 1000])
+    ax.set_ylim(regdf['ogtt'].min() - 50, regdf['ogtt'].max() + 50)
+    ax.xaxis.set_major_locator(tick_locator)
     ax.tick_params(length=0, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
     if legend:
         custom_legend(entries=['Fasted', 'Non-fasted'], ax=ax,
             loc=legend_loc,
-            title='Blood\nsampling', fontsize=6, title_fontsize=6, ms=7)
+            title='Blood\nsampling', fontsize=5, title_fontsize=5, ms=5.5)
     sns.despine(ax=ax)
 
 
@@ -729,6 +738,41 @@ def custom_legend(entries,
         frame = legend.get_frame()
         frame.set_linewidth(frame_edgewidth)
     return legend
+    
+    
+def custom_pval(text, x1, x2, y, y_offset, ax=None, lw=1.2, fontsize=6, text_y_offset=None, color='0.15', 
+                **kwargs):
+    """
+    A quick and dirty solution for plotting p-value brackets with {ns, *, **, *** } or any other text
+        when you have manually calculated the p-value.
+    
+    If you want a fully automated p-value calculation and plotting that 
+        integrates with Seaborn, use the statannot library.
+    
+    text_y_offset: for manual height adjustment of text
+    
+    kwargs: go to ax.annotate() 
+        Can pass bbox=dict() to put white background behind text
+    
+    """ 
+               
+    if ax is None:
+        ax = plt.gca()
+    if text_y_offset is None:
+        text_y_offset = y_offset * 1.2
+        
+    # Plot text
+    # ax.annotate() is better than ax.text() because of the closeness of the bbox
+    x_mean = np.mean([x1, x2])
+    ax.annotate(
+        text=text, xytext=(x_mean, y+text_y_offset),  #textcoords='offset points',
+        xy=(x_mean, y), xycoords='data',
+        color=color,
+        ha='center', va='bottom', 
+        fontsize=fontsize, clip_on=False, annotation_clip=False,
+        **kwargs,
+    )
+    ax.plot([x1, x1, x2, x2], [y, y+y_offset, y+y_offset, y], '-', lw=lw, color=color)
 
 
 def shrink_cbar(ax, shrink=0.9):
