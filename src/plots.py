@@ -692,8 +692,24 @@ def custom_legend(entries,
                   frame_color='0.95', frame_edgecolor='none', frame_edgewidth=0.5,
                   mew=POINT_LW, mec=POINT_EC, ms=8, marker='o', **kwargs):
     """
-    Wrapper for making a legend based on list of entries, using colors defined in the main color scheme.
-    TO ADJUST THE LEFT-JUSTIFY OF TITLE AND HANDLE MARKERS, FIDDLE WITH `handlelength` and `handletextpad`.
+    Wrapper for making a legend based on list of entries, using colors defined in provided color palette.
+    
+    borderpad : fractional whitespace inside the legend border, in font-size units.
+
+    labelspacing : vertical space between the legend entries, in font-size units.
+
+    handlelength : length of the legend handles, in font-size units.
+
+    handleheight : height of the legend handles, in font-size units.
+
+    handletextpad : pad between the legend handle and text, in font-size units.
+
+    borderaxespad : pad between the axes and legend border, in font-size units.
+
+    columnspacing : spacing between columns, in font-size units.
+    
+    **kwargs go into ax.legend()
+    
     """
     if labels is not None:
         entries = {entry: label for entry, label in zip(entries, labels)}
@@ -773,6 +789,35 @@ def custom_pval(text, x1, x2, y, y_offset, ax=None, lw=1.2, fontsize=6, text_y_o
         **kwargs,
     )
     ax.plot([x1, x1, x2, x2], [y, y+y_offset, y+y_offset, y], '-', lw=lw, color=color)
+
+
+def adjust_violin_quartiles(ax, lw=1, linestyle='-', diff_median=True, median_lw=2, median_linestyle='-', 
+                            solid_capstyle='butt', dash_capstyle='round', **kwargs):
+    """
+    In call to sns.violinplot(), set inner='quartile' for this to work!
+    Seaborn offers no control over the 'inner' parameter that draws quartiles, so fix that. 
+    Indiscriminantly looks for Line2D instances, so use early in plotting for that axes.
+    
+    Also nice to set linewidth=0 in sns.violinplot, which cleans up outlines nicely
+    
+    linestyle can also be a tuple of even length, 
+    e.g. (0, (5, 1, 2, 1))
+    This means: Start at 0, then do  (5 points on, 1 point off, 2 points on, 1 point off), repeat
+    
+    capstyles are one of {'butt', 'projecting', 'round'}
+    """
+    
+    lines = [child for child in ax.get_children() if isinstance(child, plt.matplotlib.lines.Line2D)]
+    
+    if diff_median:
+        for start in range(0, len(lines), 3):
+            q1, median, q3 = lines[start:start+3]
+            q1.set(linestyle=linestyle, lw=lw, solid_capstyle=solid_capstyle, dash_capstyle=dash_capstyle, **kwargs)
+            median.set(linestyle=median_linestyle, lw=median_lw, solid_capstyle=solid_capstyle, dash_capstyle=dash_capstyle, **kwargs)
+            q3.set(linestyle=linestyle, lw=lw, solid_capstyle=solid_capstyle, dash_capstyle=dash_capstyle, **kwargs)  
+    else:
+        for line in lines:
+            line.set(linestyle=linestyle, lw=lw, solid_capstyle=solid_capstyle, dash_capstyle=dash_capstyle, **kwargs)
 
 
 def shrink_cbar(ax, shrink=0.9):
