@@ -417,7 +417,9 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
  
 
 def carbon_unsat(
-        df, lipid_class, jitter_offset, 
+        df, 
+        lipid_class, 
+        jitter_offset=0.15, 
         base_size=28,
         hue='Log2 Fold Change',
         norm=plt.matplotlib.colors.CenteredNorm(vcenter=0.0, halfrange=None),
@@ -689,8 +691,10 @@ def custom_legend(entries,
                   loc=(1.02, 0), show_frame=False, sort=True, 
                   handlelength=1.1, handletextpad=0.3,
                   title_fontsize=LEGEND_TITLE_FONTSIZE, title_fontweight='bold',
-                  frame_color='0.95', frame_edgecolor='none', frame_edgewidth=0.5,
-                  mew=POINT_LW, mec=POINT_EC, ms=8, marker='o', **kwargs):
+                  frame_color='1', frame_edgecolor='0.25', frame_edgewidth=0.8,
+                  mew=POINT_LW, mec=POINT_EC, ms=8, marker='o', 
+                  ncol=1, columnspacing=0.8,
+                  **kwargs):
     """
     Wrapper for making a legend based on list of entries, using colors defined in provided color palette.
     
@@ -746,6 +750,7 @@ def custom_legend(entries,
         loc=loc, 
         handlelength=handlelength, handletextpad=handletextpad,
         title_fontproperties=dict(size=title_fontsize, weight=title_fontweight), 
+        ncol=ncol, columnspacing=columnspacing,
         **frame_params,
         **kwargs
         )
@@ -818,6 +823,27 @@ def adjust_violin_quartiles(ax, lw=1, linestyle='-', diff_median=True, median_lw
     else:
         for line in lines:
             line.set(linestyle=linestyle, lw=lw, solid_capstyle=solid_capstyle, dash_capstyle=dash_capstyle, **kwargs)
+            
+            
+def adjust_color(color, amount=0.5):
+    """
+    From : https://stackoverflow.com/questions/37765197/darken-or-lighten-a-color-in-matplotlib
+    Lightens the given color by multiplying (1-luminosity) by the given amount.
+    Input can be matplotlib color string, hex string, or RGB tuple.
+
+    Examples:
+    >> lighten_color('g', 0.3)
+    >> lighten_color('#F034A3', 0.6)
+    >> lighten_color((.3,.55,.1), 0.5)
+    """
+    import matplotlib.colors as mc
+    import colorsys
+    try:
+        c = mc.cnames[color]
+    except:
+        c = color
+    c = colorsys.rgb_to_hls(*mc.to_rgb(c))
+    return colorsys.hls_to_rgb(c[0], 1 - amount * (1 - c[1]), c[2])
 
 
 def shrink_cbar(ax, shrink=0.9):
