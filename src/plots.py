@@ -280,11 +280,14 @@ def annotate_point(xy,
 
 
 def plot_ogtt_vs_quant(feature, 
-                       data=data,
+                       df=data,
+                       group_names=['Fasted', 'Fed'],
+                       group_cols=[fbg_cols, rbg_cols],
+                       df_cols=data_cols,
+                       group_within_animal=False,
                        ax=None,
                        legend=True,
                        legend_loc=(1.01, 0),
-                       group_within_animal=False,
                        alpha=0.9, 
                        palette=colors,
                        figsize=(2, 1.4),
@@ -312,17 +315,17 @@ def plot_ogtt_vs_quant(feature,
     
     if tick_locator is None:
         tick_locator = plt.MaxNLocator(nbins=3, steps=[1, 2.5, 5.0, 10], min_n_ticks=3, prune='both')
-        
-    df = data.loc[feature, data_cols].to_frame(name=feature)
-    df[feature] = df[feature].astype('float')
-    df = df.join(fg[['ogtt', 'animal']])
-    for bg_type, bg_cols, loc in (['Fasted', fbg_cols, 0.9], ['Non-fasted', rbg_cols, 0.7]):
-        regdf = df.loc[bg_cols]
+    
+    datadf = df.loc[feature, df_cols].to_frame(name=feature)
+    datadf[feature] = datadf[feature].astype('float')
+    datadf = datadf.join(fg[['ogtt', 'animal']])
+    for group_name, cols, loc in zip(group_names, group_cols, [0.9, 0.7]):
+        regdf = datadf.loc[cols]
         if group_within_animal:
             regdf = regdf.groupby('animal').mean()
             
         sns.regplot(
-            data=regdf, x=feature, y='ogtt', color=colors[bg_type], ax=ax,
+            data=regdf, x=feature, y='ogtt', color=colors[group_name], ax=ax,
             y_jitter=(0 if group_within_animal else 10),
             scatter_kws=scatter_kws, line_kws=line_kws,
         )
@@ -331,9 +334,9 @@ def plot_ogtt_vs_quant(feature,
         r2 = round(lr.rvalue ** 2, 2)
         
         ax.text(1, loc, f'$R^2 = {r2}$', fontsize=6, transform=ax.transAxes,
-                bbox=dict(fc=colors[bg_type], alpha=0.28, pad=1.2, lw=0))
+                bbox=dict(fc=colors[group_name], alpha=0.28, pad=1.2, lw=0))
     
-    ax.set_title(data.loc[feature, 'ID'], fontweight='bold', loc='left', pad=0.5, fontsize=8)
+    ax.set_title(df.loc[feature, 'ID'], fontweight='bold', loc='left', pad=0.5, fontsize=8)
     ax.set_xlabel('Metabolite Log2 Abundance', fontsize=6)
     ax.set_ylabel(ogtt_gluc_label, fontsize=6)
     ax.set_yticks([250, 500, 750, 1000])
@@ -343,8 +346,16 @@ def plot_ogtt_vs_quant(feature,
     if legend:
         custom_legend(entries=['Fasted', 'Non-fasted'], ax=ax,
             loc=legend_loc,
-            title='Blood\nsampling', fontsize=5, title_fontsize=5, ms=5.5)
+            title='Blood\nsampling', fontsize=5, title_fontsize=5, ms=5.5, mew=scatter_kws['lw'])
     sns.despine(ax=ax)
+    return ax
+
+
+def transform_mixed_coordinates(ax):
+    """
+    Get a mixed transform for (transData and transAxes)
+    """
+    return plt.matplotlib.transforms.blended_transform_factory(ax.transData, ax.transAxes)
 
 
 def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
@@ -688,7 +699,7 @@ def custom_legend(entries,
                   handles=None,
                   labels=None,
                   palette=colors,
-                  loc=(1.02, 0), show_frame=False, sort=True, 
+                  loc=(1.02, 0), show_frame=False, sort=False, 
                   handlelength=1.1, handletextpad=0.3,
                   title_fontsize=LEGEND_TITLE_FONTSIZE, title_fontweight='bold',
                   frame_color='1', frame_edgecolor='0.25', frame_edgewidth=0.8,
@@ -697,6 +708,10 @@ def custom_legend(entries,
                   **kwargs):
     """
     Wrapper for making a legend based on list of entries, using colors defined in provided color palette.
+    
+    marker can be a string with one marker, or a list of marker strings
+    
+    sort: sorts entries ascending
     
     borderpad : fractional whitespace inside the legend border, in font-size units.
 
@@ -725,15 +740,18 @@ def custom_legend(entries,
     
     if isinstance(entries, dict):
         labels = entries.values()
+    
+    if isinstance(marker, str):
+        marker = [marker] * len(entries)
      
     if handles is None:
         handles = []
-        for entry in entries:
+        for entry, m in zip(entries, marker):
             color = palette[entry]
             handles.append(
                 plt.matplotlib.lines.Line2D(
                     [0], [0], label=entry,
-                    linewidth=0, mfc=color, mew=mew, mec=mec, ms=ms, marker=marker,
+                    linewidth=0, mfc=color, mew=mew, mec=mec, ms=ms, marker=m,
                 )
             )
         
