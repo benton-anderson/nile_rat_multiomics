@@ -100,6 +100,7 @@ HIGHLIGHT_ANNOT_LW = 1.5
 
 ogtt_gluc_label = 'OGTT glucAUC (hr·mg/dL)'
 ogtt_insulin_label = 'OGTT insulin AUC (hr·ng/dL)'
+ogtt_gluc_slope = '$log2(peak\ area)·(hr· g/dL)^{-1}$'
 
 lipid_categories = ['Glycerolipid', 'Phospholipid', 'Fatty Acyl', 'Sphingolipid', 'Sterol Lipid']
 
@@ -185,7 +186,7 @@ def volcano(x, y, df, metab_type, size, sizes=POINT_SIZES,
 
 
 def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_ALPHA, ax=None, 
-                   spine_lw=SPINE_LW, spine_color=SPINE_GRID_COLOR,
+                   spine_lw=SPINE_LW, spine_color=SPINE_GRID_COLOR, auto_ticks=True,
                    show_legend=False, plot_unid=False, aspect_equal=True, **kwargs):
     _scatter(x=x, y=y, df=df, metab_type=metab_type, 
              size=size, sizes=sizes, alpha=alpha, ax=ax, show_legend=show_legend, plot_unid=plot_unid, **kwargs)
@@ -193,11 +194,12 @@ def slope_vs_slope(df, x, y, metab_type, size, sizes=POINT_SIZES, alpha=POINT_AL
     ax.set_ylabel('OGTT slope Fasted', fontsize=LABEL_FONTSIZE)
     ax.tick_params(length=0, pad=TICK_PAD, labelsize=TICK_FONTSIZE)
     
-    # Set ticks every 2e-5
-    ax.ticklabel_format(style='plain')  # style='plain' allows for re-labeling of ticks
-    ticks = np.arange(-30, 30, 2)
-    ax.set_xticks(ticks*1e-5, ticks)
-    ax.set_yticks(ticks*1e-5, ticks)
+    if auto_ticks: 
+        # Set ticks every 2e-5
+        ax.ticklabel_format(style='plain')  # style='plain' allows for re-labeling of ticks
+        ticks = np.arange(-30, 30, 2)
+        ax.set_xticks(ticks*1e-5, ticks)
+        ax.set_yticks(ticks*1e-5, ticks)
     
     # Custom grid and spines on x=0 and y=0
     ax.grid(linewidth=GRID_LW, color=GRID_LIGHT_COLOR)
@@ -232,14 +234,17 @@ def annotate_point(xy,
                    **kwargs
                   ):
     """
-    Convenience function for streamlining annotation 
-    on slope vs. slope and volcano plots. 
+    Convenience function for streamlining annotation on slope vs. slope and volcano plots. 
     
-    Position of text is given in the difference in 'axes fraction' 
-    away from the point for easier eyeballing. 
+    xy is the location of the point in Data units
     
-    xytext values should be a percentage (e.g. 8) rather than a decimal (0.08) 
+    xytext values are a percentage of axes distance away from the xy point.
+        They should be a percentage (e.g. 8) rather than a decimal (0.08) 
+        Position of text is given in the difference in 'axes fraction' away from the point for easier eyeballing. 
     
+    relpos is the relative position of the text bbox where the arrow points to
+        relpos=(0.5, 0.5) points to the exact middle of the textbox
+        relpos=(1, 1) points to the upper right of the textbox
     """
     frac_to_data = ax.transLimits.inverted().transform  # converts axes fraction to data coords
     # To calculate the xytext as a delta, find the difference in data coords from (0, 0)
@@ -400,8 +405,7 @@ def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
                     scatter_kws=scatter_kws, line_kws=line_kws,
                     ax=ax, seed=1) 
     ax.tick_params(pad=TICK_PAD, length=2, labelsize=TICK_FONTSIZE)
-    if x == 'ogtt':
-        ax.set_xticks(ticks=[20000, 40000, 60000], labels=['20k', '40k', '60k'])
+    ax.xaxis.set_major_locator(plt.MultipleLocator(250))
     ax.set_xlabel('OGTT glucose AUC', fontsize=LABEL_FONTSIZE)
     ax.set_ylabel('Log2 abundance', fontsize=LABEL_FONTSIZE)
     
@@ -437,8 +441,9 @@ def carbon_unsat(
         cmap='coolwarm',
         # halfrange=None,
         shrink=0.7,
+        ax=None, cax=None, 
+        **kwargs):
         
-        ax=None, cax=None):
     if ax is None:
         fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5, 4.5), dpi=150)
     df = add_jitter(lipid_class, ldata=df, os=jitter_offset)
@@ -452,7 +457,8 @@ def carbon_unsat(
         data=df, x='fa_carbons', y='fa_unsat', ax=ax, hue=hue, hue_norm=norm, palette=cmap,  
         size='overlaps', sizes={1: base_size, 2: 0.75*base_size, 3: 0.6*base_size, 4: 0.4*base_size},
         # s=size, 
-        legend=False, edgecolor=POINT_EC, linewidth=0.3)
+        legend=False, edgecolor=POINT_EC, linewidth=0.3,
+        **kwargs,)
     ax.tick_params(pad=TICK_PAD, labelsize=TICK_FONTSIZE)
     ax.set_xticks(np.arange(min_C, max_C+1, 2), [int(x) for x in np.arange(min_C, max_C+1, 2)])
     ax.set_yticks(np.arange(min_unsat, max_unsat+1, 2), [int(x) for x in np.arange(min_unsat, max_unsat+1, 2)])
@@ -598,7 +604,8 @@ def custom_colorbar(ax,
                     label=None,
                     cbar_zorder=10,
                     extend='neither',
-                    debug_rect=False,
+                    show_frame=False,
+                    frame_edgewidth=None, frame_facecolor='white',
                     **cbar_kwargs,
                    ):
     """
@@ -682,13 +689,18 @@ def custom_colorbar(ax,
     # Set tick width same as edgewidth for visual consistency
     cax.tick_params(width=edgewidth)  
     
-    if debug_rect:
-        bbox = tight_bbox(cax)  # Gets loc in Figure Pixel coords
-        rect = plt.matplotlib.patches.Rectangle(
-            xy=bbox.p0, width=bbox.width, height=bbox.height,
-            facecolor='0.7',                                        
-            transform=ax.get_figure().transFigure)
-        ax.add_artist(rect)
+    if show_frame:
+        raise NotImplementedError('Getting cax tight bounding box is complicated by whether ticks, title and labels are drawn yet')
+    
+    # if show_frame:
+        # cax_bbox = ax.transAxes.inverted().transform(cax.get_tightbbox(ax.get_figure().canvas.get_renderer()))
+    # Convert raw 2x2 array into BBox object:
+    # cax_bbox = plt.matplotlib.transforms.Bbox(cax_bbox)
+    # if frame_edgewidth is None:
+        # frame_edgewidth = edgewidth
+    # patch = plt.Rectangle(xy=(cax_bbox.x0, cax_bbox.y0), width=cax_bbox.x1-cax_bbox.x0, height=cax_bbox.y1-cax_bbox.y0, 
+    #                         transform=ax.transAxes, fc=frame_facecolor, ec='0.2', lw=frame_edgewidth)
+    # ax.add_artist(patch)
     
     
     return cbar, cax

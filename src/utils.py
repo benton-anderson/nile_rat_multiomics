@@ -55,6 +55,9 @@ def ppm_tol(a, b=None, tol=10):
     elif b is not None:
         return abs(a - b) / a * 1e6 < tol
 
+def calc_ppm_error(a, b):
+    return ((a - b) / a) * 1e6
+
 
 def parse_p_value(pval):
     if   pval < 0.0001:
