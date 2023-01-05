@@ -356,12 +356,16 @@ def plot_ogtt_vs_quant(feature,
     return ax
 
 
-def transform_mixed_coordinates(ax):
+def transform_mixed_coordinates(ax, swap=False):
     """
     Get a mixed transform for (transData and transAxes)
+    
+    if swap is True: transform is (transAxes, transData)
     """
-    return plt.matplotlib.transforms.blended_transform_factory(ax.transData, ax.transAxes)
-
+    if not swap:
+        return plt.matplotlib.transforms.blended_transform_factory(ax.transData, ax.transAxes)
+    else: 
+        return plt.matplotlib.transforms.blended_transform_factory(ax.transAxes, ax.transData)
 
 def plot_quant_vs_ogtt(feature, x='ogtt', data=data,
                        xlabel=None, ylabel=None, 

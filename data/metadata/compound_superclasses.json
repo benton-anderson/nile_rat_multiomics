@@ -122,7 +122,13 @@
 "Tyrosine": "Amino acid",
 "Uric acid": "Nitrogen heterocycle",
 "Uridine": "Nitrogen heterocycle",
-"Urocanic acid": "Nitrogen heterocycle"
+"Urocanic acid": "Nitrogen heterocycle",
+
+"Indolepropionate": "Organic acid",
+"4-Methyleneglutamine": "Amino acid derivative",
+"Citrulline": "Amino acid derivative",
+"Methylacetylasparaginate": "Amino acid derivative",
+"Cysteic acid": "Amino acid derivative"
 }
 
 
