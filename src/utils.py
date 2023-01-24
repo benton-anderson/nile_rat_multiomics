@@ -26,6 +26,7 @@ num_fas = {
     'Plasmanyl-PE': 2,
     'PE': 2,
     'PC': 2,
+    'PC[OH]': 2,
     'PI': 2,
     'SM': 2,
     'DG': 2,

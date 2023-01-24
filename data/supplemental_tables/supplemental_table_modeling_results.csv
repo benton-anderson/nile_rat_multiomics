@@ -1,0 +1,435 @@
+i,Annotation,Human association to T2D incidence,Nile rat non-fasted association to OGTT glucAUC,Nile rat fasted association to OGTT glucAUC,Elastic net fasted importance,Elastic net non-fasted importance,Elastic net fasted coefficient sign,Elastic net non-fasted coefficient sign,Nonfasted indiv linear model q-value,Nonfasted indiv linear model p-value,Fasted indiv linear model q-value,Fasted indiv linear model p-value,SRR,SRR 95% CI,SRR p-value,SRR q-value
+l_0,AC 5:0,Increased,Not significant,Negative,0.049723716,0,-,-,0.917215327,0.880110094,0.04543414,0.005449517,1.13,1.08; 1.18,0.001,0.001
+l_1,AC 4:0,Not significant,Negative,Negative,0.360923507,0,-,-,0.012212466,0.004767109,0.002053419,3.50E-05,0.97,0.88; 1.06,0.473,0.606
+l_2,AC 3:0,Not significant,Not significant,Not significant,0,0,-,-,0.13856507,0.081231191,0.149438208,0.036484559,1.06,0.98; 1.14,0.131,0.256
+l_3,AC 2:0,Not significant,Not significant,Negative,0.029938972,0,-,-,0.089775817,0.047914417,0.010428718,0.000632309,1,0.94; 1.07,0.993,0.998
+l_4,AC 18:2,Not significant,Not significant,Negative,0,0,-,-,0.651916188,0.549201217,0.035293982,0.003757344,1.08,0.88; 1.31,0.471,0.605
+l_5,AC 18:1,Not significant,Not significant,Negative,0,0,-,-,0.450029598,0.342073598,0.012415417,0.000810659,0.98,0.84; 1.15,0.835,0.895
+l_6,AC 18:0,Not significant,Not significant,Negative,0.04350772,0.000917388,-,+,0.1785235,0.108837251,0.002191522,4.20E-05,0.97,0.81; 1.17,0.759,0.854
+l_7,AC 16:1,Not significant,Positive,Not significant,0,0,-,-,0.024694919,0.010803943,0.057058468,0.008336286,1.11,0.81; 1.52,0.517,0.64
+l_8,AC 16:0,Not significant,Not significant,Not significant,0,0,-,-,0.433811511,0.325127718,0.050471935,0.006626904,1.06,0.99; 1.12,0.083,0.184
+l_9,AC 14:1,Not significant,Not significant,Negative,0,0.026791555,-,-,0.188071492,0.116793865,0.003642094,0.000108565,0.94,0.89; 0.99,0.02,0.065
+l_10,AC 14:0,Not significant,Not significant,Negative,0.051353653,0,-,-,0.319867377,0.225201162,0.002191522,4.50E-05,0.99,0.92; 1.06,0.746,0.844
+l_16,LysoPC 20:5,Not in human SRR analysis,Not significant,Not significant,0.120715743,0.03111695,-,-,0.195788176,0.122419718,0.169878854,0.044609777,,,,
+l_17,LysoPC 16:0,Not in human SRR analysis,Not significant,Not significant,0.029454249,0.001762032,+,-,0.456853776,0.348881947,0.90246806,0.827529264,,,,
+l_18,LysoPC 18:1,Not in human SRR analysis,Not significant,Not significant,0.00920058,0,-,-,0.185043097,0.114125232,0.625957113,0.384267124,,,,
+l_20,LysoPC 22:6,Not in human SRR analysis,Not significant,Not significant,8.61E-06,0.069240747,-,-,0.280711958,0.190063313,0.828288102,0.659913384,,,,
+l_21,LysoPC 15:0,Not in human SRR analysis,Not significant,Not significant,0.030189033,0.17522628,-,-,0.098226771,0.053400785,0.538980868,0.299665118,,,,
+l_22,LysoPC 20:4,Not in human SRR analysis,Not significant,Not significant,0.006254175,0.057924274,-,-,0.235856435,0.15383397,0.643274768,0.408153046,,,,
+l_23,LysoPE 18:2,Not in human SRR analysis,Not significant,Not significant,1.43E-05,0,-,-,0.560813602,0.454143591,0.658076457,0.420813973,,,,
+l_25,LysoPC 18:2,Not in human SRR analysis,Not significant,Not significant,0.000951925,0,-,-,0.374456836,0.271341682,0.639842798,0.404613153,,,,
+l_31,LysoPC 22:5,Not in human SRR analysis,Not significant,Not significant,0,0.00301395,-,-,0.333030688,0.236359608,0.864664842,0.726588483,,,,
+l_32,LysoPC 17:1,Not in human SRR analysis,Negative,Negative,0.41824429,0.002556133,-,-,0.023223092,0.010054,0.041027981,0.004711398,,,,
+l_33,LysoPC 16:0,Not in human SRR analysis,Not significant,Not significant,0.000215112,0.001222508,-,-,0.145435398,0.086187762,0.93619926,0.886826839,,,,
+l_36,LysoPC 20:3,Not in human SRR analysis,Not significant,Not significant,0.018248945,0.237521145,-,-,0.068207358,0.034611967,0.600855374,0.355866201,,,,
+l_38,LysoPE 16:0,Not in human SRR analysis,Not significant,Not significant,0.000150243,8.72E-05,-,+,0.464515987,0.356051998,0.8405544,0.690817598,,,,
+l_41,LysoPC 16:0,Not in human SRR analysis,Not significant,Not significant,0.015297679,0.188600936,-,-,0.608176778,0.501562396,0.627562971,0.386158336,,,,
+l_47,LysoPC 18:1,Not in human SRR analysis,Not significant,Not significant,0.041391004,0.001084753,-,-,0.099189614,0.054210084,0.604100649,0.361860148,,,,
+l_48,LysoPC 18:1,Not in human SRR analysis,Not significant,Not significant,0.020316092,0.016117358,-,-,0.133698783,0.077049973,0.406072231,0.185342853,,,,
+l_50,LysoPC 22:4,Not in human SRR analysis,Not significant,Not significant,0.000526444,0,+,-,0.449199033,0.341123467,0.8405544,0.689184279,,,,
+l_53,LysoPC 17:0,Not in human SRR analysis,Not significant,Not significant,0.006282231,0.002915306,+,-,0.657097171,0.554498606,0.719004322,0.496516114,,,,
+l_54,FA 18:4,Not in human SRR analysis,Not significant,Not significant,5.16E-05,0.004685762,-,+,0.058469167,0.028757369,0.097929273,0.019669258,,,,
+l_55,LysoPC 20:2,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.289347206,0.19714217,0.607597344,0.364865827,,,,
+l_56,LysoPC 17:0,Not in human SRR analysis,Not significant,Not significant,0.011758981,0.031217874,-,-,0.527556239,0.415230567,0.682018054,0.448224782,,,,
+l_60,FA 20:5,Not in human SRR analysis,Not significant,Not significant,0.009973812,0,-,-,0.280711958,0.189711867,0.204957013,0.059494264,,,,
+l_61,FA 20:5,Not in human SRR analysis,Not significant,Not significant,0.000471515,0,-,-,0.39146986,0.286448138,0.464713454,0.237221085,,,,
+l_62,LysoPC 18:0,Not in human SRR analysis,Not significant,Not significant,0.001453341,0.212756303,+,-,0.803625358,0.732331412,0.948883232,0.914537565,,,,
+l_64,LysoPE 18:0,Not in human SRR analysis,Not significant,Not significant,0.001817679,0,+,-,0.29873259,0.206326178,0.453586231,0.228563679,,,,
+l_65,LysoPC 18:0,Not in human SRR analysis,Not significant,Not significant,0.003837792,0.000204916,+,-,0.631036725,0.525789294,0.772270325,0.571709144,,,,
+l_73,FA 18:3,Not in human SRR analysis,Not significant,Not significant,6.42E-05,0,-,-,0.067878742,0.034300684,0.43101073,0.210181136,,,,
+l_76,FA 22:6,Not in human SRR analysis,Positive,Not significant,0,0.005792411,-,+,0.011387416,0.004396561,0.648074785,0.413059465,,,,
+l_78,FA 14:0,Not in human SRR analysis,Not significant,Not significant,0.000106418,0.011999904,-,+,0.6991954,0.599452124,0.359341652,0.14842927,,,,
+l_83,FA 22:6,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.005565423,0.001927556,0.981464746,0.969623084,,,,
+l_84,FA 21:5,Not in human SRR analysis,Positive,Not significant,0.000103728,0.00384746,-,+,0.001860164,0.000500357,0.733401853,0.519320262,,,,
+l_86,FA 20:4,Not in human SRR analysis,Not significant,Not significant,0.00029449,0,-,-,0.107400744,0.059455344,0.936714307,0.888183331,,,,
+l_87,FA 16:1,Not in human SRR analysis,Not significant,Not significant,0.015106825,0,-,-,0.286970682,0.195115624,0.36968334,0.155695763,,,,
+l_92,FA 18:2,Not in human SRR analysis,Not significant,Not significant,0.001668754,0.000356437,-,+,0.089156251,0.047457195,0.959720238,0.934142729,,,,
+l_94,FA 22:5,Not in human SRR analysis,Positive,Not significant,0,0.004048824,-,+,0.002081997,0.000582191,0.413928582,0.192128668,,,,
+l_98,FA 18:2,Not in human SRR analysis,Not significant,Not significant,0.000107821,0,+,-,0.082507341,0.043156785,0.688162012,0.455507378,,,,
+l_101,FA 22:5,Not in human SRR analysis,Positive,Not significant,0.000155253,0,-,-,0.012216285,0.00479461,0.983733805,0.973261124,,,,
+l_104,FA 20:3,Not in human SRR analysis,Not significant,Not significant,0.000800632,0.002726874,-,-,0.579512455,0.472650372,0.896157078,0.812201979,,,,
+l_109,FA 16:0,Not in human SRR analysis,Positive,Not significant,5.34E-06,0.031407146,-,+,0.033016835,0.014997001,0.855690729,0.714559569,,,,
+l_110,FA 20:3,Not in human SRR analysis,Not significant,Not significant,0.001894266,0,-,-,0.268879804,0.180525404,0.59397345,0.346519642,,,,
+l_113,FA 18:1,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.043376895,0.020287703,0.682018054,0.447406236,,,,
+l_116,FA 22:4,Not in human SRR analysis,Not significant,Not significant,0.015238309,0,-,-,0.053845909,0.026101317,0.537104613,0.295123529,,,,
+l_120,FA 18:1,Not in human SRR analysis,Positive,Not significant,8.34E-06,0,-,-,0.044701318,0.020970597,0.420246431,0.199535034,,,,
+l_122,FA 20:2,Not in human SRR analysis,Positive,Not significant,0.053149648,8.25E-06,-,+,0.048514041,0.022958289,0.185379776,0.05039067,,,,
+l_123,FA 24:5,Not in human SRR analysis,Positive,Not significant,0.000227461,0.195646914,+,+,1.95E-05,1.55E-06,0.059696133,0.009278533,,,,
+l_124,FA 20:2,Not in human SRR analysis,Not significant,Not significant,0.099333857,0,-,-,0.129062734,0.073485638,0.161297844,0.041326133,,,,
+l_125,FA 17:0,Not in human SRR analysis,Positive,Not significant,0.049940744,0,-,-,0.027595474,0.012201548,0.420246431,0.199314821,,,,
+l_127,FA 19:1,Not in human SRR analysis,Not significant,Not significant,0.035997439,0.002485092,-,-,0.503509998,0.392015946,0.064512594,0.011034447,,,,
+l_134,FA 18:0,Not in human SRR analysis,Not significant,Not significant,0.283175667,0.842531396,-,-,0.872249902,0.81839203,0.091488773,0.017791287,,,,
+l_142,FA 20:1,Not in human SRR analysis,Positive,Not significant,0.391557762,0.026196487,-,+,0.018027349,0.007574301,0.055877038,0.008010761,,,,
+l_145,FA 19:0,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.033115418,0.015065282,0.638640058,0.402050371,,,,
+l_146,PC 34:3,Not significant,Positive,Not significant,0.005086905,0.04268819,+,+,0.000879419,0.00019723,0.199921306,0.056755516,0.97,0.83; 1.14,0.702,0.801
+l_157,FA 20:0,Not in human SRR analysis,Not significant,Not significant,0.072191441,0.004167137,-,-,0.695133427,0.595476257,0.353658355,0.144324737,,,,
+l_159,Alkenyl-DG P-16:0_20:5,Not in human SRR analysis,Not significant,Not significant,4.29E-06,0,-,-,0.180759564,0.110457051,0.919949406,0.852699733,,,,
+l_160,PI 16:0_20:4,Not significant,Not significant,Not significant,0,0,-,-,0.177824911,0.107906529,0.89869486,0.817053311,1.06,0.92; 1.21,0.424,0.568
+l_163,SM d32:1,Not significant,Not significant,Not significant,0.013171628,0,-,-,0.727940989,0.629780033,0.323871455,0.12546014,1.05,0.95; 1.16,0.318,0.462
+l_164,PC 36:3,Not significant,Positive,Not significant,0,0.228779528,-,+,0.000337279,5.55E-05,0.40333556,0.182631715,1,0.92; 1.08,0.943,0.978
+l_165,PC 18:2_20:5,Not in human SRR analysis,Positive,Not significant,0.00099382,0,-,-,0.013607316,0.005456447,0.636923441,0.398986882,,,,
+l_166,SM d40:7,Not in human SRR analysis,Positive,Positive,0.135447693,0.238777317,+,+,8.93E-05,1.03E-05,0.003642094,0.000104355,,,,
+l_168,PI 16:0_18:2,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.211550269,0.133926785,0.816605267,0.633823014,,,,
+l_172,PC 36:6,Not significant,Positive,Not significant,0,0,-,-,0.014045801,0.00568212,0.386111295,0.17099606,0.99,0.9.; 1.08,0.786,0.868
+l_173,PI 18:2_18:1,Not significant,Not significant,Not significant,0,0,-,-,0.561617683,0.455591918,0.453958219,0.229395495,0.95,0.78; 1.15,0.575,0.691
+l_175,PC 42:10,Not in human SRR analysis,Positive,Not significant,0.088043191,0.056794539,+,+,0.001613368,0.000422522,0.054957151,0.007604095,,,,
+l_177,SM d34:2,Not significant,Not significant,Not significant,0,0,-,-,0.197810527,0.124105398,0.822069467,0.644834722,0.95,0.86; 1.06,0.374,0.557
+l_179,PC 18:3_18:2,Not significant,Positive,Not significant,0,0,-,-,0.002169458,0.000618965,0.79775111,0.60685737,0.98,0.91; 1.05,0.505,0.627
+l_183,PI 18:0_20:5,Decreased,Not significant,Not significant,0,0.005567694,-,-,0.293842459,0.200691411,0.828288102,0.66166235,0.85,0.80; 0.92,0.001,0.001
+l_184,Alkenyl-DG P-38:6,Not in human SRR analysis,Not significant,Not significant,0.011391145,0.020983339,-,-,0.473208144,0.36439378,0.974853356,0.958248331,,,,
+l_186,PC 38:7,Not in human SRR analysis,Negative,Not significant,0.016780285,0.676794429,+,-,0.00395784,0.001280367,0.421499685,0.200728381,,,,
+l_187,PC O-34:4,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.000108718,1.35E-05,0.168677271,0.044054816,,,,
+l_188,PC 38:7,Not in human SRR analysis,Not significant,Not significant,0.019423692,0.001885293,+,-,0.510473773,0.398524592,0.805736556,0.615882378,,,,
+l_190,PI 17:0_20:4,Not in human SRR analysis,Not significant,Not significant,0.000406659,0.171410144,+,-,0.181634857,0.111378649,0.76073632,0.552681702,,,,
+l_192,PC 18:2_22:6,Not in human SRR analysis,Positive,Positive,0,0.000620463,-,+,5.11E-05,5.09E-06,0.04588772,0.005536489,,,,
+l_194,PC 34:4,Not significant,Not significant,Not significant,0.074539451,0.001237956,+,-,0.785629174,0.707035099,0.470218689,0.244569516,1.06,0.97; 1.17,0.203,0.351
+l_195,SM d36:3,Decreased,Positive,Not significant,0.007383373,0.538442144,+,+,0.000126283,1.68E-05,0.252444271,0.084745309,0.86,0.79; 0.93,0.001,0.001
+l_197,PC 38:7,Not in human SRR analysis,Not significant,Not significant,0.026030269,0.003158781,+,-,0.160205086,0.095622766,0.679211975,0.444934459,,,,
+l_198,PI 17:0_18:2,Not in human SRR analysis,Not significant,Not significant,0.005048075,0,-,-,0.454812735,0.34700049,0.415165314,0.193686247,,,,
+l_201,PI 18:0_22:6,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.117242354,0.06556918,0.370100328,0.158576504,,,,
+l_204,PC 37:6,Not in human SRR analysis,Not significant,Not significant,0,0.058788945,-,-,0.829331588,0.76340885,0.495083065,0.265479686,,,,
+l_206,PC 14:0_18:2,Not significant,Not significant,Not significant,0.007994986,0.00215252,-,-,0.276224003,0.185848371,0.946858322,0.910772484,1.04,0.95; 1.14,0.384,0.528
+l_208,SM d33:1,Not significant,Not significant,Not significant,0,0,-,-,0.133698783,0.076962091,0.762541018,0.556346463,1.04,0.80; 1.36,0.771,0.861
+l_209,PC O-36:5,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.000192199,2.81E-05,0.126837842,0.028896343,,,,
+l_210,PC O-38:6,Not in human SRR analysis,Positive,Not significant,0.073768114,0,+,-,0.009169551,0.003397094,0.115675653,0.025216884,,,,
+l_213,PC 18:2_20:4,Not significant,Positive,Not significant,0.183847987,0,-,-,0.01359652,0.005431758,0.837676017,0.6775837,0.94,0.88; 0.99,0.032,0.091
+l_216,PC 16:0_20:5,Not significant,Positive,Not significant,0.002164766,0.000246492,+,+,0.04375485,0.020495529,0.291610903,0.107771967,0.98,0.91; 1.05,0.505,0.627
+l_217,PC 16:1_18:2,Not significant,Not significant,Not significant,0,0.000223799,-,-,0.75411982,0.664001013,0.957996155,0.928360488,0.97,0.83; 1.14,0.702,0.801
+l_222,PI 16:0_18:1,Not significant,Not significant,Not significant,0,0,-,-,0.175661874,0.106219955,0.607597344,0.365631448,1.11,0.92; 1.34,0.281,0.426
+l_227,PI 18:0_20:4,Not significant,Positive,Positive,0.121797704,0.004475773,+,+,0.000576034,0.000108115,0.028419259,0.002636427,1.04,0.90; 1.19,0.615,0.728
+l_232,PC O-40:7,Not in human SRR analysis,Positive,Positive,0.358270457,0,+,-,0.011529072,0.004467618,0.003337398,9.00E-05,,,,
+l_235,PC 18:2_18:2,Not significant,Positive,Not significant,0,0,-,-,0.000123269,1.60E-05,0.847456765,0.700099131,0.93,0.82; 1.06,0.261,0.411
+l_239,PC 35:4,Not in human SRR analysis,Positive,Not significant,0.174717953,0.002647317,+,+,0.004255742,0.001398445,0.054957151,0.007658391,,,,
+l_240,FA 24:1,Not in human SRR analysis,Positive,Not significant,0.28795462,0.232181265,-,+,0.000445885,8.04E-05,0.204045395,0.059074246,,,,
+l_241,Plasmanyl-PC O-34:4,Not in human SRR analysis,Positive,Positive,0.218494024,0,+,-,0.001132002,0.000277979,0.006846295,0.000315833,,,,
+l_242,FA 22:0,Not in human SRR analysis,Positive,Not significant,0.187850691,0,-,-,0.002757132,0.000839468,0.369725286,0.157359907,,,,
+l_244,PI 18:2_18:0,Not significant,Positive,Not significant,0,0,-,-,0.006746924,0.002394224,0.895099654,0.805682259,1,0.93; 1.08,0.936,0.974
+l_252,PC 16:0_22:6,Not significant,Not significant,Not significant,0.044350806,0,+,-,0.18155263,0.111199375,0.139781953,0.032953001,0.94,0.88; 0.99,0.032,0.091
+l_254,PC 15:0_18:2,Not significant,Not significant,Not significant,0,9.17E-05,-,+,0.058061303,0.028515559,0.954648312,0.922804117,0.83,0.64; 1.07,0.142,0.27
+l_256,PC 18:1_22:6,Not significant,Not significant,Not significant,0.000366617,0.000153591,+,-,0.525297621,0.412394264,0.404633812,0.184081102,0.68,0.39; 1.20,0.188,0.333
+l_259,PC 35:3,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.390625578,0.28555312,0.81168871,0.627344929,,,,
+l_260,PC O-32:1,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.011268922,0.004310822,0.706278277,0.478204028,,,,
+l_261,SM d34:1,Not significant,Not significant,Not significant,0,0,-,-,0.462517307,0.35414153,0.876870492,0.75302576,0.97,0.88; 1.08,0.699,0.728
+l_264,PC 37:5,Not in human SRR analysis,Not significant,Not significant,0.000221314,0,-,-,0.303013801,0.210754809,0.93619926,0.887030527,,,,
+l_266,PI 18:0_20:3,Increased,Not significant,Not significant,0,0,-,-,0.416843893,0.310931818,0.748587579,0.535540298,1.13,1.05; 1.21,0.001,0.005
+l_269,Plasmanyl-PC O-34:3,Not in human SRR analysis,Positive,Not significant,0,7.48E-06,-,+,0.007847458,0.002846026,0.789612856,0.59459137,,,,
+l_270,Plasmanyl-PC O-16:0_20:5,Not in human SRR analysis,Positive,Not significant,0.00058958,0.000138356,-,+,0.009109765,0.003368479,0.740744967,0.525723894,,,,
+l_271,Plasmenyl-PE P-16:0_20:5,Not in human SRR analysis,Not significant,Not significant,0,0.002122107,-,-,0.318744509,0.223958171,0.78214089,0.583911635,,,,
+l_272,Plasmanyl-PC O-38:6,Not in human SRR analysis,Not significant,Not significant,0.005506609,0.030593007,+,-,0.689733111,0.590175877,0.217865313,0.066179102,,,,
+l_274,SM d36:2,Not significant,Positive,Not significant,0.001790798,0,-,-,0.021302143,0.009192124,0.875099804,0.746028742,1,0.90; 1.11,0.991,0.998
+l_275,PC 14:0_16:0,Increased,Positive,Not significant,0.001012952,0,+,-,0.018153007,0.007639981,0.286232257,0.10210113,1.07,1.03; 1.12,0.001,0.005
+l_279,PC 16:0_20:4,Not significant,Positive,Not significant,0.08223422,0.000127319,+,+,0.028639187,0.012744336,0.053094058,0.007197278,0.93,0.82; 1.06,0.261,0.411
+l_283,PC O-36:3,Not in human SRR analysis,Positive,Not significant,0,0.012468009,-,+,0.003608855,0.001147457,0.93619926,0.88664754,,,,
+l_285,PC 38:5,Not significant,Not significant,Not significant,0,0.035936232,-,-,0.309923227,0.216880271,0.470218689,0.245502926,0.95,0.90; 1.01,0.089,0.192
+l_289,PC 32:1,Not significant,Not significant,Not significant,0.107173664,4.47E-05,-,-,0.820859337,0.753825881,0.112557687,0.023805671,1.09,0.99; 1.21,0.093,0.199
+l_291,PC O-38:6,Not in human SRR analysis,Positive,Positive,0.149979798,0,+,-,0.021008712,0.009050595,0.027499895,0.002439664,,,,
+l_292,PI 18:0_22:4,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.042786901,0.019981392,0.914727064,0.845911543,,,,
+l_295,PI 18:0_20:3,Increased,Not significant,Not significant,0,0.000124378,-,-,0.218461823,0.140162873,0.810920362,0.622722379,1.13,1.05; 1.21,0.001,0.005
+l_298,Plasmenyl-PE P-18:1_22:6,Not in human SRR analysis,Positive,Not significant,0,0.300099314,-,+,2.04E-06,6.08E-08,0.353175899,0.143154036,,,,
+l_299,PC 39:6,Not significant,Not significant,Not significant,0.096899798,8.06E-05,+,-,0.19940237,0.125387154,0.346082548,0.139759382,0.73,0.46; 1.15,0.178,0.317
+l_300,PE 16:0_20:4,Not significant,Not significant,Not significant,0.028806868,0.006678376,-,+,0.662653431,0.561068519,0.822069467,0.643843138,1.18,0.98; 1.41,0.075,0.171
+l_301,FA 23:0,Not in human SRR analysis,Positive,Not significant,0.059698142,0.139081832,-,+,0.001743063,0.000467621,0.46672299,0.239170171,,,,
+l_305,PC 16:0_18:2,Not significant,Not significant,Not significant,5.39E-05,0,+,-,0.06814477,0.034531842,0.723898945,0.502978756,1.01,0.89; 1.15,0.866,0.92
+l_306,Plasmenyl-PE P-38:6,Not in human SRR analysis,Positive,Not significant,0,0.000242729,-,+,0.001641428,0.000435695,0.603926952,0.360819486,,,,
+l_308,Plasmanyl-PC O-16:0_22:6,Not in human SRR analysis,Not significant,Not significant,0.024107771,0,+,-,0.117619698,0.065863692,0.212793427,0.063732311,,,,
+l_310,PC 18:2_18:1,Not significant,Positive,Not significant,5.66E-05,0,-,-,0.037646711,0.017340465,0.563108469,0.323560676,1,0.92; 1.08,0.943,0.978
+l_313,PC O-40:6,Not in human SRR analysis,Not significant,Positive,0.066058986,0,+,-,0.071836477,0.036810459,0.033404221,0.003461332,,,,
+l_318,Plasmenyl-PE P-18:1_22:6,Not in human SRR analysis,Positive,Positive,0.001869947,0.001319416,+,+,8.73E-05,1.00E-05,0.028419259,0.002647666,,,,
+l_319,PC 18:0_20:5,Not significant,Positive,Not significant,0,0.013127696,-,+,0.013854942,0.00557541,0.666612076,0.429110825,0.95,0.90; 1.01,0.089,0.192
+l_321,Plasmanyl-PC O-33:2,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.008307839,0.003036577,0.42889914,0.208513776,,,,
+l_323,PI 18:1_18:0,Not significant,Not significant,Not significant,0,0,-,-,0.166173868,0.100246833,0.937184205,0.89234533,1.04,0.93; 1.17,0.504,0.627
+l_325,PC 18:1_20:3,Not significant,Not significant,Not significant,0.000190468,0,-,-,0.126468955,0.07174008,0.697439413,0.466774568,0.98,0.95; 1.01,0.206,0.353
+l_326,SM d35:1,Not significant,Positive,Not significant,0.015845805,0.136518867,-,+,0.001073763,0.000256819,0.943627334,0.904308608,1.02,0.90; 1.16,0.77,0.861
+l_327,PE 16:0_18:2,Increased,Not significant,Not significant,0,0.007516313,-,-,0.238532198,0.15574849,0.7553773,0.54595915,1.19,1.1; 1.29,0.001,0.001
+l_328,Plasmanyl-PC O-36:5,Not in human SRR analysis,Not significant,Not significant,0,0.009496272,-,-,0.79919271,0.724321569,0.333800514,0.132692896,,,,
+l_330,PC 39:4,Not in human SRR analysis,Positive,Not significant,0,0.005910329,-,+,0.000107667,1.33E-05,0.245797584,0.080943988,,,,
+l_331,PI 18:0_20:2,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.293355009,0.200081025,0.630911117,0.39062365,,,,
+l_335,PC 36:3,Not significant,Not significant,Not significant,0,0,-,-,0.102565553,0.056414694,0.659262067,0.423443698,1,0.92; 1.08,0.943,0.978
+l_336,PC 31:0,Not in human SRR analysis,Not significant,Not significant,0.039779987,0,-,-,0.23322262,0.151785055,0.699048678,0.469362131,,,,
+l_337,PC 17:0_20:4,Not significant,Positive,Not significant,0.200811192,0.015282094,+,+,0.007818265,0.00282989,0.221578126,0.068806185,0.81,0.58; 1.13,0.212,0.358
+l_338,PC 33:1,Not significant,Not significant,Not significant,0.289200881,0.004086732,-,-,0.734125439,0.637991627,0.18775604,0.05170287,1.09,0.85; 1.38,0.504,0.627
+l_343,Plasmanyl-PC O-16:0_20:4,Not in human SRR analysis,Positive,Positive,0.073357379,0.063219772,+,+,0.00274056,0.000832477,0.020441255,0.001552317,,,,
+l_344,Plasmenyl-PC P-38:4,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.213772339,0.135636956,0.531094871,0.291367165,,,,
+l_346,Plasmanyl-PC O-38:5,Not in human SRR analysis,Not significant,Not significant,0.009712179,0.000446018,+,+,0.059460219,0.029413607,0.092428829,0.018039693,,,,
+l_347,Plasmenyl-PE P-16:0_20:4,Not in human SRR analysis,Positive,Not significant,0.002073679,0.018576577,+,+,0.005516007,0.001906526,0.061411855,0.010170713,,,,
+l_349,Plasmenyl-PC P-16:0_18:2,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.124334304,0.070241381,0.636923441,0.397466655,,,,
+l_350,Plasmanyl-PC O-34:3,Not in human SRR analysis,Positive,Not significant,0,8.45E-06,-,+,0.002819305,0.000862399,0.221578126,0.068722062,,,,
+l_356,PC 18:0_22:6,Not significant,Positive,Positive,0.360264438,0.326892865,+,+,4.83E-05,4.73E-06,0.001359892,1.93E-05,1.05,0.97; 1.13,0.266,0.411
+l_358,Plasmenyl-PE P-38:5,Not in human SRR analysis,Not significant,Not significant,0.021955827,0.027292844,+,+,0.050197244,0.023940772,0.131713909,0.030622026,,,,
+l_360,PC 37:3,Not in human SRR analysis,Not significant,Not significant,0.084612721,0,-,-,0.215316237,0.137227807,0.291610903,0.107117749,,,,
+l_361,PC 17:0_18:2,Not significant,Positive,Not significant,0,0,-,-,0.010924777,0.004155912,0.761457212,0.555015299,0.81,0.67; 0.97,0.025,0.075
+l_366,FA 24:0,Not in human SRR analysis,Positive,Not significant,0.015998636,0.002443355,-,+,0.000813096,0.00017947,0.7028352,0.474875167,,,,
+l_368,PC 42:6,Not significant,Not significant,Not significant,0,0,-,-,0.059919673,0.029683415,0.204045395,0.058633963,1.05,0.98; 1.13,0.193,0.338
+l_369,Plasmanyl-PC O-16:0_18:2,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.005107304,0.001743515,0.495083065,0.265120083,,,,
+l_372,PE 18:0_22:6,Increased,Positive,Positive,0.211772552,0,+,-,0.018871777,0.00795588,0.009221547,0.000525421,1.21,1.13; 1.29,0.001,0.001
+l_373,Plasmanyl-PC O-36:3,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.01221252,0.004784465,0.697218907,0.465637326,,,,
+l_374,Plasmenyl-PC P-18:0_18:2,Not in human SRR analysis,Positive,Not significant,1.44E-05,0,-,-,0.011339856,0.00437015,0.875099804,0.746833036,,,,
+l_376,PE O-36:3,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.047555085,0.022410629,0.626968425,0.38534752,,,,
+l_377,Plasmenyl-PE P-16:0_18:2,Not in human SRR analysis,Positive,Not significant,0,0.000292848,-,+,0.023169169,0.010014211,0.76073632,0.552549547,,,,
+l_378,Plasmanyl-PE O-36:4,Not in human SRR analysis,Positive,Not significant,0,0.000284618,-,+,0.002212927,0.000638771,0.424114763,0.204520299,,,,
+l_380,Plasmanyl-PC O-38:5,Not in human SRR analysis,Positive,Not significant,0.000464271,0.000427906,-,+,0.002393752,0.000703345,0.816605267,0.634042698,,,,
+l_381,Plasmenyl-PE P-18:0_20:5,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.112155472,0.062565082,0.943627334,0.90478391,,,,
+l_384,SM d36:1,Not significant,Positive,Not significant,0,0.088462242,-,+,8.61E-05,9.78E-06,0.828288102,0.66251291,1.11,1.01; 1.21,0.028,0.081
+l_387,PC 16:0_16:0,Not significant,Not significant,Not significant,0.080189015,0,-,-,0.39583595,0.29160945,0.581470275,0.336394345,1.06,0.95; 1.19,0.27,0.411
+l_388,PC 18:0_22:5,Not significant,Positive,Not significant,0.003750356,0.059636302,+,+,0.000744242,0.000151595,0.181452123,0.048679136,1.05,0.98; 1.12,0.191,0.335
+l_391,PC 18:0_20:4,Not significant,Positive,Not significant,0,0.262494231,-,+,2.20E-05,1.84E-06,0.163904654,0.042691986,0.98,0.95; 1.01,0.206,0.353
+l_393,PC 16:0_18:1,Not significant,Not significant,Not significant,0.117564833,0.018001092,-,-,0.877744657,0.825496781,0.367740671,0.15320353,0.97,0.85; 1.1.,0.633,0.741
+l_396,PC 36:4,Not significant,Not significant,Not significant,0.009249785,0.015781579,-,+,0.584509524,0.479969851,0.671589392,0.434221388,0.93,0.82; 1.06,0.261,0.411
+l_402,Plasmanyl-PE O-38:5,Not in human SRR analysis,Not significant,Not significant,0.041399499,0,-,-,0.186888808,0.115890662,0.235319709,0.074654301,,,,
+l_404,PE 18:0_20:4,Increased,Not significant,Positive,0.558589037,0.001834845,+,+,0.162803723,0.097982652,0.023734407,0.001920314,1.17,1.07; 1.28,0.001,0.002
+l_407,PC 18:2_18:0,Not significant,Positive,Not significant,0,2.86E-06,-,+,0.002435654,0.000717386,0.414798028,0.193121012,0.99,0.96; 1.02,0.433,0.571
+l_408,PC 38:5,Not significant,Not significant,Not significant,0.000443016,0.002612641,+,-,0.462517307,0.353966435,0.375289075,0.162278227,0.95,0.90; 1.01,0.089,0.192
+l_413,Plasmanyl-PC O-18:0_22:6,Not in human SRR analysis,Not significant,Not significant,0.401787387,0,+,-,0.162379539,0.097457911,0.052377371,0.006960288,,,,
+l_414,Plasmenyl-PE P-18:0_22:6,Not in human SRR analysis,Positive,Not significant,5.42E-05,0.015023906,+,+,2.66E-05,2.40E-06,0.05997136,0.009491564,,,,
+l_417,FA 25:0,Not in human SRR analysis,Not significant,Not significant,0.003888965,0,-,-,0.055063906,0.02680897,0.85671399,0.716259106,,,,
+l_418,SM d36:0,Not significant,Positive,Not significant,0.064201894,0.016360913,-,+,0.003099038,0.000967762,0.585046631,0.339235697,1.45,0.95; 2.19,0.082,0.183
+l_419,PC 18:0_22:5,Not significant,Positive,Not significant,0.012339164,0.000161893,-,+,0.003898699,0.00125345,0.867981151,0.735535482,1.05,0.98; 1.12,0.191,0.335
+l_421,Plasmanyl-PC O-38:5,Not in human SRR analysis,Positive,Not significant,0.13332283,7.92E-05,+,+,0.003778388,0.001206724,0.181696641,0.048873688,,,,
+l_422,PE 18:2_18:0,Increased,Positive,Not significant,0,0,-,-,0.006392005,0.002254667,0.546612637,0.308422106,1.18,1.07; 1.30,0.001,0.006
+l_424,PC 18:0_20:3,Increased,Positive,Not significant,0.00895574,0.133943916,-,+,0.000666407,0.000129592,0.699048678,0.469836123,1.19,1.09; 1.29,0.001,0.001
+l_427,PC 40:6,Not significant,Positive,Not significant,0.027183401,0.01173147,+,+,0.001029947,0.000240492,0.316916514,0.121458423,1.05,0.97; 1.13,0.266,0.411
+l_431,Plasmanyl-PC O-32:1,Not in human SRR analysis,Not significant,Not significant,0.285673963,0.290937509,-,-,0.214737029,0.136665851,0.369725286,0.157257166,,,,
+l_432,Plasmanyl-PE O-18:0_22:6,Not in human SRR analysis,Not significant,Not significant,0.002289662,0,-,-,0.087855049,0.046577517,0.898562815,0.815843267,,,,
+l_433,PC 19:0_20:4,Not in human SRR analysis,Positive,Not significant,0,0.022408928,-,+,0.002164315,0.000614238,0.537794742,0.296918076,,,,
+l_434,PC 16:0_17:0,Not in human SRR analysis,Positive,Not significant,0.001098153,0,-,-,0.014397399,0.00585501,0.848907812,0.701900355,,,,
+l_435,SM d37:1,Not in human SRR analysis,Positive,Not significant,5.60E-05,0.763409658,+,+,1.22E-06,2.25E-08,0.444047545,0.219975292,,,,
+l_436,PC 17:0_18:1,Not in human SRR analysis,Not significant,Not significant,0.002404361,0,-,-,0.346663368,0.247265213,0.44931997,0.223872849,,,,
+l_437,Plasmanyl-PC O-18:0_20:4,Not in human SRR analysis,Positive,Not significant,0.233604035,0.021977274,+,+,0.005874223,0.002059522,0.054957151,0.00768386,,,,
+l_438,Plasmanyl-PC O-16:0_16:0,Not in human SRR analysis,Not significant,Not significant,0.10393035,0.015691161,-,-,0.05935054,0.029275106,0.48969562,0.260313712,,,,
+l_440,Plasmenyl-PE P-18:0_20:4,Not in human SRR analysis,Not significant,Not significant,0.070899978,0.000377635,+,+,0.130249793,0.07450155,0.120612913,0.026964562,,,,
+l_442,Plasmenyl-PC P-34:0,Not in human SRR analysis,Not significant,Not significant,0.005894372,0,-,-,0.850421189,0.791350104,0.822069467,0.644800589,,,,
+l_443,Plasmanyl-PC O-34:1,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.911950502,0.872469324,0.824484622,0.652118495,,,,
+l_444,Plasmanyl-PC O-36:3,Not in human SRR analysis,Positive,Not significant,0.000316293,0.065776921,-,+,0.000257834,3.97E-05,0.832107275,0.669701668,,,,
+l_445,PC 18:0_22:4,Not significant,Positive,Not significant,6.05E-05,0.337027116,+,+,0.000281937,4.44E-05,0.87510423,0.75044315,0.93,0.79; 1.08,0.331,0.473
+l_448,PC 18:2_19:0,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.001107933,0.000268923,0.987361448,0.980160599,,,,
+l_449,Plasmenyl-PE P-34:1,Not in human SRR analysis,Not significant,Not significant,0.002967389,0,-,-,0.061884809,0.03074476,0.937184205,0.893284874,,,,
+l_450,Plasmanyl-PC O-38:3,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.040901711,0.018955868,0.696428655,0.464615284,,,,
+l_451,Plasmanyl-PE O-18:0_20:4,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.141281592,0.083325055,0.818815926,0.639245932,,,,
+l_453,Plasmanyl-PC O-18:0_18:2,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.003036775,0.000944008,0.70680543,0.480826991,,,,
+l_454,Plasmenyl-PE P-18:0_18:2,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.002143459,0.000605462,0.676538471,0.441160475,,,,
+l_455,Plasmanyl-PC O-40:5,Not in human SRR analysis,Positive,Not significant,0,0.000454354,-,+,0.047662232,0.02249495,0.407182046,0.187841256,,,,
+l_456,FA 26:0,Not in human SRR analysis,Positive,Not significant,4.33E-05,5.71E-06,+,+,0.006772959,0.00240827,0.922631283,0.861480317,,,,
+l_457,PE O-40:5,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.133867085,0.077241973,0.792347268,0.599925403,,,,
+l_459,SM d40:2,Not significant,Not significant,Not significant,0.106221303,0.158708306,+,+,0.057800586,0.02834649,0.408894301,0.189501759,0.99,0.88; 1.12,0.881,0.926
+l_463,PC 36:3,Not significant,Positive,Positive,0.001093158,0.065812324,+,+,5.90E-05,6.12E-06,0.0321257,0.003283251,1,0.92; 1.08,0.943,0.978
+l_465,PC 16:0_18:0,Not significant,Positive,Not significant,0,0,-,-,0.000126283,1.67E-05,0.782962279,0.586804945,1.03,0.98; 1.09,0.218,0.365
+l_469,SM d38:1,Not significant,Positive,Not significant,0,0.3163432,-,+,0.000865425,0.000193477,0.623140765,0.379014645,1.13,1.01; 1.26,0.034,0.095
+l_473,SM d42:3,Not significant,Not significant,Not significant,0,0,-,-,0.640582103,0.536470462,0.985191019,0.975402038,0.99,0.86; 1.13,0.871,0.921
+l_474,PC 18:1_18:0,Not significant,Positive,Not significant,0.03184276,0,-,-,0.004945585,0.001677778,0.248067996,0.08221984,1.05,1.00; 1.11,0.044,0.116
+l_485,Plasmanyl-PE O-18:0_18:2,Not in human SRR analysis,Not significant,Not significant,0.019471911,0,-,-,0.18622915,0.115253243,0.452612106,0.226787897,,,,
+l_486,PC 18:0_20:2,Not significant,Positive,Not significant,0,0,-,-,0.020149318,0.008623165,0.837676017,0.675684514,1.02,0.97; 1.08,0.394,0.538
+l_489,SM d40:2,Not significant,Not significant,Not significant,0.004673791,0,+,-,0.242961704,0.1600202,0.244611832,0.079338259,0.99,0.88; 1.12,0.881,0.926
+l_491,Plasmanyl-PE O-20:0_20:5,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.784385441,0.703450637,0.603926952,0.36089886,,,,
+l_492,PC 40:3,Decreased,Positive,Not significant,0,0,-,-,0.002088452,0.000585478,0.892342541,0.79734511,0.88,0.83; 0.93,0.001,0.001
+l_494,PE 18:1_18:0,Increased,Positive,Not significant,0,0,-,-,0.012940673,0.005115653,0.558127739,0.318873548,1.41,1.15; 1.74,0.001,0.005
+l_495,Plasmanyl-PC O-20:0_22:6,Not in human SRR analysis,Positive,Not significant,0.019576744,2.96E-05,+,+,0.004449799,0.001474845,0.057058468,0.008382614,,,,
+l_496,Plasmenyl-PE P-20:0_22:6,Not in human SRR analysis,Positive,Not significant,0.00120029,0.22234577,+,+,0.000621483,0.000119092,0.267310337,0.091632997,,,,
+l_499,Plasmanyl-PE O-20:0_22:6,Not in human SRR analysis,Not significant,Not significant,0.000557819,0,-,-,0.228204072,0.147871056,0.938476915,0.89518309,,,,
+l_500,SM d41:2,Not significant,Not significant,Not significant,0.213496683,0.112021886,+,+,0.136340007,0.079346207,0.383636572,0.167957749,0.98,0.92; 1.05,0.538,0.662
+l_501,PC 35:0,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.079352857,0.040999915,0.76073632,0.553410027,,,,
+l_503,SM d39:1,Increased,Positive,Not significant,0.008343661,0.140367463,+,+,0.014919603,0.006113764,0.714486578,0.487818373,1.11,1.03; 1.19,0.005,0.018
+l_505,Plasmanyl-PC O-20:0_20:4,Not in human SRR analysis,Positive,Positive,0.501784805,0.836194372,+,+,2.67E-05,2.42E-06,0.001358752,1.83E-05,,,,
+l_506,Plasmenyl-PE P-20:0_20:4,Not in human SRR analysis,Positive,Not significant,0.056928995,0.001203715,+,+,0.002212927,0.0006359,0.096743789,0.019087845,,,,
+l_507,SM d41:2,Not significant,Not significant,Not significant,0.495672592,0,+,-,0.669864655,0.568603019,0.054957151,0.007674516,0.98,0.92; 1.05,0.538,0.662
+l_508,Plasmanyl-PC O-36:1,Not in human SRR analysis,Not significant,Not significant,0.021380928,0,-,-,0.645957513,0.54326448,0.353175899,0.14337588,,,,
+l_509,Plasmenyl-PE P-18:0_18:1,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.002596798,0.000775906,0.922631283,0.861733689,,,,
+l_510,Plasmanyl-PE O-20:0_20:4,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.382995965,0.279160296,0.891004681,0.79466532,,,,
+l_512,Plasmanyl-PC O-38:2,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.090483751,0.048546754,0.882687686,0.776188817,,,,
+l_514,PE O-38:2,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.222964685,0.143526593,0.749639399,0.537356844,,,,
+l_515,Plasmanyl-PE O-18:0_18:1,Not in human SRR analysis,Not significant,Not significant,0.067513699,0,-,-,0.227182248,0.146725227,0.290408688,0.105751056,,,,
+l_520,SM d42:2,Not significant,Not significant,Not significant,0.001690949,0,+,-,0.374580888,0.271697422,0.751156337,0.538977329,0.99,0.89; 1.11,0.896,0.935
+l_525,SM d40:1,Not significant,Not significant,Not significant,0.000170356,0,+,-,0.096271902,0.052133046,0.636923441,0.399688319,1.16,1.00; 1.34,0.047,0.119
+l_530,Plasmanyl-PE O-20:0_18:2,Not in human SRR analysis,Not significant,Not significant,0.057760117,0,-,-,0.934619446,0.904769996,0.406734201,0.187345988,,,,
+l_534,SM d43:2,Not in human SRR analysis,Not significant,Not significant,0.042665507,6.87E-05,-,-,0.496811636,0.385080155,0.718958654,0.495974316,,,,
+l_536,SM d41:1,Increased,Not significant,Not significant,0.00121826,3.36E-07,+,+,0.082918734,0.04343082,0.369725286,0.157441569,1.23,1.14; 1.33,0.001,0.001
+l_547,SM d42:1,Not significant,Not significant,Not significant,0,0,-,-,0.766283229,0.678179692,0.894196258,0.80154001,0.97,0.79; 1.19,0.792,0.87
+l_555,Cer[NS] d18:1_24:1,Increased,Not significant,Not significant,0.043203218,0.000554032,-,-,0.066230054,0.033055714,0.159289039,0.040417203,1.15,1.05; 1.26,0.003,0.013
+l_562,Cer[NS] d18:1_22:0,Not significant,Positive,Not significant,0.016586374,0,-,-,0.04238584,0.019764015,0.282167553,0.099729909,1.22,1.00; 1.47,0.047,0.119
+l_569,TG 20:5_22:6_22:6,Not in human SRR analysis,Positive,Not significant,0,0.191326612,-,+,1.63E-06,4.17E-08,0.05759054,0.008746895,,,,
+l_570,SM d43:1,Not in human SRR analysis,Not significant,Not significant,0.022282841,0,-,-,0.907386061,0.866814505,0.522374339,0.285099976,,,,
+l_576,Cer[NS] d41:1,Not in human SRR analysis,Positive,Not significant,0.002624306,0,-,-,0.014038563,0.005669228,0.697229197,0.466139037,,,,
+l_582,TG 22:6_22:6_22:6,Not in human SRR analysis,Positive,Positive,0.007670434,0.451760003,+,+,2.35E-07,1.17E-09,0.000185493,1.18E-06,,,,
+l_590,TG 18:2_20:5_20:5,Not in human SRR analysis,Positive,Not significant,0,0.003751279,-,+,9.75E-05,1.16E-05,0.059112631,0.009061979,,,,
+l_598,Cer[NS] d18:1_24:0,Increased,Positive,Not significant,0.003664962,7.68E-05,-,+,0.020293733,0.008699372,0.491088674,0.261751309,1.11,1.04; 1.20,0.003,0.014
+l_603,TG 60:13,Not in human SRR analysis,Positive,Not significant,0,0.186772554,-,+,1.97E-06,5.74E-08,0.369513228,0.154434751,,,,
+l_611,TG 18:2_22:6_22:6,Not in human SRR analysis,Positive,Positive,0,0.463589319,-,+,2.63E-07,1.68E-09,0.004784527,0.000176576,,,,
+l_613,TG 18:2_20:5_20:4,Not significant,Positive,Positive,0.026771408,0.104178767,+,+,1.91E-05,1.45E-06,0.03701546,0.004019422,1.3,0.82; 2.07,0.265,0.411
+l_617,TG 18:1_20:5_20:5,Not significant,Positive,Negative,0.008799595,0.052108403,-,+,0.00069257,0.000138121,0.023153679,0.001840463,1.3,0.82; 2.07,0.265,0.411
+l_623,TG 62:13,Not in human SRR analysis,Positive,Positive,0.002297997,0.381358415,+,+,2.91E-07,2.06E-09,0.00646235,0.000288821,,,,
+l_626,TG 10:0_18:2_18:1,Not in human SRR analysis,Positive,Not significant,0.008396264,0,-,-,0.011339856,0.004362534,0.317281705,0.122048747,,,,
+l_628,TG 56:9,Not significant,Positive,Positive,0.038993427,0.144848589,+,+,3.11E-06,1.15E-07,0.027680909,0.002495015,0.89,0.72; 1.11,0.312,0.458
+l_631,TG 12:0_18:2_18:2,Increased,Positive,Not significant,0,0,-,-,0.004249392,0.001391134,0.895099654,0.80743198,1.24,1.13; 1.36,0.001,0.001
+l_632,TG 18:1_20:5_22:6,Not significant,Positive,Not significant,0,0.087215117,-,+,5.64E-06,2.84E-07,0.67738464,0.442631968,0.89,0.65; 1.21,0.451,0.588
+l_635,TG 58:11,Not significant,Positive,Not significant,0,9.40E-05,-,+,5.56E-06,2.76E-07,0.153623508,0.03848765,1.3,0.82; 2.07,0.265,0.411
+l_638,TG 14:0_18:2_22:6,Not significant,Positive,Not significant,0,0,-,-,0.000116314,1.49E-05,0.26954231,0.093298089,1.17,0.89; 1.55,0.267,0.411
+l_639,TG 14:0_18:3_18:2,Increased,Positive,Not significant,5.80E-05,0,-,-,0.004888904,0.00164467,0.901077721,0.823418897,1.26,1.13; 1.39,0.001,0.001
+l_641,TG 16:1_18:3_18:2,Not significant,Positive,Not significant,0,0,-,-,0.001597739,0.000416161,0.685379304,0.452865956,1.21,1.03; 1.42,0.022,0.067
+l_642,TG 56:9,Not significant,Positive,Not significant,1.20E-05,0,+,-,1.94E-05,1.53E-06,0.097929273,0.019549431,0.89,0.72; 1.11,0.312,0.458
+l_644,TG 18:2_18:2_22:6,Not significant,Positive,Positive,0.006333729,0.049251042,+,+,3.10E-06,1.12E-07,0.010428718,0.000636529,1.01,0.67; 1.52,0.974,0.988
+l_646,TG 54:7,Increased,Positive,Positive,0.004301294,0,+,-,0.000187163,2.71E-05,0.04068954,0.004591651,1.3,1.08; 1.56,0.005,0.018
+l_648,TG 18:1_22:6_22:6,Not in human SRR analysis,Positive,Positive,0.002148052,0.640190116,+,+,6.50E-07,5.70E-09,0.046863095,0.00578721,,,,
+l_652,TG 16:0_22:6_22:6,Not significant,Positive,Positive,0,0.002473094,-,+,2.54E-06,8.46E-08,0.004323046,0.000156476,0.89,0.65; 1.21,0.451,0.588
+l_653,TG 52:6,Not significant,Positive,Not significant,0,0.030287227,-,+,0.000101319,1.24E-05,0.601568736,0.358208779,1.21,1.03; 1.42,0.022,0.067
+l_656,TG 55:8,Not in human SRR analysis,Positive,Not significant,0,0.000170105,-,+,1.57E-05,1.10E-06,0.119655478,0.026665593,,,,
+l_658,TG 18:2_18:2_22:5,Not significant,Positive,Positive,0.010363725,3.53E-06,+,+,5.66E-05,5.79E-06,0.025608365,0.002141596,1.02,0.88; 1.18,0.779,0.865
+l_659,TG 51:5,Not in human SRR analysis,Positive,Not significant,0.000160097,0,+,-,0.000344569,5.78E-05,0.419494752,0.197987232,,,,
+l_663,TG 16:0_22:6_22:5,Not in human SRR analysis,Positive,Positive,0.003375283,0.137975875,+,+,1.73E-06,4.64E-08,0.006735537,0.000305944,,,,
+l_665,TG 58:10,Not significant,Positive,Positive,0,0.142383246,-,+,3.49E-06,1.43E-07,0.048934247,0.006306346,1.01,0.67; 1.52,0.974,0.988
+l_668,TG 56:8,Not significant,Positive,Not significant,0,0.00021123,-,+,2.07E-05,1.70E-06,0.071834984,0.012898688,1.1,0.88; 1.39,0.407,0.55
+l_670,TG 54:7,Increased,Positive,Not significant,0,0,-,-,4.59E-05,4.46E-06,0.730457909,0.514275547,1.3,1.08; 1.56,0.005,0.018
+l_674,TG 46:2,Increased,Positive,Not significant,0.057960011,0,-,-,0.007178809,0.002567863,0.075420988,0.013756703,1.29,1.22; 1.37,0.001,0.001
+l_675,TG 48:3,Increased,Positive,Not significant,0.004655632,0,-,-,0.004896537,0.001650713,0.488948026,0.259003513,1.26,1.09; 1.47,0.002,0.01
+l_678,TG 50:4,Not significant,Positive,Not significant,0,0,-,-,0.001613424,0.000423681,0.807665693,0.618945216,1.15,0.99; 1.34,0.061,0.148
+l_680,TG 18:0_20:5_22:6,Not in human SRR analysis,Positive,Positive,0,0.197231447,-,+,1.78E-06,5.07E-08,0.04787381,0.006115888,,,,
+l_681,TG 54:6,Not significant,Positive,Positive,0.0030557,0,+,-,0.00131572,0.000338035,0.041727359,0.00485684,1.16,0.98; 1.37,0.094,0.199
+l_683,TG 58:9,Not significant,Positive,Positive,0,0,-,-,1.13E-05,7.07E-07,0.027669005,0.002474304,1.02,0.88; 1.18,0.779,0.865
+l_686,TG 16:0_18:2_22:6,Not significant,Positive,Not significant,0,0,-,-,1.57E-05,1.10E-06,0.061411855,0.010286159,1.1,0.88; 1.39,0.407,0.55
+l_690,TG 52:5,Not significant,Positive,Not significant,0,0,-,-,0.000433737,7.79E-05,0.557343487,0.317634365,1.09,0.88; 1.35,0.445,0.582
+l_694,CE 20:5,Not in human SRR analysis,Positive,Not significant,0.001892362,0.102252403,-,+,0.028357239,0.012598745,0.748587579,0.535399868,,,,
+l_697,TG 15:0_16:1_18:2,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.004249392,0.001393342,0.992829117,0.987192046,,,,
+l_699,TG 15:0_18:2_18:2,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.000761205,0.000156671,0.377481435,0.163959289,,,,
+l_700,TG 53:5,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.00126376,0.000318407,0.358704011,0.147728813,,,,
+l_702,TG 18:0_20:5_20:4,Not significant,Positive,Positive,0.035788571,0,+,-,1.25E-05,7.87E-07,0.007760104,0.000382875,1.02,0.88; 1.18,0.779,0.865
+l_703,TG 18:2_18:1_22:5,Not significant,Positive,Positive,0.001710941,0.000162496,+,+,1.36E-05,8.98E-07,0.021574406,0.001684304,1.07,0.90; 1.27,0.434,0.571
+l_705,TG 56:7,Not significant,Positive,Positive,0.020363182,2.76E-05,+,+,3.11E-05,2.87E-06,0.041027981,0.004717199,1.21,0.94; 1.55,0.141,0.269
+l_706,TG 17:0_18:2_22:6,Not in human SRR analysis,Positive,Not significant,0,0.024318699,-,+,1.25E-05,8.01E-07,0.221578126,0.068648768,,,,
+l_711,TG 54:6,Not significant,Positive,Not significant,0,0,-,-,0.000243794,3.70E-05,0.767948631,0.563562019,1.16,0.98; 1.37,0.094,0.199
+l_714,TG 16:0_16:0_20:5,Not significant,Positive,Not significant,0,0.003776733,-,+,0.000179679,2.58E-05,0.881424155,0.771763088,1.09,0.88; 1.35,0.445,0.582
+l_716,TG 60:10,Not in human SRR analysis,Positive,Positive,0.054031054,0.148182526,+,+,8.42E-07,1.14E-08,0.001358752,1.81E-05,,,,
+l_719,TG 46:1,Increased,Positive,Not significant,0.119895984,0,-,-,0.010938019,0.004176476,0.235804904,0.075310296,1.33,1.23; 1.44,0.001,0.001
+l_721,TG 50:3,Increased,Positive,Not significant,3.42E-05,0,-,-,0.007192632,0.002583018,0.937184205,0.891806384,1.37,1.14; 1.66,0.001,0.005
+l_724,TG 48:2,Increased,Positive,Not significant,0.010629164,0,-,-,0.004739628,0.001581814,0.470218689,0.245621686,1.31,1.21; 1.43,0.001,0.001
+l_727,TG 54:5,Not significant,Positive,Not significant,0,0,-,-,0.000829357,0.000184825,0.156614332,0.039348101,1.18,0.96; 1.45,0.11,0.224
+l_731,TG 52:4,Not significant,Positive,Not significant,0,0,-,-,0.000380996,6.62E-05,0.300802116,0.112293764,1.06,0.90; 1.23,0.484,0.614
+l_738,TG 16:0_18:1_22:6,Not significant,Positive,Not significant,0,0,-,-,0.000116314,1.49E-05,0.271644122,0.095046524,1.21,0.94; 1.55,0.141,0.269
+l_740,TG 58:7,Not significant,Positive,Not significant,0,0.009206195,-,+,9.55E-06,5.69E-07,0.079297671,0.014576364,1.18,1.02; 1.37,0.026,0.078
+l_741,TG 58:8,Not significant,Positive,Not significant,0,0.001331416,-,+,1.59E-05,1.13E-06,0.159289039,0.040495036,1.07,0.90; 1.27,0.434,0.571
+l_747,CE 20:4,Not in human SRR analysis,Positive,Not significant,0.099823302,0.189207387,+,+,8.49E-05,9.58E-06,0.309648222,0.117134494,,,,
+l_753,TG 51:3,Increased,Positive,Not significant,0,0,-,-,0.001620527,0.000427847,0.74367759,0.530444271,1.31,1.22; 1.42,0.001,0.001
+l_754,TG 49:2,Increased,Positive,Not significant,0,0,-,-,0.00126376,0.000318097,0.770529613,0.569284121,1.38,1.30; 1.47,0.001,0.001
+l_756,TG 58:7,Not significant,Positive,Not significant,0,0.015458595,-,+,2.03E-05,1.63E-06,0.089621084,0.017300876,1.18,1.02; 1.37,0.026,0.078
+l_758,TG 56:6,Increased,Positive,Not significant,0,0,-,-,0.000118791,1.53E-05,0.115675653,0.02528609,1.25,1.07; 1.47,0.005,0.018
+l_759,TG 53:4,Not in human SRR analysis,Positive,Not significant,7.89E-06,0,+,-,0.001301874,0.000333178,0.205757113,0.060164607,,,,
+l_760,TG 54:5,Not significant,Positive,Not significant,1.73E-06,0.000359955,+,+,6.53E-05,7.04E-06,0.268258557,0.092338822,1.18,0.96; 1.45,0.11,0.224
+l_765,TG 52:4,Not significant,Positive,Not significant,0.001818034,0,+,-,0.000580286,0.00010955,0.185696295,0.050872087,1.06,0.90; 1.23,0.484,0.614
+l_771,TG 50:2,Increased,Positive,Not significant,0.000902968,0,-,-,0.010516232,0.00398557,0.904214093,0.830701272,1.52,1.36; 1.70,0.001,0.001
+l_774,TG 48:1,Increased,Positive,Not significant,0.002596834,0,-,-,0.00890877,0.003287836,0.645700304,0.411066837,1.46,1.32; 1.61,0.001,0.001
+l_777,TG 46:0,Not in human SRR analysis,Positive,Not significant,0,0.017410078,-,+,0.001920557,0.000522053,0.890138088,0.791584829,,,,
+l_780,TG 54:4,Not significant,Positive,Not significant,0,0,-,-,0.003564365,0.001130781,0.220995176,0.067684415,1.16,0.95; 1.41,0.154,0.287
+l_782,TG 52:3,Increased,Positive,Not significant,0,0,-,-,0.001269214,0.000320682,0.753209132,0.543657691,1.24,1.08; 1.43,0.002,0.009
+l_785,TG 50:2,Increased,Positive,Not significant,0,0,-,-,0.002995441,0.000926907,0.879194936,0.758673261,1.52,1.36; 1.70,0.001,0.001
+l_790,CE 18:2,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.245432018,0.161995583,0.912344003,0.842412738,,,,
+l_791,TG 54:4,Not significant,Positive,Not significant,0.001328856,0.000132589,+,+,0.01308517,0.005182062,0.055150206,0.007866774,1.16,0.95; 1.41,0.154,0.287
+l_794,TG 58:7,Not significant,Positive,Not significant,4.74E-05,0.527324519,+,+,2.06E-05,1.68E-06,0.057495258,0.0086727,1.18,1.02; 1.37,0.026,0.078
+l_797,TG 56:6,Increased,Positive,Not significant,0.150188073,0.031269353,+,+,2.27E-05,1.93E-06,0.061775055,0.010390836,1.25,1.07; 1.47,0.005,0.018
+l_802,TG 49:1,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.001563339,0.000406091,0.8405544,0.689809581,,,,
+l_803,TG 18:2_18:2_19:0,Not in human SRR analysis,Positive,Not significant,0.000663746,0.000145502,+,+,0.002281659,0.000662313,0.408894301,0.18934017,,,,
+l_804,TG 51:2,Increased,Positive,Not significant,0,0,-,-,0.00643439,0.002274185,0.70680543,0.481069133,1.33,1.21; 1.46,0.001,0.001
+l_805,TG 15:0_16:0_16:0,Not in human SRR analysis,Positive,Not significant,0.000689471,0.00025752,+,+,0.000772085,0.00016439,0.706798337,0.47905778,,,,
+l_806,TG 18:1_18:0_22:5,Not in human SRR analysis,Positive,Not significant,0.003593563,0.00012149,+,+,0.002444561,0.000721744,0.05997136,0.009468599,,,,
+l_808,TG 53:3,Not significant,Positive,Not significant,0,0,-,-,0.00091628,0.000208748,0.636923441,0.40036484,1.24,0.99; 1.53,0.056,0.138
+l_815,TG 56:5,Not significant,Positive,Positive,0.000756751,0.009675125,+,+,1.37E-05,9.14E-07,0.041027981,0.004693885,1.24,1.02; 1.51,0.029,0.083
+l_819,TG 16:0_18:0_20:4,Not significant,Positive,Not significant,0.011302969,0,+,-,6.18E-05,6.56E-06,0.095638733,0.018801937,1.16,0.95; 1.41,0.154,0.287
+l_826,TG 52:2,Increased,Positive,Not significant,0,0,-,-,0.004199477,0.001368034,0.895099654,0.806270033,1.57,1.37; 1.80,0.001,0.001
+l_828,TG 56:4,Not significant,Positive,Not significant,0,0,-,-,0.000813096,0.000178985,0.346039658,0.13949647,1.13,0.95; 1.36,0.174,0.315
+l_831,TG 50:1,Increased,Positive,Not significant,0,0,-,-,0.001874853,0.000506736,0.932437359,0.876186702,1.55,1.38; 1.73,0.001,0.001
+l_833,TG 54:3,Increased,Positive,Not significant,0,0,-,-,0.002175969,0.000622367,0.419494752,0.197960981,1.21,1.12; 1.31,0.001,0.001
+l_835,TG 16:0_16:0_16:0,Increased,Positive,Not significant,0.000275184,0.036775453,+,+,0.000770339,0.000161705,0.565956839,0.325756562,1.55,1.37; 1.76,0.001,0.001
+l_841,TG 18:0_18:0_22:6,Not in human SRR analysis,Positive,Not significant,0.000460797,0.19205802,+,+,2.07E-05,1.72E-06,0.061411855,0.010252603,,,,
+l_844,CE 18:1,Not in human SRR analysis,Negative,Negative,0.698057403,1,-,-,0.016453488,0.006819615,0.033726395,0.003518971,,,,
+l_852,TG 53:2,Increased,Positive,Not significant,1.20E-05,0,-,-,0.00283234,0.000868397,0.829452318,0.6640328,1.33,1.24; 1.44,0.001,0.001
+l_854,TG 51:1,Increased,Positive,Not significant,8.54E-06,3.07E-05,-,+,0.001222971,0.00030379,0.895099654,0.806319879,1.54,1.36; 1.74,0.001,0.001
+l_856,TG 18:2_18:1_19:0,Not in human SRR analysis,Positive,Not significant,0.001454926,0.000280666,-,+,0.001620096,0.000426583,0.881424155,0.772174456,,,,
+l_860,TG 18:0_18:0_20:4,Not significant,Positive,Not significant,0.002613751,0,+,-,0.000387266,6.76E-05,0.424114763,0.204682781,1.13,0.95; 1.36,0.174,0.315
+l_862,TG 58:4,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.001112757,0.000270884,0.957996155,0.92985778,,,,
+l_865,TG 54:2,Increased,Positive,Not significant,0,0,-,-,0.000795516,0.000172766,0.49651613,0.267110877,1.42,1.15; 1.74,0.001,0.005
+l_866,TG 56:3,Increased,Positive,Not significant,0,0,-,-,0.000755606,0.000154982,0.46672299,0.239637025,1.22,1.08; 1.39,0.002,0.008
+l_871,TG 52:1,Increased,Positive,Not significant,0,0,-,-,0.00079982,0.000174269,0.849652833,0.703989454,1.78,1.35; 2.35,0.001,0.001
+l_873,TG 16:0_16:0_18:0,Increased,Positive,Not significant,0,0.052254481,-,+,0.000256762,3.94E-05,0.490841857,0.261271393,1.51,1.30; 1.75,0.001,0.001
+l_876,TG 18:1_18:1_19:0,Not in human SRR analysis,Positive,Not significant,0,0.009089864,-,+,0.008047108,0.002924144,0.69767561,0.467922961,,,,
+l_878,TG 53:1,Not in human SRR analysis,Positive,Not significant,0,0.002009624,-,+,0.000779733,0.000167125,0.845980874,0.698279458,,,,
+l_888,TG 18:2_18:1_24:1,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.000629024,0.00012143,0.727069535,0.509309887,,,,
+l_890,TG 56:2,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.000770339,0.000162364,0.971265686,0.950957977,,,,
+l_892,TG 54:1,Not significant,Positive,Not significant,0,9.79E-05,-,+,0.000296283,4.77E-05,0.721631573,0.499853583,1.28,1.03; 1.59,0.027,0.08
+l_893,TG 18:2_18:1_22:0,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.000699865,0.000140072,0.854215037,0.711138565,,,,
+l_895,TG 16:0_18:0_18:0,Not in human SRR analysis,Positive,Not significant,0,0.14911533,-,+,0.000137593,1.86E-05,0.369725286,0.156423695,,,,
+l_900,TG 18:2_18:1_23:0,Not in human SRR analysis,Positive,Not significant,0.000451653,0,-,-,0.001301874,0.000332765,0.893761661,0.800516122,,,,
+l_905,TG 57:2,Not in human SRR analysis,Positive,Not significant,0.000124561,0,-,-,0.012630793,0.004975224,0.883900066,0.778509568,,,,
+l_907,TG 56:1,Not in human SRR analysis,Positive,Not significant,3.34E-05,0.003685576,-,+,0.000453535,8.24E-05,0.731731833,0.515691774,,,,
+l_908,TG 18:2_18:1_24:0,Not in human SRR analysis,Positive,Not significant,0,0,-,-,0.000621867,0.000119607,0.895099654,0.807126013,,,,
+l_910,TG 58:2,Not in human SRR analysis,Positive,Not significant,0.000369782,0.000287818,-,+,0.000368704,6.36E-05,0.926641754,0.868110089,,,,
+l_912,TG 18:0_18:0_18:0,Not in human SRR analysis,Positive,Not significant,0,0.302021249,-,+,0.000203491,3.00E-05,0.895069237,0.803593034,,,,
+m_2,Urocanic acid,Not in human SRR analysis,Not significant,Not significant,0,0.000490575,-,+,0.559487381,0.452672544,0.922295944,0.858745016,,,,
+m_3,Uridine,Not significant,Not significant,Not significant,0,3.21E-05,-,+,0.525297621,0.412616905,0.220950111,0.067429771,0.97,0.75; 1.24,0.788,0.869
+m_4,Uric acid,Not significant,Not significant,Not significant,0.297516701,0.263321491,-,-,0.558303388,0.451087105,0.112484229,0.023550637,1.19,0.99; 1.43,0.062,0.148
+m_5,Tyrosine,Increased,Not significant,Not significant,0.018246276,0.47295749,-,-,0.18130273,0.110917639,0.245886525,0.081147788,1.35,1.22; 1.49,0.001,0.001
+m_6,Tryptophan,Not significant,Not significant,Not significant,0.007547116,0.00738999,-,-,0.534369804,0.424385955,0.369725286,0.15705818,1.14,0.99; 1.30,0.065,0.153
+m_7,Trigonelline,Not significant,Not significant,Negative,0.002544044,0,-,-,0.080623945,0.041885541,0.043909953,0.005235537,0.98,0.83; 1.16,0.803,0.882
+m_8,Indole-3-acrylic acid,Not in human SRR analysis,Not significant,Not significant,0.031229167,0.001232197,-,-,0.490857427,0.379029724,0.335133881,0.134148693,,,,
+m_9,Threonine,Not significant,Positive,Negative,0.03501761,0.000445736,-,+,0.042310784,0.019698988,0.043909953,0.005234434,1.01,0.96; 1.05,0.796,0.872
+m_11,Threonic acid,Not significant,Not significant,Not significant,0,0,-,-,0.281381121,0.19071609,0.581470275,0.336749286,0.86,0.65; 1.15,0.312,0.458
+m_13,Taurine,Not significant,Not significant,Not significant,0.000107317,0.00073455,-,-,0.130249793,0.074507689,0.792989184,0.602006162,0.96,0.83; 1.12,0.638,0.741
+m_16,Stachydrine,Not in human SRR analysis,Negative,Not significant,0.005924545,0.004241331,-,-,0.028019907,0.0124091,0.132695499,0.031044542,,,,
+m_17,Serine,Not significant,Not significant,Not significant,0.237129585,5.12E-05,-,+,0.533294813,0.422396744,0.237207408,0.076094924,0.92,0.83; 1.02,0.13,0.256
+m_19,Ribose,Not in human SRR analysis,Not significant,Not significant,0.449152656,0,+,-,0.84820009,0.787399374,0.054808871,0.007507532,,,,
+m_20,Quinic acid,Not in human SRR analysis,Not significant,Not significant,0.000620558,0,+,-,0.645690679,0.542581806,0.3536538,0.144071882,,,,
+m_21,Pseudouridine,Not significant,Not significant,Not significant,0.008837448,0.000600991,+,+,0.630415922,0.52437719,0.749639399,0.537127182,0.89,0.66; 1.19,0.421,0.564
+m_22,Proline,Not significant,Not significant,Not significant,0,0,-,-,0.985369154,0.976277742,0.333800514,0.13290425,1.65,0.84; 3.23,0.148,0.278
+m_25,Pipecolic acid,Not in human SRR analysis,Negative,Negative,0.253968149,0.096684485,-,-,0.014073456,0.005713284,0.006264893,0.000257888,,,,
+m_26,Phenylalanine,Increased,Not significant,Not significant,7.23E-06,7.02E-05,-,+,0.249814623,0.165774786,0.323871455,0.125958292,1.3,1.16; 1.45,0.001,0.001
+m_27,Phenylacetylglycine,Not in human SRR analysis,Positive,Positive,0.663592743,0.078260411,+,+,0.005402817,0.0018559,3.37E-05,1.19E-07,,,,
+m_31,Ornithine,Not significant,Not significant,Not significant,0.023631491,0,+,-,0.452212023,0.344695325,0.837676017,0.680547857,1.06,0.97; 1.17,0.212,0.358
+m_32,Nicotinamide 1-oxide,Not in human SRR analysis,Not significant,Not significant,0.000474323,0.047166457,-,-,0.191039306,0.119043656,0.061054607,0.009915589,,,,
+m_33,Nicotinamide,Not in human SRR analysis,Not significant,Not significant,0.088594184,0.000964997,-,-,0.060306058,0.029917626,0.159289039,0.040698406,,,,
+m_34,"N6,N6,N6-Trimethyl-L-lysine",Increased,Not significant,Not significant,0.00443723,0.510717843,-,-,0.081951138,0.042806823,0.896157078,0.811767033,1.25,1.15; 1.35,0.001,0.001
+m_35,"N3,N4-Dimethyl-L-arginine",Not significant,Not significant,Not significant,0.00057608,0.001407148,-,+,0.405581739,0.300804058,0.312015206,0.118694216,0.97,0.92; 1.02,0.206,0.353
+m_37,N-Methyl-2-pyrrolidone,Not in human SRR analysis,Positive,Not significant,0.165155273,0.268110862,+,+,0.002005812,0.000552346,0.243040838,0.078445769,,,,
+m_38,N-Isovalerylglycine,Not in human SRR analysis,Positive,Positive,0.306216714,0.230811061,+,+,0.002081997,0.000580883,0.013804584,0.000940554,,,,
+m_40,N-Acetylornithine,Not in human SRR analysis,Not significant,Not significant,0.000968152,0,-,-,0.877744657,0.82603933,0.161306198,0.041442756,,,,
+m_41,N-Acetylneuraminic acid,Not in human SRR analysis,Not significant,Not significant,0.003833749,3.66E-05,+,-,0.190418807,0.118521855,0.931953551,0.874432551,,,,
+m_43,N-Acetyl-L-aspartic acid,Not in human SRR analysis,Not significant,Not significant,0.006268177,0.028413994,+,+,0.954424293,0.932748226,0.271644122,0.094995686,,,,
+m_45,Methylhistidine,Not in human SRR analysis,Not significant,Not significant,0,0.081513907,-,-,0.137299936,0.08029464,0.149361163,0.036359744,,,,
+m_46,Methylaminopyrimidine,Not in human SRR analysis,Not significant,Not significant,0.012108608,0.073898831,-,-,0.812570538,0.741636417,0.400774487,0.180334297,,,,
+m_54,Leucine,Increased,Positive,Not significant,0.000126314,5.84E-05,-,+,0.000292329,4.66E-05,0.625957113,0.38378067,1.4,1.29; 1.52,0.001,0.001
+m_56,Lactic Acid,Not significant,Not significant,Not significant,0,2.13E-05,-,-,0.907386061,0.865712688,0.667339752,0.430526497,1.16,1.01; 1.34,0.034,0.096
+m_58,Isoleucine,Increased,Positive,Not significant,0.000557564,0.109374537,-,+,0.000546912,0.000101309,0.216059628,0.065475323,1.54,1.36; 1.74,0.001,0.001
+m_60,Hydroxycinnamic acid,Not in human SRR analysis,Not significant,Not significant,0.000463994,0.244454948,-,-,0.396291572,0.292289782,0.293879112,0.109024219,,,,
+m_61,Hydrocinnamic acid,Decreased,Not significant,Not significant,0,0,-,-,0.10681106,0.059053098,0.604653822,0.362620638,0.86,0.80; 0.93,0.001,0.001
+m_64,Histidine,Not significant,Not significant,Not significant,0.002760248,0.000112436,-,-,0.989928251,0.983772934,0.254057082,0.085467038,0.95,0.90; 1.01,0.111,0.227
+m_65,Hippuric acid,Not significant,Not significant,Not significant,0.11593392,0,+,-,0.217563142,0.139431879,0.059929624,0.009399891,0.97,0.89; 1.06,0.466,0.601
+m_66,Iditol,Not in human SRR analysis,Positive,Positive,0.120209094,0.198806124,+,+,0.000126283,1.68E-05,0.025395604,0.002072743,,,,
+m_72,Guanidinosuccinic acid,Not in human SRR analysis,Not significant,Not significant,0,0.000644944,-,+,0.238833883,0.15611498,0.376335097,0.163194283,,,,
+m_75,Glyceric acid,Not in human SRR analysis,Not significant,Negative,0.614015444,0.066217185,-,-,0.149479832,0.08869066,0.027819337,0.002527236,,,,
+m_76,Glutamine,Decreased,Not significant,Negative,0.006470463,5.88E-05,-,+,0.939726119,0.911975518,0.046904764,0.005825645,0.84,0.75; 0.94,0.002,0.011
+m_77,Glutamic acid,Increased,Not significant,Not significant,0,0.025475868,-,-,0.130762356,0.074986504,0.904214093,0.831263081,1.38,1.20; 1.60,0.001,0.001
+m_78,Glucose,Not significant,Positive,Not significant,0,0.441714643,-,+,9.71E-07,1.48E-08,0.901410888,0.825776776,2.53,1.09; 5.87,0.031,0.089
+m_79,Gluconic acid,Not significant,Not significant,Negative,0.598604557,0.008745022,-,-,0.330008442,0.233980435,0.04715275,0.005889911,1.27,1.04; 1.56,0.02,0.064
+m_80,Ethyl-beta-D-glucuronide,Not in human SRR analysis,Positive,Not significant,0.002288397,0.035360239,+,+,0.00088856,0.00019991,0.563099196,0.322513166,,,,
+m_81,Ergothioneine,Not in human SRR analysis,Not significant,Not significant,0.011150287,0.09538152,-,-,0.413552424,0.307889633,0.255696525,0.086381509,,,,
+m_84,Cytidine,Not in human SRR analysis,Not significant,Not significant,0.003485061,0,+,-,0.162803723,0.097879768,0.8405544,0.688718092,,,,
+m_86,Creatinine,Not significant,Not significant,Not significant,0.021789718,0.003952474,-,-,0.128549113,0.073078665,0.073540049,0.013361428,0.98,0.89; 1.09,0.736,0.835
+m_88,Creatine,Not in human SRR analysis,Not significant,Not significant,0.121416841,0.006270376,+,+,0.051519649,0.024717731,0.596364574,0.349625435,,,,
+m_90,Citramalic acid,Not in human SRR analysis,Not significant,Not significant,0.001304693,0.125662181,+,+,0.074023488,0.038088736,0.922295944,0.85945676,,,,
+m_93,Choline,Not in human SRR analysis,Not significant,Not significant,0,0.063770059,-,+,0.068272562,0.034693509,0.855690729,0.714796301,,,,
+m_95,Carnitine,Not significant,Negative,Not significant,0,0.088541882,-,-,0.000292329,4.67E-05,0.768486154,0.565047307,1.04,0.96; 1.14,0.33,0.473
+m_97,Betaine,Decreased,Negative,Negative,1,0.129458372,-,-,0.00039015,6.84E-05,2.49E-05,7.06E-08,0.82,0.76; 0.89,0.001,0.001
+m_98,Beta-D-Glucopyranuronic acid,Not in human SRR analysis,Not significant,Not significant,0.001305294,0.125661188,+,+,0.074023488,0.038088736,0.922295944,0.85945676,,,,
+m_99,Beta alanine,Not significant,Not significant,Not significant,2.35E-05,0.000139909,+,+,0.963672976,0.943838685,0.887340349,0.783493871,0.92,0.83; 1.01,0.089,0.192
+m_103,Asparagine,Not significant,Not significant,Negative,0.001004957,0,-,-,0.784385441,0.703799422,0.012807662,0.00085445,1.03,0.82; 1.29,0.817,0.885
+m_105,Arginine,Not significant,Not significant,Negative,0.445559734,0.177364303,-,-,0.75411982,0.664203475,0.038796843,0.004295463,1,0.91; 1.11,0.965,0.988
+m_106,Anserine,Not in human SRR analysis,Not significant,Not significant,4.08E-07,0,+,-,0.217563142,0.139324191,0.916746816,0.848429984,,,,
+m_107,Anhydrohexose,Not significant,Positive,Not significant,0,0.270259276,-,+,0.002164315,0.000615082,0.875099804,0.749528355,0.81,0.54; 1.21,0.311,0.458
+m_109,alpha-Glycerylphosphorylcholine,Not significant,Positive,Not significant,0.011730266,0,+,-,0.033948745,0.015468484,0.790580128,0.596445858,0.85,0.71; 1.01,0.06,0.146
+m_111,Alanine,Increased,Not significant,Not significant,0,0,-,-,0.930877287,0.897183361,0.773833801,0.575020575,1.32,1.20; 1.44,0.001,0.001
+m_113,Adenosine 5'-monophosphate,Not in human SRR analysis,Not significant,Not significant,0.018696314,0.207692203,-,-,0.102268421,0.056178679,0.475517597,0.250077033,,,,
+m_116,Acetyl-β-methylcholine,Not in human SRR analysis,Not significant,Not significant,0.003517657,0.031922261,-,-,0.300083238,0.208290566,0.190099214,0.052752869,,,,
+m_120,8-Hydroxyquinoline,Not in human SRR analysis,Not significant,Not significant,0.002882981,0.023601189,+,+,0.654451751,0.55180176,0.3536538,0.143882695,,,,
+m_122,"5,5-Dimethylhydantoin",Not in human SRR analysis,Not significant,Not significant,0.003634959,0.000442414,-,+,0.658828747,0.556670806,0.073042705,0.013167594,,,,
+m_124,4-Oxoproline,Not in human SRR analysis,Not significant,Not significant,0.000537767,0.001212325,+,+,0.466350877,0.358451384,0.890138088,0.791182408,,,,
+m_126,4-Hydroxybutyric acid (GHB),Not in human SRR analysis,Not significant,Not significant,3.97E-05,0.00026329,-,+,0.300277139,0.208638267,0.064334047,0.010958248,,,,
+m_128,4-Guanidinobutyric acid,Not in human SRR analysis,Positive,Not significant,0.00092337,0.184803212,+,+,0.000744242,0.000151511,0.591017725,0.343956377,,,,
+m_133,3-Methylhistidine,Not in human SRR analysis,Not significant,Not significant,0,0,-,-,0.794606845,0.718473471,0.131713909,0.030552545,,,,
+m_136,3-Hydroxybutyric acid,Increased,Not significant,Negative,0,0,-,-,0.24677283,0.163405997,0.025608365,0.002144632,1.36,1.18; 1.56,0.001,0.001
+m_138,2-Naphthalenesulfonic acid,Not in human SRR analysis,Not significant,Not significant,0.187348981,0.000580878,-,+,0.089756916,0.047840627,0.055150206,0.007867418,,,,
+m_139,2-Mercaptoethanol,Not in human SRR analysis,Positive,Not significant,0.004158057,0.329422577,+,+,0.008664971,0.003179411,0.41533901,0.194755489,,,,
+m_144,"1,5-Anhydro-D-glucitol",Not in human SRR analysis,Negative,Negative,0.321884766,0.122944838,-,-,0.001093681,0.000263912,0.008072665,0.000418243,,,,
